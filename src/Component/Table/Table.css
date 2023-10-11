@@ -1,0 +1,91 @@
+.details{
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    display: grid;
+    grid-gap: 30px;
+}
+
+.details .recentOrders{
+    position: relative;
+    min-height: 500px;
+    background: var(--white);
+    padding: 20px;
+    box-shadow:  0 7px 25px var(--shadow);
+    border-radius: 20px;
+}
+
+.details .cardHeader{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 10px 20px 0 20px;
+}
+
+.cardHeader h2{
+    font-weight: 600;
+    color: var(--blue);
+}
+
+.cardHeader .btn{
+    position: relative;
+    padding: 5px 10px;
+    background: var(--blue);
+    text-decoration: none;
+    color: var(--white);
+    border-radius: 6px;
+}
+
+.details table{
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.details table thead td{
+    font-weight: 600;
+}
+
+.details .recentOrders table tr{
+    color: var(--black);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.details .recentOrders table tr:last-child{
+    border-bottom: none;
+}
+
+
+
+.details .recentOrders table tr td{
+    padding: 20px;
+}
+
+.details .recentOrders table tr td:last-child{
+    text-align: end;
+}
+
+.details .recentOrders table tr td:nth-child(2){
+    text-align: end;
+}
+
+.details .recentOrders table tr td:nth-child(3){
+    text-align: center;
+}
+
+.status{
+    padding: 5px 10px;
+    background: var(--blue);
+    text-decoration: none;
+    color: var(--white);
+    border-radius: 6px;
+}
+
+.catch-up{
+    background: var(--blue);
+}
+
+.delivered{
+    background: var(--blue);
+}
+
