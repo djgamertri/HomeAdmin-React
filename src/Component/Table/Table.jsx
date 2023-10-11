@@ -2,13 +2,13 @@ import React from "react";
 import "./Table.css";
 
 function Table(props) {
-  const { headers, data } = props;
+  const { title, headers, data } = props;
 
   return (
     <div className="details">
       <div className="recentOrders">
         <div className="cardHeader">
-          <h2>Residentes</h2>
+          <h2>{title}</h2>
           <a href="#" className="btn card open-modal btn" data-open="modal1">
             Añadir
           </a>
