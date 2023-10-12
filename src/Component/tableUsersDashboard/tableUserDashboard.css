@@ -1,0 +1,55 @@
+.update-users{
+    position: relative;
+    display: grid;
+    min-height: 500px;
+    padding: 20px;
+    background: var(--white);
+    box-shadow: 0 7px 25px var(--shadow);
+    border-radius: 20px;
+}
+
+.update-users .User-img{
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+    overflow: hidden;
+}
+
+.update-users .User-img img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.update-users table tr:hover{
+    background: var(--blue);
+    color: var(--white);
+    cursor: pointer;
+}
+
+.update-users table tr td{
+    padding: 12px 10px;
+}
+
+.update-users table tr td h4{
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.2rem;
+}
+
+.update-users table tr td h4 span{
+    font-size: 14px;
+    color: var(--black);
+}
+
+.update-users table tr:hover td h4 span{
+    color: var(--white);
+}
+
+.content-td{
+    width: 60px;
+}
