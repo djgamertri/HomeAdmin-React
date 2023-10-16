@@ -1,4 +1,4 @@
-function Fee() {
+function Fee () {
   return (
     <div>Fee</div>
   )

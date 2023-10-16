@@ -1,4 +1,4 @@
-function Park() {
+function Park () {
   return (
     <div>Park</div>
   )

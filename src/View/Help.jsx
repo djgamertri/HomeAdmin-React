@@ -1,4 +1,4 @@
-function Help() {
+function Help () {
   return (
     <div>Help</div>
   )
