@@ -1,89 +1,89 @@
 import { NavLink } from 'react-router-dom'
-import "./Nav.css"
- 
-function sideBar() {
+import './Nav.css'
+
+function sideBar () {
   return (
-    <div className="navegation">
+    <div className='navegation'>
       <ul>
         <li>
-          <a href="">
-            <span className="icon">
-              <i className="fa-brands fa-reddit"></i>
+          <a href=''>
+            <span className='icon'>
+              <i className='fa-brands fa-reddit' />
             </span>
-            <span className="title">Cafam II</span>
+            <span className='title'>Cafam II</span>
           </a>
         </li>
         <li>
-          <NavLink to={"/Dashboard"}>
-            <span className="icon">
-              <i className="fa-solid fa-house-chimney"></i>
+          <NavLink to='/Dashboard'>
+            <span className='icon'>
+              <i className='fa-solid fa-house-chimney' />
             </span>
-            <span className="title">Inicio</span>
+            <span className='title'>Inicio</span>
           </NavLink>
         </li>
         <li>
-          <NavLink to={"/Resident"}>
-            <span className="icon">
-              <i className="fa-solid fa-user"></i>
+          <NavLink to='/Resident'>
+            <span className='icon'>
+              <i className='fa-solid fa-user' />
             </span>
-            <span className="title">Residentes</span>
+            <span className='title'>Residentes</span>
           </NavLink>
         </li>
         <li>
-          <NavLink to={"/Tax"}>
-            <span className="icon">
-              <i className="fa-solid fa-dollar-sign"></i>
+          <NavLink to='/Tax'>
+            <span className='icon'>
+              <i className='fa-solid fa-dollar-sign' />
             </span>
-            <span className="title">Cuotas</span>
+            <span className='title'>Cuotas</span>
           </NavLink>
         </li>
         <li>
-          <NavLink to={"/Votacion"}>
-            <span className="icon">
-              <i className="fa-solid fa-comment"></i>
+          <NavLink to='/Votacion'>
+            <span className='icon'>
+              <i className='fa-solid fa-comment' />
             </span>
-            <span className="title">Votaciones</span>
+            <span className='title'>Votaciones</span>
           </NavLink>
         </li>
         <li>
-          <NavLink to={"/Parking"}>
-            <span className="icon">
-              <i className="fa-solid fa-car"></i>
+          <NavLink to='/Parking'>
+            <span className='icon'>
+              <i className='fa-solid fa-car' />
             </span>
-            <span className="title">Parqueadero</span>
+            <span className='title'>Parqueadero</span>
           </NavLink>
         </li>
         <li>
-          <NavLink to={"/Zone"}>
-            <span className="icon">
-              <i className="fa-solid fa-users"></i>
+          <NavLink to='/Zone'>
+            <span className='icon'>
+              <i className='fa-solid fa-users' />
             </span>
-            <span className="title">Zona Comun</span>
+            <span className='title'>Zona Comun</span>
           </NavLink>
         </li>
         <li>
-          <NavLink to={"/Help"}>
-            <span className="icon">
-              <i className="fa-solid fa-question"></i>
+          <NavLink to='/Help'>
+            <span className='icon'>
+              <i className='fa-solid fa-question' />
             </span>
-            <span className="title">Ayuda</span>
+            <span className='title'>Ayuda</span>
           </NavLink>
         </li>
         <li>
-          <NavLink to={"/Settings"}>
-            <span className="icon">
-              <i className="fa-solid fa-gear"></i>
+          <NavLink to='/Settings'>
+            <span className='icon'>
+              <i className='fa-solid fa-gear' />
             </span>
-            <span className="title">Configuracion</span>
+            <span className='title'>Configuracion</span>
           </NavLink>
         </li>
-        
+
         <li>
           <a>
-            <span className="icon">
-              <i className="fa-solid fa-right-from-bracket"></i>
+            <span className='icon'>
+              <i className='fa-solid fa-right-from-bracket' />
             </span>
-            <span className="title">Salir</span>
+            <span className='title'>Salir</span>
           </a>
         </li>
       </ul>

@@ -1,9 +1,12 @@
-import Table from "../Component/Table/Table"
+import Table from '../Component/Table/Table'
 
-function Resident() {
+function Resident () {
+  const headersTable = ['Numero de Documento', 'Nombre', 'Telefono', 'Casa', 'Estado']
+  const dataTable = [['1029141700', 'Alguien 2', '1308390313', '321', 'Activo'], ['1029141700', 'Alguien 2', '1308390313', '321', 'Activo'], ['1029141700', 'Alguien 2', '1308390313', '321', 'Activo'], ['1029141700', 'Alguien 2', '1308390313', '321', 'Activo']]
+
   return (
     <div>
-      <Table title="Residentes" headers={["Numero de Documento", "Numero de Documento", "Telefono", "Casa", "Estado", "Modificar", "Eliminar"]} data={[]}/>
+      <Table title='Residentes' headers={headersTable} data={dataTable} />
     </div>
   )
 }
