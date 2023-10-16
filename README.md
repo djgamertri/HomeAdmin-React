@@ -5,6 +5,20 @@
 > Debes tener instalado
 >
 >[Node JS 20.8.1](https://nodejs.org/dist/v20.8.1/node-v20.8.1-x64.msi)
+>[EsLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+
+> [!NOTE]
+> 
+> Pon este codigo en "configuracion" - busca "code actions on save" - editar settings.json y agrega este codigo, Para que al momento de guardar los cambios en Vscode se fuercen los cambios del Eslint
+>
+>```json
+> "editor.codeActionsOnSave": {
+>   "source.fixAll.eslint": true
+> }
+>```
+>
+>Recuerda que al ser un json puede que sea necesario una coma antes y/o despues de algun otro atributo 
+>
 
 
 ## Clonar el proyecto
