@@ -7,25 +7,26 @@ import Vote from './View/Vote'
 import Park from './View/Park'
 import Zone from './View/Zone'
 import Help from './View/Help'
-import "./Main.css"
+import Header from './Component/Header/Header'
+import './Main.css'
 
-
-function App() {
+function App () {
   return (
     <>
-      <SideBar/>
+      <SideBar />
       <div className='main'>
-      <Routes>
-        <Route path='/' element={<h1>Hola</h1>} />
-        <Route path='/Dashboard' element={<Dashboard/>} />
-        <Route path='/Resident' element={<Resident/>} />
-        <Route path='/Tax' element={<Fee/>} />
-        <Route path='/Votacion' element={<Vote/>} />
-        <Route path='/Parking' element={<Park/>} />
-        <Route path='/Zone' element={<Zone/>} />
-        <Route path='/Help' element={<Help/>} />
-        <Route path='/Settings' element={<Zone/>} />
-      </Routes>
+        <Header />
+        <Routes>
+          <Route path='/' element={<h1>Hola</h1>} />
+          <Route path='/Dashboard' element={<Dashboard />} />
+          <Route path='/Resident' element={<Resident />} />
+          <Route path='/Tax' element={<Fee />} />
+          <Route path='/Votacion' element={<Vote />} />
+          <Route path='/Parking' element={<Park />} />
+          <Route path='/Zone' element={<Zone />} />
+          <Route path='/Help' element={<Help />} />
+          <Route path='/Settings' element={<Zone />} />
+        </Routes>
       </div>
     </>
   )

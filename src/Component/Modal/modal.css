@@ -1,0 +1,110 @@
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    background: var(--background_black);
+    cursor: pointer;
+    transition: all 0.35s ease-in;
+}
+
+.modal-dialog {
+    position: relative;
+    width: 75vh;
+    border-radius: 15px;
+    background: var(--white);
+    overflow: auto;
+    cursor: default;
+}
+
+.modal-dialog > * {
+    padding: 1rem;
+}
+  
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--lightgray);
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.close-modal{
+        cursor: pointer;    
+        border: none;
+        font-size: inherit;
+}
+
+.form-disposition{
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.form-input{
+    outline: 0;
+    width: 80%;
+    height:50px;
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
+    border-bottom: 2px var(--black) solid;
+    margin-bottom: 8px;
+    margin-left: 1.5rem;
+}
+
+.btn-submit{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    height: 40px;
+    width: 246px;
+    background: var(--blue);
+    border-radius: 8px;
+    transition: ease-in;
+    color: var(--white);
+    border: none;
+    font-weight: 400;
+}
+
+.btn-submit:hover{
+    cursor: pointer;
+    color: var(--black);
+    background: var(--green);
+    transition: ease-in;
+    font-weight: bold;
+}
+
+.form-colums{
+    display: flex;
+    justify-content: space-between;
+  }
+  
+.colum{
+    width: 50%;
+  }
+
+[data-animation] .modal-dialog {
+    transition: all 0.5s var(--bounceEasing);
+}
+
+[data-animation].is-visible .modal-dialog {
+    transition-delay: 0.2s;
+}
+
+  [data-animation="slideInOutLeft"].is-visible .modal-dialog,
+  [data-animation="slideInOutRight"].is-visible .modal-dialog{
+    transform: none;
+  }
+
+  input[type=number]::-webkit-inner-spin-button, 
+  input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none; 
+    margin: 0; 
+}

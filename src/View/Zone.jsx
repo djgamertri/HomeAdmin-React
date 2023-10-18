@@ -1,4 +1,4 @@
-function Zone() {
+function Zone () {
   return (
     <div>Zone</div>
   )

@@ -1,0 +1,70 @@
+.TableContent{
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    background: var(--White);
+    padding: 20px;
+    box-shadow: 5px 13px 33px -6px #cac8c8;
+    border-radius: 20px;
+    width: 98%;
+    margin: auto;
+    min-height: 500px;
+}
+
+.cardHeader{
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   padding: 10px;
+}
+
+.cardHeader h2{
+    font-weight: 600;
+    color: var(--blue);
+}
+
+.btn{
+    position: relative;
+    padding: 5px 10px;
+    background: var(--blue);
+    text-decoration: none;
+    color: var(--white);
+    border-radius: 6px;
+}
+
+table{
+    border-collapse: collapse; 
+    font-size: 16px;
+    width: 100%;
+}
+table th{
+    text-align: left;
+    padding: 10pt;
+    background: #fff;
+    color: black;
+}
+table tr{
+    background: #fff;
+    font-size: 1rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+table tr:last-child{
+    border-bottom: none;
+}
+table td{
+    padding: 30px 10pt;
+    color: black;
+}
+
+table td a{
+    text-decoration: none;
+    outline: none;
+}
+
+table td a .update{
+    background: var(--green);
+}
+
+table td a .delete{
+    background: var(--red);
+}

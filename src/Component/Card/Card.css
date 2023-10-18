@@ -7,7 +7,7 @@
     grid-gap: 30px;
 }
 
-.content-cards .card{
+.card{
     display: flex;
     justify-content: space-between;
     cursor: pointer;
@@ -18,30 +18,30 @@
     box-shadow: 0 7px 25px var(--shadow); 
 }
 
-.content-cards .card .numbers{
+.card .numbers{
     position: relative;
     font-weight: 500;
     font-size: 2.5rem;
     color: var(--blue);
 }
 
-.content-cards .card .cardName{
+.card .cardName{
     color: var(--dark-gray);
     font-size: 1.1rem;
     margin-top: 5px;
 }
 
-.content-cards .card .iconCard{
+.card .iconCard{
     color: var(--dark-gray);
     font-size: 3.5rem;
 }
 
-.content-cards .card:hover{
+.card:hover{
     background: var(--blue);
 }
 
-.content-cards .card:hover .numbers,
-.content-cards .card:hover .cardName,
-.content-cards .card:hover .iconCard{
+.card:hover .numbers,
+.card:hover .cardName,
+.card:hover .iconCard{
     color: var(--white);
 }
