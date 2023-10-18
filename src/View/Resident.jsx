@@ -1,3 +1,4 @@
+import Exel from '../Component/Exel/exel'
 import Table from '../Component/Table/Table'
 
 function Resident () {
@@ -6,6 +7,7 @@ function Resident () {
 
   return (
     <div>
+      <Exel title='Residentes' />
       <Table title='Residentes' headers={headersTable} data={dataTable} />
     </div>
   )
