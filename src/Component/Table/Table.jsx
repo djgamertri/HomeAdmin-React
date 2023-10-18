@@ -1,15 +1,18 @@
 import React, { useState } from 'react'
 import './Table.css'
 import Modal from '../Modal/modal'
+import RegisterUser from '../RegisterUser/RegisterUser'
+import UpdateUser from '../UpdateUser/UpdateUser'
 
 function Table (props) {
   const { title, headers, data } = props
-  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [isModalOpen1, setIsModalOpen1] = useState(false)
+  const [isModalOpen2, setIsModalOpen2] = useState(false)
   return (
     <div className='TableContent'>
       <div className='cardHeader'>
         <h2>{title}</h2>
-        <a href='#' className='btn card open-modal btn' onClick={() => setIsModalOpen(true)}>
+        <a href='#' className='btn card open-modal btn' onClick={() => setIsModalOpen1(true)}>
           Añadir
         </a>
       </div>
@@ -30,7 +33,7 @@ function Table (props) {
                 <td key={cellIndex}>{cell}</td>
               ))}
               <td>
-                <a href='#' data-open='modal2' id='update'><span className='status update btn'>Modificar</span></a>
+                <a href='#' data-open='modal2' id='update'><span className='status update btn' onClick={() => setIsModalOpen2(true)}>Modificar</span></a>
               </td>
               <td>
                 <a href='#' data-open='modal2' id='update'><span className='status delete btn'>Eliminar</span></a>
@@ -39,7 +42,12 @@ function Table (props) {
           ))}
         </tbody>
       </table>
-      <Modal isOpen={isModalOpen} closeModal={() => setIsModalOpen(false)} />
+      <Modal isOpen={isModalOpen1} closeModal={() => setIsModalOpen1(false)} title='Registrar Usuario'>
+        <RegisterUser />
+      </Modal>
+      <Modal isOpen={isModalOpen2} closeModal={() => setIsModalOpen2(false)} title='Actualizar Usuario'>
+        <UpdateUser />
+      </Modal>
     </div>
   )
 }

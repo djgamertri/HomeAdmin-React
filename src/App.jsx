@@ -9,13 +9,18 @@ import Zone from './View/Zone'
 import Help from './View/Help'
 import Header from './Component/Header/Header'
 import './Main.css'
+import { useState } from 'react'
 
 function App () {
+  const [isClaseAgregar, setClaseAgregar] = useState(false)
+  const navbar = () => {
+    setClaseAgregar(!isClaseAgregar)
+  }
   return (
     <>
       <SideBar />
-      <div className='main'>
-        <Header />
+      <div className={`main ${isClaseAgregar ? 'activate' : ''}`}>
+        <Header navbar={navbar} />
         <Routes>
           <Route path='/' element={<h1>Hola</h1>} />
           <Route path='/Dashboard' element={<Dashboard />} />
