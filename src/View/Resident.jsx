@@ -1,9 +1,13 @@
 import DataTable from 'react-data-table-component'
 import { GetUser } from '../api/Users'
 import { useEffect, useState } from 'react'
+import Modal from '../Component/Modal/modal'
+import UpdateUser from '../Form/User/Udpate'
 
 function Resident () {
   const [Users, setUsers] = useState([])
+  const [UpdateModal, setUpdateModal] = useState(false)
+  const [DeleteModal, setDeleteModal] = useState(false)
 
   useEffect(() => {
     GetUser()
@@ -41,9 +45,9 @@ function Resident () {
       name: 'Modificar',
       button: 'true',
       cell: (row) => (
-        <a className='btn' onClick={(e) => handleEdit(e, row.IdUser)}>
+        <a className='btn' onClick={() => setUpdateModal(true)}>
           Editar
-        </a>
+        </a> // Simple prueba de que el modal funciona
       )
     },
     {
@@ -78,6 +82,9 @@ function Resident () {
   return (
     <div className='TableContent'>
       <DataTable columns={Coluuns} data={Users} title='Residents' pagination customStyles={customStyles} />
+      <Modal isOpen={UpdateModal} closeModal={() => setUpdateModal(false)} title='Actualizar Usuario'>
+        <UpdateUser />
+      </Modal>
     </div>
   )
 }
