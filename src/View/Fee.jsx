@@ -2,6 +2,7 @@ import { GetFees } from '../api/Fee'
 import { useEffect, useState } from 'react'
 import DataTable from 'react-data-table-component'
 
+
 function Fee () {
   const [Users, setUsers] = useState([])
 
@@ -78,7 +79,7 @@ function Fee () {
   return (
     <div className='TableContent'>
       <DataTable columns={Coluuns} data={Users} title='Cuotas' pagination customStyles={customStyles} />
-    </div>
+    <div>
   )
 }
 
