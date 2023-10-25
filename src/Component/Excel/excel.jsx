@@ -1,16 +1,15 @@
-import './exel.css'
+import './excel.css'
 
-function Exel ({ title }) {
+function Exel () {
   return (
     <div className='header'>
       <div className='left'>
-        <ul class='breadcrumb'>
+        <ul className='breadcrumb'>
           <li>
             <a href='#'> Bienvenido </a>
-          </li>
-          <p>/</p>
+          </li> /
           <li>
-            <p className='activate'> {title} </p>
+            <p className='nameuser'> user </p>
           </li>
         </ul>
       </div>

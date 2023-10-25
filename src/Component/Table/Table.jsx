@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import './Table.css'
 import Modal from '../Modal/modal'
-import RegisterUser from '../RegisterUser/RegisterUser'
-import UpdateUser from '../UpdateUser/UpdateUser'
+import RegisterUser from '../../Form/User/Register'
+import UpdateUser from '../../Form/User/Udpate'
 
 function Table (props) {
   const { title, headers, data } = props

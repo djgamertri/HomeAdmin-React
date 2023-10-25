@@ -7,7 +7,7 @@ function Fee () {
 
   return (
     <div>
-      <Excel />
+      <Excel title='Cuotas' />
       <Table title='Residentes' headers={headersTable} data={dataTable} />
     </div>
   )
