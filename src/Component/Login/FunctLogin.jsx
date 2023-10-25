@@ -29,8 +29,9 @@ function FunctLogin ({ isOpen, closeModal }) {
     }
   }, [isOpen, closeModal])
   if (!isOpen) return null
-  const onSubmit = handleSubmit((data) => {
+  const sendData = handleSubmit((data) => {
     const res = data
+    console.log(res)
     signin(res)
   })
   return (
@@ -44,7 +45,7 @@ function FunctLogin ({ isOpen, closeModal }) {
           </button>
         </header>
         <section className='modal-content'>
-          <form className='form-disposition' onSubmit={handleSubmit(onSubmit)}>
+          <form className='form-disposition' onSubmit={handleSubmit(sendData)}>
             <div className='colum'>
               <input className='form-input' placeholder='Correo electronico' type='email' {...register('Email', { required: true })} />
               <input className='form-input' placeholder='Contraseña' type='password' {...register('Pass', { required: true })} />
