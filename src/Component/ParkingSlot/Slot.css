@@ -1,0 +1,103 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.content-parking{
+    position: relative;
+    display: grid;
+    min-height: 500px;
+    background: #dddddd;
+    padding: 20px;
+    box-shadow:  0 7px 25px var(--shadow);
+    border-radius: 20px;
+    margin: 1%;
+}
+
+.content-cardsParking{
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: repeat(6, 1fr);
+}
+
+.content-cardsParking .card{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    cursor: pointer;
+    position: relative;
+    background: var(--white);
+    padding: 60px;
+    border-radius: 20px;
+    box-shadow: 0 7px 25px var(--shadow); 
+}
+.numbers{
+    position: relative;
+    font-weight: 500;
+    font-size: 2.5rem;
+    color: var(--blue);
+    text-align: center;
+}
+.NameUser{
+    color: var(--white);
+    font-size: 1.1rem;
+    margin-top: 5px;
+    text-align: center;
+}
+
+.cardPlaca{
+    color: var(--white);
+    font-size: 1.1rem;
+    margin-top: 5px;
+    text-align: center;
+}
+
+.content-btn{
+    display: flex;
+    justify-content: end;
+}
+.btn-register{
+    margin-left: 20px;
+}
+
+.btn-parking{
+    position: relative;
+    padding: 10px 10px;
+    background: var(--blue);
+    text-decoration: none;
+    color: var(--white);
+    border-radius: 6px;
+    border: none;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+@media (max-width : 1680px){
+    .content-cardsParking{
+        grid-template-columns: repeat( 5, 1fr);
+    }
+}
+
+@media(max-width: 1380px){
+    .content-cardsParking{
+        grid-template-columns: repeat( 3, 1fr);
+    }
+}
+
+@media(max-width: 950px){
+    .content-cardsParking{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media(max-width: 780px){
+    .content-cardsParking{
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
