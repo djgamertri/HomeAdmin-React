@@ -1,4 +1,4 @@
-import Slot from '../Component/ParkingSlot/slot'
+import Slot from '../Component/ParkingSlot/Slot'
 function Park () {
   return (
     <div class='content-parking'>
