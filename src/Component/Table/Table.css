@@ -31,7 +31,9 @@
     color: var(--white);
     border-radius: 6px;
 }
-
+.btn:hover{
+    cursor: pointer;
+}
 table{
     border-collapse: collapse; 
     font-size: 16px;
