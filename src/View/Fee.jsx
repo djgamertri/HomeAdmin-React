@@ -1,4 +1,4 @@
-import Exel from '../Component/Exel/exel'
+import Excel from '../Component/Excel/excel'
 import Table from '../Component/Table/Table'
 
 function Fee () {
@@ -7,7 +7,7 @@ function Fee () {
 
   return (
     <div>
-      <Exel title='Cuotas' />
+      <Excel title='Cuotas' />
       <Table title='Residentes' headers={headersTable} data={dataTable} />
     </div>
   )
