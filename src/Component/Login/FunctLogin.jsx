@@ -2,15 +2,7 @@ import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { login } from '../../api/auth.js'
 import '../Modal/modal.css'
-const signin = async (user) => {
-  try {
-    const res = await login(user)
-    console.log(res)
-  } catch (err) {
-    console.error(err)
-  }
-}
-// import { useForm } from 'react-hook-form'
+
 function FunctLogin ({ isOpen, closeModal }) {
   const { register, handleSubmit } = useForm()
   useEffect(() => {
@@ -28,12 +20,23 @@ function FunctLogin ({ isOpen, closeModal }) {
       document.removeEventListener('keyup', keyup)
     }
   }, [isOpen, closeModal])
+
   if (!isOpen) return null
+
+  const signin = async (user) => {
+    try {
+      const res = await login(user)
+      localStorage.setItem('token', res.data.token)
+    } catch (err) {
+      console.error(err.response.data)
+    }
+  }
+
   const sendData = handleSubmit((data) => {
     const res = data
-    console.log(res)
     signin(res)
   })
+
   return (
     <div className='modal' data-animation='slideInOutRight'>
       <div className='modal-dialog'>
