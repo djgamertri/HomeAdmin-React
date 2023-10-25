@@ -1,5 +1,5 @@
 import DataTable from 'react-data-table-component'
-import { GetUser } from '../api/Users'
+import { GetUser } from '../api/users'
 import { useEffect, useState } from 'react'
 import Modal from '../Component/Modal/modal'
 import UpdateUser from '../Form/User/Udpate'

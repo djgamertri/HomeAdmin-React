@@ -1,6 +1,6 @@
 import DataTable from 'react-data-table-component'
 import Card from '../Component/Card/Card'
-import { GetUser } from '../api/Users'
+import { GetUser } from '../api/users.js'
 import { useEffect, useState } from 'react'
 
 function Dashboard () {
