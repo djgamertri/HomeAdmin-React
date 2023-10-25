@@ -15,7 +15,7 @@ function Exel ({ title }) {
         </ul>
       </div>
       <a href='#' className='report'>
-        <i className='fa-solid fa-download' /> <span>Exportar Exel</span>
+        <i className='fa-solid fa-download' /> <span>Exportar Excel</span>
       </a>
     </div>
   )
