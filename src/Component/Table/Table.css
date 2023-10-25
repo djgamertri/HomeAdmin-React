@@ -55,3 +55,16 @@ table td{
     padding: 30px 10pt;
     color: black;
 }
+
+table td a{
+    text-decoration: none;
+    outline: none;
+}
+
+table td a .update{
+    background: var(--green);
+}
+
+table td a .delete{
+    background: var(--red);
+}

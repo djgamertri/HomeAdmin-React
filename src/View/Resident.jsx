@@ -128,7 +128,7 @@ function Resident () {
     e.preventDefault()
     console.log('Row Id', id)
   }
-  return (
+  return
     <div className='TableContent'>
       <DataTable columns={Coluuns} data={data} title='Residents' fixedHeader pagination />
     </div>

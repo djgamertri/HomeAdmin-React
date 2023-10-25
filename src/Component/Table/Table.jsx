@@ -1,14 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Table.css'
+import Modal from '../Modal/modal'
 
 function Table (props) {
   const { title, headers, data } = props
-
+  const [isModalOpen, setIsModalOpen] = useState(false)
   return (
     <div className='TableContent'>
       <div className='cardHeader'>
         <h2>{title}</h2>
-        <a href='#' className='btn card open-modal btn' data-open='modal1'>
+        <a href='#' className='btn card open-modal btn' onClick={() => setIsModalOpen(true)}>
           Añadir
         </a>
       </div>
@@ -29,16 +30,16 @@ function Table (props) {
                 <td key={cellIndex}>{cell}</td>
               ))}
               <td>
-                <a href='#' data-open='modal2' id='update'><span className='status catch-up btn'>Modificar</span></a>
+                <a href='#' data-open='modal2' id='update'><span className='status update btn'>Modificar</span></a>
               </td>
               <td>
-                <a href='#' data-open='modal2' id='update'><span className='status catch-up btn'>Modificar</span></a>
+                <a href='#' data-open='modal2' id='update'><span className='status delete btn'>Eliminar</span></a>
               </td>
-
             </tr>
           ))}
         </tbody>
       </table>
+      <Modal isOpen={isModalOpen} closeModal={() => setIsModalOpen(false)} />
     </div>
   )
 }
