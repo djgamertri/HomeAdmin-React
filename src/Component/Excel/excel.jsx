@@ -1,6 +1,6 @@
 import './excel.css'
 
-function Exel ({ title }) {
+function Excel ({ title }) {
   return (
     <div className='header'>
       <div className='left'>
@@ -21,4 +21,4 @@ function Exel ({ title }) {
   )
 }
 
-export default Exel
+export default Excel
