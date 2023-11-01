@@ -10,7 +10,7 @@ import Help from './View/Help'
 import Header from './Component/Header/Header'
 import './Main.css'
 import { useState } from 'react'
-import LogIn from './Component/Login/Login'
+import Login from './View/Login'
 import Setting from './View/Setting'
 
 function App () {
@@ -24,7 +24,7 @@ function App () {
       <div className={`main ${isClaseAgregar ? 'activate' : ''}`}>
         <Header navbar={navbar} />
         <Routes>
-          <Route path='/' element={<LogIn />} />
+          <Route path='/' element={<Login />} />
           <Route path='/Dashboard' element={<Dashboard />} />
           <Route path='/Resident' element={<Resident />} />
           <Route path='/Tax' element={<Fee />} />

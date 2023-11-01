@@ -2,12 +2,11 @@ import DataTable from 'react-data-table-component'
 import { GetUser } from '../api/users'
 import { useEffect, useState } from 'react'
 import Modal from '../Component/Modal/modal'
-import UpdateUser from '../Form/User/Udpate'
+import UpdateUser from '../Form/User/Update'
 
 function Resident () {
   const [Users, setUsers] = useState([])
   const [UpdateModal, setUpdateModal] = useState(false)
-  const [DeleteModal, setDeleteModal] = useState(false)
 
   useEffect(() => {
     GetUser()
