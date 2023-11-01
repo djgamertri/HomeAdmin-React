@@ -7,3 +7,5 @@ const config = {
 }
 
 export const GetUser = () => axios.get('/Residents', config)
+export const PostUser = user => axios.post('/Register', user, config)
+export const PatchUser = user => axios.patch('/Resident', user, config)
