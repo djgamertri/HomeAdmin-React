@@ -4,7 +4,7 @@ function RegisterFee () {
   const { register, handleSubmit, control } = useForm()
   const fee = async (data) => {
     try {
-      const res = registFee(data)
+      const res = await registFee(data)
       console.log(res.data)
     } catch (err) {
       console.log(err)
