@@ -54,7 +54,7 @@ function RegisterUser () {
           {errors.Email && <p className='error-input'> {errors.Email.message} </p>}
           <input className='form-input' type='number' placeholder='Numero de casa' {...register('NumberHouse', { required: true })} />
           <Controller
-            name='TypeDocument'
+            name='Rol'
             control={control}
             rules={{ required: true }}
             defaultValue='Residente'
@@ -79,7 +79,7 @@ function RegisterUser () {
             })}
           />
           <Controller
-            name='TypeDocument'
+            name='State'
             control={control}
             rules={{ required: true }}
             defaultValue={1}

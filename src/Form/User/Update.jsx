@@ -24,8 +24,12 @@ function UpdateUser () {
           <Controller
             name='TypeDocument'
             control={control}
-            rules={{ required: true }}
-            defaultValue='Tarjeta de identidad'
+            rules={{
+              required: {
+                value: true,
+                message: 'El tipo de documento es requerido'
+              }
+            }}
             render={({ field }) => (
               <select {...field} className='form-input'>
                 <option className='form-option'>Tipo de documento</option>
@@ -35,8 +39,41 @@ function UpdateUser () {
               </select>
             )}
           />
-          <input className='form-input' type='number' placeholder='Numero de documento' {...register('NumDocument', { required: true, valueAsNumber: true })} />
-          <input className='form-input' type='number' placeholder='Telefono' {...register('Phone', { required: true, valueAsNumber: true })} />
+          {errors.TypeDocument && <p className='error-input'>{errors.TypeDocument.message}</p>}
+          <input
+            className='form-input' type='number' placeholder='Numero de documento' {...register('NumDocument', {
+              required: {
+                value: true,
+                message: 'El numero de documento es requerido'
+              },
+              valueAsNumber: {
+                value: true,
+                message: 'El campo debe ser un numero de documento valido'
+              },
+              maxLength: {
+                value: 11,
+                message: 'El numero de documento no puede ser mayor a 11 digitos'
+              }
+            })}
+          />
+          {errors.NumDocument && <p className='error-input'>{errors.NumDocument.message}</p>}
+          <input
+            className='form-input' type='number' placeholder='Telefono' {...register('Phone', {
+              required: {
+                value: true,
+                message: 'El numero de telefono es requerido'
+              },
+              valueAsNumber: {
+                value: true,
+                message: 'El campo debe ser un numero de telefono valido'
+              },
+              maxLength: {
+                value: 10,
+                message: 'El numero de telefono no puede ser mayor a 10 digitos'
+              }
+            })}
+          />
+          {errors.Phone && <p className='error-input'>{errors.Phone.message}</p>}
         </div>
         <div className='colum'>
           <input
@@ -54,9 +91,14 @@ function UpdateUser () {
           {errors.Email && <p className='error-input'> {errors.Email.message} </p>}
           <input className='form-input' type='number' placeholder='Numero de casa' {...register('NumberHouse', { required: true })} />
           <Controller
-            name='TypeDocument'
+            name='Rol'
             control={control}
-            rules={{ required: true }}
+            rules={{
+              required: {
+                value: true,
+                message: 'El tipo de documento es requerido'
+              }
+            }}
             defaultValue='Residente'
             render={({ field }) => (
               <select {...field} className='form-input'>
@@ -66,6 +108,7 @@ function UpdateUser () {
               </select>
             )}
           />
+          {errors.Rol && <p className='error-input'> {errors.Rol.message} </p>}
           <input
             className='form-input' type='password' placeholder='Contraseña' {...register('Pass', {
               required: {
@@ -78,10 +121,16 @@ function UpdateUser () {
               }
             })}
           />
+          {errors.Pass && <p className='error-input'> {errors.Pass.message} </p>}
           <Controller
-            name='TypeDocument'
+            name='State'
             control={control}
-            rules={{ required: true }}
+            rules={{
+              required: {
+                value: true,
+                message: 'El tipo de documento es requerido'
+              }
+            }}
             defaultValue={1}
             render={({ field }) => (
               <select {...field} className='form-input'>
@@ -91,6 +140,7 @@ function UpdateUser () {
               </select>
             )}
           />
+          {errors.State && <p className='error-input'> {errors.State.message} </p>}
         </div>
       </div>
       <button className='btn-submit' type='submit'>Registrar Usuario</button>
