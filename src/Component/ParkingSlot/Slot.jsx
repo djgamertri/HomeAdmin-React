@@ -15,7 +15,7 @@ function Slot ({ numberOfSlots }) {
     )
   }
 
-  return <div class='content-cardsParking'>{slots}</div>
+  return <div className='content-cardsParking'>{slots}</div>
 }
 
 export default Slot

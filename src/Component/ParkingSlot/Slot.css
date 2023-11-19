@@ -67,7 +67,6 @@
 }
 
 .btn-parking{
-    position: relative;
     padding: 10px 10px;
     background: var(--blue);
     text-decoration: none;
