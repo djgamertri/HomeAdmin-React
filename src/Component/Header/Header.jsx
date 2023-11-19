@@ -1,9 +1,9 @@
 import './Header.css'
 
-function Header () {
+function Header ({ navbar }) {
   return (
     <div className='topbar'>
-      <div className='toggle'>
+      <div className='toggle' onClick={navbar}>
         <i className='fa-solid fa-bars' />
       </div>
       <div className='search'>

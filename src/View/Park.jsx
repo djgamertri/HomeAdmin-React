@@ -1,7 +1,11 @@
+<<<<<<< HEAD
 import { PDFDownloadLink } from '@react-pdf/renderer'
 import Slot from '../Component/ParkingSlot/slot'
 import ParkingReport from '../Component/ParkingSlot/ParkingReport/ParkingReport'
 
+=======
+import Slot from '../Component/ParkingSlot/Slot'
+>>>>>>> master
 function Park () {
   return (
     <div className='content-parking'>

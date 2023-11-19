@@ -1,10 +1,10 @@
-import './exel.css'
+import './excel.css'
 
-function Exel ({ title }) {
+function Excel ({ title }) {
   return (
     <div className='header'>
       <div className='left'>
-        <ul class='breadcrumb'>
+        <ul className='breadcrumb'>
           <li>
             <a href='#'> Bienvenido </a>
           </li>
@@ -15,10 +15,10 @@ function Exel ({ title }) {
         </ul>
       </div>
       <a href='#' className='report'>
-        <i className='fa-solid fa-download' /> <span>Exportar Exel</span>
+        <i className='fa-solid fa-download' /> <span>Exportar Excel</span>
       </a>
     </div>
   )
 }
 
-export default Exel
+export default Excel

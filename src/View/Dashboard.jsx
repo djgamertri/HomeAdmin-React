@@ -1,9 +1,83 @@
+import DataTable from 'react-data-table-component'
 import Card from '../Component/Card/Card'
-import Table from '../Component/Table/Table'
+import { GetUser } from '../api/users.js'
+import { useEffect, useState } from 'react'
 
 function Dashboard () {
-  const headersTable = ['Numero de Documento', 'Nombre', 'Telefono', 'Casa', 'Estado']
-  const dataTable = [['1029141700', 'Alguien 2', '1308390313', '321', 'Activo'], ['1029141700', 'Alguien 2', '1308390313', '321', 'Activo'], ['1029141700', 'Alguien 2', '1308390313', '321', 'Activo'], ['1029141700', 'Alguien 2', '1308390313', '321', 'Activo']]
+  const [Users, setUsers] = useState([])
+
+  useEffect(() => {
+    GetUser()
+      .then(response => {
+        setUsers(response.data)
+        console.log(response)
+      })
+      .catch(error => {
+        console.error('Error al obtener usuarios:', error)
+      })
+  }, [])
+
+  const Coluuns = [
+    {
+      name: 'ID',
+      selector: (row) => row.IdUser,
+      sortable: true
+    },
+    {
+      name: 'Nombre',
+      selector: (row) => row.NameUser,
+      sortable: true
+    },
+    {
+      name: 'Correo',
+      selector: (row) => row.Email,
+      sortable: true
+    },
+    {
+      name: 'Casa',
+      selector: (row) => row.NumHouse,
+      sortable: true
+    },
+    {
+      name: 'Modificar',
+      button: 'true',
+      cell: (row) => (
+        <a className='btn' onClick={(e) => handleEdit(e, row.IdUser)}>
+          Editar
+        </a>
+      )
+    },
+    {
+      name: 'Eliminar',
+      button: 'true',
+      cell: (row) => (
+        <a className='btn' onClick={(e) => handleDelete(e, row.IdUser)}>
+          Eliminar
+        </a>
+      )
+    }
+  ]
+
+  const handleEdit = (e, id) => {
+    e.preventDefault()
+    console.log('Row Id', id)
+  }
+
+  const handleDelete = (e, id) => {
+    e.preventDefault()
+    console.log('Row Id', id)
+  }
+
+  // https://react-data-table-component.netlify.app/?path=/docs/api-custom-styles--page
+
+  const customStyles = {
+    head: {
+      style: {
+        fontWeight: 'Bold',
+        fontSize: '15px'
+      }
+    }
+  }
 
   return (
     <div>
@@ -13,7 +87,9 @@ function Dashboard () {
         <Card Title='Votaciones' Info='Votaciones Hechas' Icon='fa-solid fa-comment' />
         <Card Title='Casas' Info='Casas Totales' Icon='fa-solid fa-house' />
       </div>
-      <Table title='Residentes' headers={headersTable} data={dataTable} />
+      <div className='TableContent'>
+        <DataTable columns={Coluuns} data={Users} fixedHeader customStyles={customStyles} />
+      </div>
     </div>
   )
 }
