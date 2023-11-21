@@ -1,21 +1,16 @@
-import './Slot.css'
+import AdminSlots from './AdminView/AdminSlots'
+import UserSlot from './UserView/UserSlot'
 
-function Slot ({ numberOfSlots }) {
-  const slots = []
-
-  for (let i = 1; i <= numberOfSlots; i++) {
-    slots.push(
-      <div className='card' key={i}>
-        <div>
-          <div className='numbers'>{i}</div>
-          <div className='cardPlaca' />
-          <div className='NameUser' />
-        </div>
-      </div>
+function Slot (props) {
+  if (props.userType === 'residente') {
+    return (
+      <UserSlot />
+    )
+  } else if (props.userType === 'admin') {
+    return (
+      <AdminSlots />
     )
   }
-
-  return <div className='content-cardsParking'>{slots}</div>
 }
 
 export default Slot
