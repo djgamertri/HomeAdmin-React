@@ -1,4 +1,4 @@
-import { GetFees } from '../api/Fee'
+import { GetFees } from '../api/FeeRecent'
 import { useEffect, useState } from 'react'
 import DataTable from 'react-data-table-component'
 
