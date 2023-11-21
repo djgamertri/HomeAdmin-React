@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+src/View/Fee.jsx
+src/api/fee.js
+src/api/Fee.js
