@@ -1,6 +1,5 @@
 import { Document, Page, View, Text, Image, StyleSheet } from '@react-pdf/renderer'
 
-// Crear estilos
 const styles = StyleSheet.create({
   header: {
     height: 160,
