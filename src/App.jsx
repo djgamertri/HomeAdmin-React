@@ -7,24 +7,16 @@ import Vote from './View/Vote'
 import Park from './View/Park'
 import Zone from './View/Zone'
 import Help from './View/Help'
-import Header from './Component/Header/Header'
 import './Main.css'
-import { useState } from 'react'
-import Login from './View/Login'
 import Setting from './View/Setting'
+import Index from './View/Index'
 
 function App () {
-  const [isClaseAgregar, setClaseAgregar] = useState(false)
-  const navbar = () => {
-    setClaseAgregar(!isClaseAgregar)
-  }
   return (
     <>
-      <SideBar />
-      <div className={`main ${isClaseAgregar ? 'activate' : ''}`}>
-        <Header navbar={navbar} />
+      <div>
         <Routes>
-          <Route path='/' element={<Login />} />
+          <Route path='/' element={<Index />} />
           <Route path='/Dashboard' element={<Dashboard />} />
           <Route path='/Resident' element={<Resident />} />
           <Route path='/Tax' element={<Fee />} />

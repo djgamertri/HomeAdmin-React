@@ -1,4 +1,5 @@
 import DataTable from 'react-data-table-component'
+import SideBar from '../Component/SideBar/sideBar'
 import Card from '../Component/Card/Card'
 import { GetUser } from '../api/users.js'
 import { useEffect, useState } from 'react'
@@ -80,17 +81,19 @@ function Dashboard () {
   }
 
   return (
-    <div>
-      <div className='content-cards'>
-        <Card Title='Residentes' Info='Residente Registrado' Icon='fa-solid fa-user' />
-        <Card Title='Cuotas' Info='Cuotas Finas' Icon='fa-solid fa-dollar-sign  ' />
-        <Card Title='Votaciones' Info='Votaciones Hechas' Icon='fa-solid fa-comment' />
-        <Card Title='Casas' Info='Casas Totales' Icon='fa-solid fa-house' />
+    <SideBar>
+      <div>
+        <div className='content-cards'>
+          <Card Title='Residentes' Info='Residente Registrado' Icon='fa-solid fa-user' />
+          <Card Title='Cuotas' Info='Cuotas Finas' Icon='fa-solid fa-dollar-sign  ' />
+          <Card Title='Votaciones' Info='Votaciones Hechas' Icon='fa-solid fa-comment' />
+          <Card Title='Casas' Info='Casas Totales' Icon='fa-solid fa-house' />
+        </div>
+        <div className='TableContent'>
+          <DataTable columns={Coluuns} data={Users} fixedHeader customStyles={customStyles} />
+        </div>
       </div>
-      <div className='TableContent'>
-        <DataTable columns={Coluuns} data={Users} fixedHeader customStyles={customStyles} />
-      </div>
-    </div>
+    </SideBar>
   )
 }
 
