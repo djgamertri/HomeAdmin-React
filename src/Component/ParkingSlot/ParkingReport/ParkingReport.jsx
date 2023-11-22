@@ -1,4 +1,6 @@
+import React, { useState, useEffect } from 'react'
 import { Document, Page, View, Text, Image, StyleSheet } from '@react-pdf/renderer'
+import { GetResidentWithParking } from '../../../api/parking'
 
 const styles = StyleSheet.create({
   header: {
@@ -54,20 +56,26 @@ const styles = StyleSheet.create({
 })
 
 function ParkingReport () {
-  const rows = []
   const date = 'Fecha: ' + new Date().toLocaleDateString()
+  const [residentsWithParking, setResidentsWithParking] = useState([])
 
-  for (let i = 1; i <= 32; i++) {
-    rows.push(
-      <View style={i % 2 === 0 ? styles.trEven : styles.tr} key={i}>
-        <Text style={styles.td}>{i}</Text>
-        <Text style={styles.td}>-</Text>
-        <Text style={styles.td}>-</Text>
-        <Text style={styles.td}>-</Text>
-        <Text style={styles.td}>-</Text>
-      </View>
-    )
-  }
+  useEffect(() => {
+    GetResidentWithParking()
+      .then(response => {
+        setResidentsWithParking(response.data)
+      })
+      .catch(error => {
+        console.error('There was an error!', error)
+      })
+  }, [])
+
+  // Crear un arreglo de 32 elementos para representar los slots
+  const slots = new Array(32).fill(null)
+
+  // Llenar los slots correspondientes con la información de los residentes
+  residentsWithParking.forEach(resident => {
+    slots[resident.IdSpace - 1] = resident
+  })
 
   return (
     <Document>
@@ -88,7 +96,28 @@ function ParkingReport () {
                 <Text style={styles.th}>Responsable</Text>
                 <Text style={styles.th}>Casa</Text>
               </View>
-              {rows}
+              {slots.map((slot, index) => (
+                <View style={(index + 1) % 2 === 0 ? styles.trEven : styles.tr} key={index}>
+                  <Text style={styles.td}>{index + 1}</Text>
+                  {slot
+                    ? (
+                      <>
+                        <Text style={styles.td}>Asignado</Text>
+                        <Text style={styles.td}>{slot.Plate}</Text>
+                        <Text style={styles.td}>{slot.NameUser}</Text>
+                        <Text style={styles.td}>{slot.NumHouse}</Text>
+                      </>
+                      )
+                    : (
+                      <>
+                        <Text style={styles.td}>-</Text>
+                        <Text style={styles.td}>-</Text>
+                        <Text style={styles.td}>-</Text>
+                        <Text style={styles.td}>-</Text>
+                      </>
+                      )}
+                </View>
+              ))}
             </View>
           </View>
         </View>

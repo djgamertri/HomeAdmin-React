@@ -1,5 +1,5 @@
 import axios from './axios.js'
-
+/*
 const config = {
   headers: {
     Authorization: localStorage.getItem('token')
@@ -8,3 +8,7 @@ const config = {
 
 export const GetResidentWithParking = () => axios.get('/ResidentWithParking', config)
 export const GetResidentWithOutParking = () => axios.get('/ResidentWithOutParking', config)
+*/
+
+export const GetResidentWithParking = () => axios.get('/ResidentWithParking')
+export const GetResidentWithOutParking = () => axios.get('/ResidentWithOutParking')
