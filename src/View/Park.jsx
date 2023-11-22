@@ -2,7 +2,7 @@ import Slot from '../Component/ParkingSlot/Slot'
 
 function Park () {
   return (
-    <Slot userType='residente' />
+    <Slot userType='admin' />
   )
 }
 

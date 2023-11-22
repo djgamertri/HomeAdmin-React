@@ -1,3 +1,5 @@
+import React, { useState, useEffect } from 'react'
+import { GetResidentWithParking, GetResidentWithOutParking } from '../../../api/parking'
 import './AdminSlots.css'
 import { PDFDownloadLink } from '@react-pdf/renderer'
 import ParkingReport from '../ParkingReport/ParkingReport'
@@ -6,7 +8,42 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Swal from 'sweetalert2'
 
 export default function AdminSlots () {
-  const slots = []
+  const [residentsWithParking, setResidentsWithParking] = useState([])
+  const [residentsWithoutParking, setResidentsWithoutParking] = useState([])
+
+  useEffect(() => {
+    GetResidentWithParking()
+      .then(response => {
+        setResidentsWithParking(response.data)
+      })
+      .catch(error => {
+        console.error('There was an error!', error)
+      })
+
+    GetResidentWithOutParking()
+      .then(response => {
+        setResidentsWithoutParking(response.data)
+      })
+      .catch(error => {
+        console.error('There was an error!', error)
+      })
+  }, [])
+
+  const handleSort = () => {
+    // Seleccionar un residente sin parqueadero de manera aleatoria
+    const randomIndex = Math.floor(Math.random() * residentsWithoutParking.length)
+    const selectedResident = residentsWithoutParking[randomIndex]
+
+    // Encontrar el primer slot vacío
+    const emptySlotIndex = slots.findIndex(slot => !slot)
+
+    // Asignar el residente seleccionado al slot vacío
+    if (emptySlotIndex !== -1) {
+      const newSlots = [...slots]
+      newSlots[emptySlotIndex] = selectedResident
+      setSlots(newSlots)
+    }
+  }
 
   const parkConfirmation = () => {
     Swal.fire({
@@ -54,23 +91,19 @@ export default function AdminSlots () {
     })
   }
 
-  for (let i = 1; i <= 32; i++) {
-    slots.push(
-      <div className='card' key={i}>
-        <div>
-          <div className='numbers'>{i}</div>
-          <div className='cardPlaca' />
-          <div className='NameUser' />
-        </div>
-      </div>
-    )
-  }
+  // Crear un arreglo de 32 elementos para representar los slots
+  const slots = new Array(32).fill(null)
+
+  // Llenar los slots correspondientes con la información de los residentes
+  residentsWithParking.forEach(resident => {
+    slots[resident.IdSpace - 1] = resident
+  })
+
   return (
     <div className='content-parking'>
       <div className='content-btn'>
         <div className='content-options'>
-          <button className='btn-distributio btn-parking' id='asignarParqueaderosButton'>Sortear <FontAwesomeIcon size='xl' icon={faDice} style={{ color: '#ffffff' }} /></button>
-          <button onClick={parkConfirmation} className='btn-parking' id='Save'>Guardar</button>
+          <button onClick={handleSort} className='btn-distributio btn-parking' id='asignarParqueaderosButton'>Sortear <FontAwesomeIcon size='xl' icon={faDice} style={{ color: '#ffffff' }} /></button>          <button onClick={parkConfirmation} className='btn-parking' id='Save'>Guardar</button>
           <PDFDownloadLink
             document={<ParkingReport />}
             fileName='parkingCafam2.pdf'
@@ -79,7 +112,25 @@ export default function AdminSlots () {
           </PDFDownloadLink>
         </div>
       </div>
-      <div className='content-cardsParking'>{slots}</div>
+      <div className='content-cardsParking'>
+        {slots.map((slot, index) => (
+          <div className={`${slot ? 'asignedSlot' : 'card'}`} key={index}>
+            <div>
+              <div className='numbers'>{index + 1}</div>
+              {slot
+                ? (
+                  <>
+                    <div className='cardPlaca'>{slot.Plate}</div>
+                    <div className='NameUser'>{slot.NameUser}</div>
+                  </>
+                  )
+                : (
+                  <div className='emptySlot' />
+                  )}
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   )
 }
