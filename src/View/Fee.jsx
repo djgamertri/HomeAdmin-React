@@ -1,5 +1,6 @@
 import { GetFees } from '../api/Fee'
 import { useEffect, useState } from 'react'
+import SideBar from '../Component/SideBar/sideBar'
 import DataTable from 'react-data-table-component'
 
 function Fee () {
@@ -76,9 +77,11 @@ function Fee () {
     console.log('Row Id', id)
   }
   return (
-    <div className='TableContent'>
-      <DataTable columns={Coluuns} data={Users} title='Cuotas' pagination customStyles={customStyles} />
-    </div>
+    <SideBar>
+      <div className='TableContent'>
+        <DataTable columns={Coluuns} data={Users} title='Cuotas' pagination customStyles={customStyles} />
+      </div>
+    </SideBar>
   )
 }
 

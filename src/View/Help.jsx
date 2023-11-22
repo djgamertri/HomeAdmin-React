@@ -1,6 +1,12 @@
+import SideBar from '../Component/SideBar/sideBar'
+
 function Help () {
   return (
-    <div>Help</div>
+    <SideBar>
+      <div>
+        Help
+      </div>
+    </SideBar>
   )
 }
 

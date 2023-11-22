@@ -3,6 +3,7 @@ import { GetUser } from '../api/users'
 import { useEffect, useState } from 'react'
 import Modal from '../Component/Modal/modal'
 import UpdateUser from '../Form/User/Update'
+import SideBar from '../Component/SideBar/sideBar'
 
 function Resident () {
   const [Users, setUsers] = useState([])
@@ -79,12 +80,14 @@ function Resident () {
     console.log('Row Id', id)
   }
   return (
-    <div className='TableContent'>
-      <DataTable columns={Coluuns} data={Users} title='Residents' pagination customStyles={customStyles} />
-      <Modal isOpen={UpdateModal} closeModal={() => setUpdateModal(false)} title='Actualizar Usuario'>
-        <UpdateUser />
-      </Modal>
-    </div>
+    <SideBar>
+      <div className='TableContent'>
+        <DataTable columns={Coluuns} data={Users} title='Residents' pagination customStyles={customStyles} />
+        <Modal isOpen={UpdateModal} closeModal={() => setUpdateModal(false)} title='Actualizar Usuario'>
+          <UpdateUser />
+        </Modal>
+      </div>
+    </SideBar>
   )
 }
 
