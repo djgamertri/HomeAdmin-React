@@ -1,18 +1,31 @@
 import React, { useState } from 'react'
 import Login from '../Form/Login/Login'
 import Modal from '../Component/Modal/modal'
+import AssignParking from '../Form/Parking/Assign'
 
 function LogIn () {
   // Login
-  const [isModalOpen6, setIsModalOpen6] = useState(false)
+  const [isModalOpenLogin, setisModalOpenLogin] = useState(false)
+
+  // Parking
+  const [isModalOpenAssingParking, setisModalOpenAssingParking] = useState(false)
 
   return (
     <div>
-      <a href='#' className='btn card open-modal btn' onClick={() => setIsModalOpen6(true)}>
+      <a className='btn card open-modal btn' onClick={() => setisModalOpenLogin(true)}>
         Login
       </a>
-      <Modal isOpen={isModalOpen6} closeModal={() => setIsModalOpen6(false)} title='Login'>
+      <a className='btn card open-modal btn' onClick={() => setisModalOpenAssingParking(true)}>
+        Asignar Parqueadero
+      </a>
+      <td>
+        <a data-open='modal2' id='update'><span className='status delete btn'>Eliminar</span></a>
+      </td>
+      <Modal isOpen={isModalOpenLogin} closeModal={() => setisModalOpenLogin(false)} title='Login'>
         <Login />
+      </Modal>
+      <Modal isOpen={isModalOpenAssingParking} closeModal={() => setisModalOpenAssingParking(false)} title='Asignar parqueadero'>
+        <AssignParking />
       </Modal>
     </div>
   )

@@ -7,31 +7,44 @@ import Vote from './View/Vote'
 import Park from './View/Park'
 import Zone from './View/Zone'
 import Help from './View/Help'
-import Login from './View/Login'
 import Header from './Component/Header/Header'
 import './Main.css'
-import { useState } from 'react'
+import Login from './View/Login'
+import Setting from './View/Setting'
+import { NavbarProvider, useNavbar } from './Contexts/NavbarContext'
 
+// Se crea la funcion App para usar antes el contexto
+// NavbarProvider que el useNavbar
 function App () {
-  const [isClaseAgregar, setClaseAgregar] = useState(false)
-  const navbar = () => {
-    setClaseAgregar(!isClaseAgregar)
-  }
+  return (
+    <NavbarProvider>
+      <AppContent />
+    </NavbarProvider>
+  )
+}
+
+function AppContent () {
+  const { isNavbar } = useNavbar()
+
   return (
     <>
       <SideBar />
-      <div className={`main ${isClaseAgregar ? 'activate' : ''}`}>
-        <Header navbar={navbar} />
+      <div className={`main ${isNavbar ? 'activate' : ''}`}>
+        <Header />
         <Routes>
           <Route path='/' element={<Login />} />
           <Route path='/Dashboard' element={<Dashboard />} />
           <Route path='/Resident' element={<Resident />} />
+          <Route path='/Resident/:id' element={<Resident />} />
           <Route path='/Tax' element={<Fee />} />
+          <Route path='/Tax/:id' element={<Fee />} />
+          <Route path='/Tax/:id' element={<Fee />} />
           <Route path='/Votacion' element={<Vote />} />
           <Route path='/Parking' element={<Park />} />
+          <Route path='/Parking/:id' element={<Park />} />
           <Route path='/Zone' element={<Zone />} />
           <Route path='/Help' element={<Help />} />
-          <Route path='/Settings' element={<Zone />} />
+          <Route path='/Settings' element={<Setting />} />
         </Routes>
       </div>
     </>

@@ -4,7 +4,7 @@
     gap: 32px;
     background: var(--White);
     padding: 20px;
-    box-shadow: 5px 13px 33px -6px #cac8c8;
+    box-shadow: 5px 13px 33px -6px var(--gray);
     border-radius: 20px;
     width: 98%;
     margin: auto;
@@ -31,7 +31,9 @@
     color: var(--white);
     border-radius: 6px;
 }
-
+.btn:hover{
+    cursor: pointer;
+}
 table{
     border-collapse: collapse; 
     font-size: 16px;
@@ -54,17 +56,4 @@ table tr:last-child{
 table td{
     padding: 30px 10pt;
     color: black;
-}
-
-table td a{
-    text-decoration: none;
-    outline: none;
-}
-
-table td a .update{
-    background: var(--green);
-}
-
-table td a .delete{
-    background: var(--red);
 }

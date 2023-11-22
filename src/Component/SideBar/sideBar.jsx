@@ -1,9 +1,12 @@
 import { NavLink } from 'react-router-dom'
 import './Nav.css'
+import { useNavbar } from '../../Contexts/NavbarContext'
 
 function sideBar () {
+  const { isNavbar } = useNavbar()
+
   return (
-    <div className='navegation'>
+    <div className={`navegation ${isNavbar ? 'activate' : ''}`}>
       <ul>
         <li>
           <a href=''>
@@ -77,7 +80,6 @@ function sideBar () {
             <span className='title'>Configuracion</span>
           </NavLink>
         </li>
-
         <li>
           <a>
             <span className='icon'>
