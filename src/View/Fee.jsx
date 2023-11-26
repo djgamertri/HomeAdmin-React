@@ -98,6 +98,17 @@ function Fee () {
     console.log('Row Id', id)
   }
 
+  useEffect(() => {
+    GetFees()
+      .then(response => {
+        setUsers(response.data)
+        console.log(response)
+      })
+      .catch(error => {
+        console.error('Error al obtener usuarios:', error)
+      })
+  }, [])
+
   return (
     <div className='TableContent'>
       <DataTable

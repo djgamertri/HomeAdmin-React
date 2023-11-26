@@ -2,12 +2,12 @@ import React, { useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import './modal.css'
 
-const Modal = ({ isOpen, closeModal, children, title }) => {
+const Modal = ({ isOpen, closeModal, children, title, headerModal }) => {
   const navigate = useNavigate()
   const location = useLocation()
   const url = location.pathname.split('/')[1]
 
-  const modalUpdate = () => {
+  function modalUpdate () {
     if (url === 'Resident') {
       navigate('/Resident')
     } else if (url === 'Tax') {
@@ -33,7 +33,7 @@ const Modal = ({ isOpen, closeModal, children, title }) => {
     }
   }, [isOpen, closeModal])
 
-  const handleCloseModal = () => {
+  function buttonCloseModal () {
     // Limpia los parámetros y cerrar modal
     modalUpdate()
     closeModal()
@@ -44,13 +44,15 @@ const Modal = ({ isOpen, closeModal, children, title }) => {
   return (
     <div className='modal' data-animation='slideInOutRight'>
       <div className='modal-dialog'>
-        <header className='modal-header'>
-          <br />
-          <div>{title}</div>
-          <button className='close-modal' aria-label='close-modal' onClick={handleCloseModal}>
-            ✕
-          </button>
-        </header>
+        {headerModal && (
+          <header className='modal-header'>
+            <br />
+            <div>{title}</div>
+            <button className='close-modal' aria-label='close-modal' onClick={buttonCloseModal}>
+              ✕
+            </button>
+          </header>
+        )}
         <section className='modal-content'>
           {children}
         </section>

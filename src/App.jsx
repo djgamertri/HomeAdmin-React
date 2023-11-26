@@ -9,7 +9,7 @@ import Zone from './View/Zone'
 import Help from './View/Help'
 import Header from './Component/Header/Header'
 import './Main.css'
-import Login from './View/Login'
+import LogIn from './View/Login'
 import Setting from './View/Setting'
 import { NavbarProvider, useNavbar } from './Contexts/NavbarContext'
 
@@ -32,7 +32,7 @@ function AppContent () {
       <div className={`main ${isNavbar ? 'activate' : ''}`}>
         <Header />
         <Routes>
-          <Route path='/' element={<Login />} />
+          <Route path='/' element={<LogIn />} />
           <Route path='/Dashboard' element={<Dashboard />} />
           <Route path='/Resident' element={<Resident />} />
           <Route path='/Resident/:id' element={<Resident />} />

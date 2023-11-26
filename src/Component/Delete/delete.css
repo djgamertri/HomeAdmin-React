@@ -39,6 +39,7 @@
 .cancel{
     border: solid 2px var(--gray);
     padding: 15px;
+    color: var(--black);
     box-shadow:  0 7px 25px var(--shadow);
     &:hover{
         background: var(--gray);

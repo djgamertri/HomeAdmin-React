@@ -1,5 +1,5 @@
-import DataTable from 'react-data-table-component'
 import Card from '../Component/Card/Card'
+import Table from '../Component/Table/Table.jsx'
 import { GetUser } from '../api/user.js'
 import { useEffect, useState } from 'react'
 
@@ -17,7 +17,7 @@ function Dashboard () {
       })
   }, [])
 
-  const Coluuns = [
+  const userColums = [
     {
       name: 'ID',
       selector: (row) => row.IdUser,
@@ -57,27 +57,6 @@ function Dashboard () {
 
   // https://react-data-table-component.netlify.app/?path=/docs/api-custom-styles--page
 
-  const customStyles = {
-    table: {
-      style: {
-        margin: '5px'
-      }
-    },
-    head: {
-      style: {
-        fontWeight: 'Bold',
-        fontSize: '15px',
-        padding: '10px'
-      }
-    },
-    rows: {
-      style: {
-        padding: '12px',
-        fontSize: '14px'
-      }
-    }
-  }
-
   return (
     <div>
       <div className='content-cards'>
@@ -86,19 +65,11 @@ function Dashboard () {
         <Card Title='Votaciones' Info='Votaciones Hechas' Icon='fa-solid fa-comment' />
         <Card Title='Casas' Info='Casas Totales' Icon='fa-solid fa-house' />
       </div>
-      <div className='TableContent'>
-        <DataTable
-          columns={Coluuns}
-          data={Users.slice(0, 5)}
-          subHeader
-          subHeaderComponent={
-            <div className='header-table'>
-              <h2>Usuarios</h2>
-            </div>
-            }
-          customStyles={customStyles}
-        />
-      </div>
+      <Table
+        title='Usuario'
+        Coluums={userColums}
+        Data={Users}
+      />
     </div>
   )
 }

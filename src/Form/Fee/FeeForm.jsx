@@ -1,5 +1,5 @@
 import { useForm, Controller } from 'react-hook-form'
-import { registFee, GetPayById } from '../../api/fee.js'
+import { registFee, GetFeeById } from '../../api/Fee.js'
 import { useParams } from 'react-router-dom'
 import { useEffect } from 'react'
 

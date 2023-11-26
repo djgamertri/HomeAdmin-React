@@ -1,35 +1,47 @@
-import DataTable from 'react-data-table-component'
 import { GetUser } from '../api/user.js'
 import { useEffect, useState } from 'react'
 import Modal from '../Component/Modal/modal'
 import Delete from '../Component/Delete/delete'
 import { NavLink, useParams } from 'react-router-dom'
 import UserForm from '../Form/User/UserForm'
+import Table from '../Component/Table/Table.jsx'
+import Pdf from '../Component/PdfExcel/PdfExcel.jsx'
+import { jsPDF } from 'jspdf'
+import 'jspdf-autotable'
+import { format } from 'date-fns'
 
 function Resident () {
   const [Users, setUsers] = useState([])
   const [isModalResident, setIsModalResident] = useState(false)
   const [isModalDelete, setIsModalDelete] = useState(false)
-
   const params = useParams()
-  let titleModal = 'Registrar Usuario'
 
-  if (params.id) {
-    titleModal = 'Actualizar Usuario'
+  // Cambiar texto del titulo del modal dependiendo si ahi un parametro en la Url
+  const titleModal = params.id ? 'Actualizar Usuario' : 'Registrar Usuario'
+
+  // Funcion para mostrar el Usuarios
+  const tableUsers = async () => {
+    try {
+      const res = await GetUser()
+      setUsers(res.data)
+      console.log(res)
+    } catch (err) {
+      console.log('Error al mostrar usuarios:', err)
+    }
   }
 
+  // Renderiza una vez la tabla de Usuarios
   useEffect(() => {
-    GetUser()
-      .then(response => {
-        setUsers(response.data)
-        console.log(response.data)
-      })
-      .catch(error => {
-        console.error('Error al obtener usuarios:', error)
-      })
+    tableUsers()
   }, [])
 
-  const Coluuns = [
+  // Función para actualizar la tabla al enviar el formulario
+  function updateTable () {
+    tableUsers()
+  }
+
+  // Columnas de la tabla
+  const userColums = [
     {
       name: 'ID',
       selector: (row) => row.IdUser,
@@ -66,6 +78,11 @@ function Resident () {
       sortable: true
     },
     {
+      name: 'Fecha de Nacimiento',
+      selector: (row) => format(new Date(row.BirthDate), 'dd/MM/yyyy'),
+      sortable: true
+    },
+    {
       name: 'Modificar',
       button: 'true',
       cell: (row) => (
@@ -84,58 +101,58 @@ function Resident () {
       )
     }
   ]
+  console.log(Users)
+  // Funcion para Generar reportes
+  const generatePdf = () => {
+    console.log(userColums)
+    const doc = new jsPDF()
 
-  const customStyles = {
-    table: {
-      style: {
-        margin: '5px'
-      }
-    },
-    head: {
-      style: {
-        fontWeight: 'Bold',
-        fontSize: '15px',
-        padding: '10px'
-      }
-    },
-    pagination: {
-      style: {
-        width: '98%',
-        margin: '20px'
-      }
-    },
-    rows: {
-      style: {
-        padding: '12px',
-        fontSize: '14px'
-      }
-    }
+    // Titulo Pdf
+    doc.text('Usuarios', 95, 20)
+
+    const columnsPdf = ['Id', 'Tipo Documento', 'Numero Documento', 'Telefono', 'Nombre', 'Correo', 'Casa', 'Fecha de Nacimiento']
+    // Se recorre Users para llenar el Pdf
+    const dataPdf = Users.map(user => [
+      user.IdUser,
+      user.TypeDoc,
+      user.NumDoc,
+      user.Phone,
+      user.NameUser,
+      user.Email,
+      user.NumHouse,
+      format(new Date(user.BirthDate), 'dd/MM/yyyy')
+    ])
+
+    // Filtrar las columnas que se van a mostrar segun el columnsPdf
+    const filterDataPdf = dataPdf.map(row =>
+      row.filter((_, index) => columnsPdf.includes(columnsPdf[index]))
+    )
+
+    doc.autoTable({
+      startY: 30,
+      head: [columnsPdf],
+      body: filterDataPdf
+    })
+    // Guardar el Pdf
+    doc.save('Reporte_Usuarios.pdf')
   }
 
   return (
-    <div className='TableContent'>
-      <DataTable
-        columns={Coluuns}
-        data={Users}
-        subHeader
-        subHeaderComponent={
-          <div className='header-table'>
-            <h2>Usuarios</h2>
-            <a className='btn btn-register' onClick={() => setIsModalResident(true)}>
-              Añadir Usuario
-            </a>
-          </div>
-          }
-        pagination
-        customStyles={customStyles}
+    <>
+      <Pdf generatePdf={generatePdf} />
+      <Table
+        title='Usuario'
+        Coluums={userColums}
+        Data={Users}
+        buttonRegister={() => setIsModalResident(true)}
       />
-      <Modal isOpen={isModalResident} closeModal={() => setIsModalResident(false)} title={titleModal}>
-        <UserForm />
+      <Modal isOpen={isModalResident} closeModal={() => setIsModalResident(false)} title={titleModal} headerModal>
+        <UserForm updateTable={updateTable} closeModal={() => setIsModalResident(false)} />
       </Modal>
       <Modal isOpen={isModalDelete} closeModal={() => setIsModalDelete(false)} title='Eliminar Usuario'>
-        <Delete element='Usuario' />
+        <Delete updateTable={updateTable} closeModal={() => setIsModalDelete(false)} element='Usuario' />
       </Modal>
-    </div>
+    </>
   )
 }
 

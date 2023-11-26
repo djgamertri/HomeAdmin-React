@@ -9,7 +9,6 @@
     justify-content: center;
     padding: 1rem;
     background: var(--background_black);
-    cursor: pointer;
     transition: all 0.35s ease-in;
 }
 
@@ -70,6 +69,11 @@
     margin: 10px 1.5rem 8px 1.5rem;
 }
 
+.input-pass{
+    width: 50%;
+    text-align: center;
+}
+
 .hidden-input{
     display: none;
 }
@@ -85,14 +89,13 @@
     color: var(--white);
     border: none;
     font-weight: 400;
-}
-
-.btn-submit:hover{
     cursor: pointer;
-    color: var(--black);
-    background: var(--green);
-    transition: ease-in;
-    font-weight: bold;
+    &:hover{
+        color: var(--black);
+        background: var(--green);
+        transition: ease-in;
+        font-weight: bold;
+    }
 }
 
 .form-colums{
@@ -123,18 +126,15 @@
     margin: 0; 
 }
 
-.errors{
-    color: var(--red);
-    font-size: 10px;
-    width: 90%;
-    margin-top: 2px;
-}
-
 .errors-column{
     color: var(--red);
     font-size: 10px;
     width: 100%;
     margin: 0 0 0 10%;
+}
+
+.errors-pass{
+    margin-left: 80%;
 }
 
 a{
@@ -191,4 +191,17 @@ a{
     box-shadow:  0 7px 25px var(--shadow);
     border-radius: 20px;
     margin: 20px;
+}
+
+.toast{
+    color: var(--white);
+    border: none;
+}
+
+.toast-error{
+    background: var(--red-hover);
+}
+
+.toast-success{
+    background: var(--green);
 }

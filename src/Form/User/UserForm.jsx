@@ -1,60 +1,98 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { createUser } from '../../api/auth.js'
 import { GetUserById, UpdateUser } from '../../api/user.js'
-import { useLocation, useParams } from 'react-router-dom'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
+import { toast } from 'sonner'
 
-function UserForm () {
+function UserForm ({ updateTable, closeModal, pass }) {
+  const [sendDataForm, setSendDataForm] = useState(false)
   const { register, handleSubmit, formState: { errors }, setValue } = useForm()
   const params = useParams()
   const location = useLocation()
+  const navigate = useNavigate()
 
-  console.log(location.pathname)
+  // Cambiar texto del boton dependiendo si ahi un parametro en la Url
+  const submitText = params.id ? 'Actualizar Usuario' : 'Registrar Usuario'
 
-  let submit = 'Registrar Usuario'
-
-  if (params.id) {
-    // eslint-disable-next-line no-unused-vars
-    submit = 'Actualizar Usuario'
-  }
-
+  // Función para registrar un nuevo Usuario
   const registerUser = async (data) => {
     try {
       const res = await createUser(data)
-      console.log(res.data)
+      const msg = res.data.message
+      toast.success(msg, {
+        style: {
+          background: 'var(--green)',
+          color: 'var(--white)',
+          border: 'none'
+        },
+        duration: 3000
+      })
+      setSendDataForm(true)
     } catch (err) {
-      console.log(err)
+      const descriptionMsg = err.code
+      const msg = err.response.data.message
+      toast.error(`Error ${msg}`, {
+        style: {
+          background: 'var(--red-hover)',
+          color: 'var(--white)',
+          border: 'none'
+        },
+        description: descriptionMsg,
+        duration: 3000
+      })
     }
   }
 
+  // Función para actualizar Usuarios
   const updateUsers = async (data) => {
     try {
       const res = await UpdateUser(data)
-      console.log(res.data)
+      const msg = res.data.message
+      toast.success(msg, {
+        style: {
+          background: 'var(--green)',
+          color: 'var(--white)',
+          border: 'none'
+        },
+        duration: 3000
+      })
+      setSendDataForm(true)
     } catch (err) {
+      const descriptionMsg = err.code
+      const msg = err.response.data.message
       console.log(err)
+      toast.error(`Error ${msg}`, {
+        style: {
+          background: 'var(--red-hover)',
+          color: 'var(--white)',
+          border: 'none'
+        },
+        description: descriptionMsg,
+        duration: 3000
+      })
     }
   }
 
-  const sendData = (data) => {
-    if (!params.id) {
-      try {
-        const res = data
-        console.log(res)
-        registerUser(res)
-        window.location.reload()
-      } catch (err) {
-        console.log(err)
+  const sendData = async (data) => {
+    try {
+      if (!params.id) {
+        await registerUser(data)
+        console.log(data)
+      } else {
+        await updateUsers(data)
+        console.log(data)
       }
-    } else {
-      try {
-        const res = data
-        console.log(res)
-        updateUsers(res)
-        window.location.reload()
-      } catch (err) {
-        console.log(err)
-      }
+      updateTable()
+    } catch (err) {
+      toast.error('Servidor caido intente nuevamenta mas tarde', {
+        style: {
+          background: 'var(--red-hover)',
+          color: 'var(--white)',
+          border: 'none'
+        },
+        duration: 3000
+      })
     }
   }
 
@@ -79,6 +117,14 @@ function UserForm () {
     }
     loadUser()
   }, [])
+
+  // Cierra el modal después de enviar el formulario
+  useEffect(() => {
+    if (sendDataForm) {
+      closeModal()
+      navigate('/Resident')
+    }
+  }, [sendDataForm, closeModal])
 
   return (
     <form className='form-disposition' onSubmit={handleSubmit(sendData)}>
@@ -127,7 +173,11 @@ function UserForm () {
                 message: 'Numero de documento requerido'
               },
               maxLength: {
-                value: 12,
+                value: 10,
+                message: 'Numero de documento no valido'
+              },
+              max: {
+                value: 4294967295,
                 message: 'Numero de documento no valido'
               }
             })}
@@ -159,7 +209,7 @@ function UserForm () {
                 message: 'Numero de casa no existente'
               },
               max: {
-                value: 350,
+                value: 175,
                 message: 'Numero de casa no existente'
               }
             })}
@@ -178,23 +228,6 @@ function UserForm () {
             <option value='Residente' className='form-option'>Residente</option>
           </select>
           {errors.Rol && <span className='errors-column'>{errors.Rol.message}</span>}
-          {location.pathname === '/Resident'
-            ? (
-              <input
-                className='form-input-colum' type='password' placeholder='Contraseña' {...register('Pass', {
-                  required: {
-                    value: true,
-                    message: 'Contraseña requerida'
-                  },
-                  minLength: {
-                    value: 8,
-                    message: 'contraseña de minimo 8 caracteres'
-                  }
-                })}
-              />
-              )
-            : null}
-          {errors.Pass && <span className='errors-column'>{errors.Pass.message}</span>}
           <select className='form-input-colum hidden-input' {...register('State')} defaultValue={1}>
             <option value='' className='form-option'>Estado</option>
             <option value='1' className='form-option'>Activo</option>
@@ -207,7 +240,15 @@ function UserForm () {
                 message: 'Numero de telefono requerido'
               },
               minLength: {
-                value: 6,
+                value: 7,
+                message: 'Numero no valido'
+              },
+              maxLength: {
+                value: 10,
+                message: 'Numero no valido'
+              },
+              max: {
+                value: 4294967295,
                 message: 'Numero no valido'
               }
             })}
@@ -215,7 +256,24 @@ function UserForm () {
           {errors.Phone && <span className='errors-column'>{errors.Phone.message}</span>}
         </div>
       </div>
-      <button className='btn-submit' type='submit'>{submit}</button>
+      {location.pathname === '/Resident'
+        ? (
+          <input
+            className='form-input-colum input-pass' type='password' placeholder='Contraseña' {...register('Pass', {
+              required: {
+                value: true,
+                message: 'Contraseña requerida'
+              },
+              minLength: {
+                value: 8,
+                message: 'contraseña de minimo 8 caracteres'
+              }
+            })}
+          />
+          )
+        : null}
+      {errors.Pass && <span className='errors-column errors-pass'>{errors.Pass.message}</span>}
+      <button className='btn-submit' type='submit'>{submitText}</button>
     </form>
   )
 }
