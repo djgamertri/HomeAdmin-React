@@ -1,5 +1,4 @@
 import { Route, Routes } from 'react-router-dom'
-import SideBar from './Component/SideBar/sideBar'
 import Dashboard from './View/Dashboard'
 import Resident from './View/Resident'
 import Fee from './View/Fee'
@@ -10,6 +9,7 @@ import Help from './View/Help'
 import './Main.css'
 import Setting from './View/Setting'
 import Index from './View/Index'
+import { Toaster } from 'sonner'
 
 function App () {
   return (
@@ -26,6 +26,13 @@ function App () {
           <Route path='/Help' element={<Help />} />
           <Route path='/Settings' element={<Setting />} />
         </Routes>
+        <Toaster
+          theme='system'
+          richColors
+          duration={3000}
+          closeButton
+          visibleToasts={3}
+        />
       </div>
     </>
   )
