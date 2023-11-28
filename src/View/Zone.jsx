@@ -45,7 +45,7 @@ function Zone () {
       name: 'Eliminar',
       button: 'true',
       cell: (row) => (
-        <a className='btn' onClick={(e) => handleDelete(e, row.IdCommonArea)}>
+        <a className='btn' onClick={() => setDeleteModal(true)}>
           Eliminar
         </a>
       )
@@ -58,11 +58,6 @@ function Zone () {
         fontSize: '15px'
       }
     }
-  }
-
-  const handleDelete = (e, id) => {
-    e.preventDefault()
-    console.log('Delete Row Id', id)
   }
 
   return (
@@ -92,9 +87,6 @@ function Zone () {
       </div>
       <br />
       <div>
-        <a className='btn btn-register' onClick={() => setDeleteModal(true)}>
-          Eliminar zona comun
-        </a>
         <Modal isOpen={DeleteModal} closeModal={() => setDeleteModal(false)} title='Nueva Zona Comun'>
           <DeleteCommonArea />
         </Modal>
