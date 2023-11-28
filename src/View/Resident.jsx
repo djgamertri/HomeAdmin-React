@@ -4,12 +4,22 @@ import { useEffect, useState } from 'react'
 import Modal from '../Component/Modal/modal'
 import UpdateUser from '../Form/User/Update'
 import SideBar from '../Component/SideBar/sideBar'
+import Delete from '../Form/User/Delete'
+import RegisterUser from '../Form/User/Register'
 
 function Resident () {
   const [Users, setUsers] = useState([])
+  const [IdUser, setIdUser] = useState(null)
+  const [Actualizar, setActualizar] = useState(false)
   const [UpdateModal, setUpdateModal] = useState(false)
+  const [DeleteModal, setDeleteModal] = useState(false)
+  const [RegisterModal, setRegisterModal] = useState(false)
 
   useEffect(() => {
+    datatable()
+  }, [])
+
+  const datatable = () => {
     GetUser()
       .then(response => {
         setUsers(response.data)
@@ -18,7 +28,14 @@ function Resident () {
       .catch(error => {
         console.error('Error al obtener usuarios:', error)
       })
-  }, [])
+      .finally(
+        setActualizar(false)
+      )
+  }
+
+  if (Actualizar) {
+    datatable()
+  }
 
   const Coluuns = [
     {
@@ -45,7 +62,7 @@ function Resident () {
       name: 'Modificar',
       button: 'true',
       cell: (row) => (
-        <a className='btn' onClick={() => setUpdateModal(true)}>
+        <a className='btn' onClick={(e) => handleEdit(e, row.IdUser)}>
           Editar
         </a> // Simple prueba de que el modal funciona
       )
@@ -71,20 +88,41 @@ function Resident () {
   }
 
   const handleEdit = (e, id) => {
-    e.preventDefault()
-    console.log('Row Id', id)
+    setIdUser(id)
+    setUpdateModal(true)
   }
 
   const handleDelete = (e, id) => {
-    e.preventDefault()
-    console.log('Row Id', id)
+    setIdUser(id)
+    setDeleteModal(true)
   }
   return (
     <SideBar>
       <div className='TableContent'>
-        <DataTable columns={Coluuns} data={Users} title='Residents' pagination customStyles={customStyles} />
+        <DataTable
+          columns={Coluuns} data={Users} title='Residents' pagination customStyles={customStyles}
+          subHeader
+          subHeaderComponent={
+            <div className='header-table'>
+              <h2>Usuarios</h2>
+              {location.pathname !== '/Dashboard'
+                ? (
+                  <a className='btn btn-register' onClick={() => setRegisterModal(true)}>
+                    Añadir Usuarios
+                  </a>
+                  )
+                : null}
+            </div>
+          }
+        />
         <Modal isOpen={UpdateModal} closeModal={() => setUpdateModal(false)} title='Actualizar Usuario'>
-          <UpdateUser />
+          <UpdateUser id={IdUser} actualizar={setActualizar} />
+        </Modal>
+        <Modal isOpen={DeleteModal} closeModal={() => setDeleteModal(false)} title='Eliminar Usuario'>
+          <Delete id={IdUser} actualizar={setActualizar} />
+        </Modal>
+        <Modal isOpen={RegisterModal} closeModal={() => setRegisterModal(false)} title='Registrar Usuario'>
+          <RegisterUser actualizar={setActualizar} />
         </Modal>
       </div>
     </SideBar>
