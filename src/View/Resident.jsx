@@ -70,11 +70,6 @@ function Resident () {
     }
   }
 
-  const handleEdit = (e, id) => {
-    e.preventDefault()
-    console.log('Row Id', id)
-  }
-
   const handleDelete = (e, id) => {
     e.preventDefault()
     console.log('Row Id', id)
