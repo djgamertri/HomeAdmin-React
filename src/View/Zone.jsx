@@ -6,11 +6,13 @@ import Modal from '../Component/Modal/modal.jsx'
 import Card from '../Component/Card/Card.jsx'
 import UpdateCommonArea from '../Form/Zone/Update.jsx'
 import RegisterCommonArea from '../Form/Zone/Register.jsx'
+import DeleteCommonArea from '../Form/Zone/Delete.jsx'
 
 function Zone () {
   const [CommonArea, setCommonArea] = useState()
   const [UpdateModal, setUpdateModal] = useState(false)
   const [NewModal, setNewModal] = useState(false)
+  const [DeleteModal, setDeleteModal] = useState(false)
 
   useEffect(() => {
     getCommonAreas().then(response => {
@@ -86,6 +88,15 @@ function Zone () {
         </a>
         <Modal isOpen={NewModal} closeModal={() => setNewModal(false)} title='Nueva Zona Comun'>
           <RegisterCommonArea />
+        </Modal>
+      </div>
+      <br />
+      <div>
+        <a className='btn btn-register' onClick={() => setDeleteModal(true)}>
+          Eliminar zona comun
+        </a>
+        <Modal isOpen={DeleteModal} closeModal={() => setDeleteModal(false)} title='Nueva Zona Comun'>
+          <DeleteCommonArea />
         </Modal>
       </div>
     </SideBar>

@@ -6,9 +6,9 @@ function RegisterCommonArea () {
   const newCommonArea = async (data) => {
     try {
       const res = await postCommonArea(data)
-      console.log(res)
+      console.log(res.data)
     } catch (error) {
-      console.error(error)
+      console.error(error.response.data)
     }
   }
   const sendData = handleSubmit((data) => {
