@@ -1,12 +1,9 @@
-import { useNavbar } from '../../Contexts/NavbarContext'
 import './Header.css'
 
-function Header () {
-  const { Activate } = useNavbar()
-
+function Header ({ navbar }) {
   return (
     <div className='topbar'>
-      <div className='toggle' onClick={Activate}>
+      <div className='toggle' onClick={navbar}>
         <i className='fa-solid fa-bars' />
       </div>
       <div className='search'>

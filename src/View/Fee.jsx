@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import DataTable from 'react-data-table-component'
 import Modal from '../Component/Modal/modal'
 import FeeForm from '../Form/Fee/FeeForm'
+import SideBar from '../Component/SideBar/sideBar'
 import { NavLink } from 'react-router-dom'
 
 function Fee () {
@@ -110,29 +111,31 @@ function Fee () {
   }, [])
 
   return (
-    <div className='TableContent'>
-      <DataTable
-        columns={Coluuns}
-        data={Users}
-        subHeader
-        subHeaderComponent={
-          <div className='header-table'>
-            <h2>Cuotas</h2>
-            <a className='btn btn-register' onClick={() => setIsModalFee(true)}>
-              Añadir Tarifa
-            </a>
-          </div>
-          }
-        pagination
-        customStyles={customStyles}
-      />
-      <Modal isOpen={isModalFee} closeModal={() => setIsModalFee(false)} title='Actualizar Pago'>
-        <FeeForm />
-      </Modal>
-      <Modal isOpen={isModalFee} closeModal={() => setIsModalFee(false)} title='Registrar Pago'>
-        <FeeForm />
-      </Modal>
-    </div>
+    <SideBar>
+      <div className='TableContent'>
+        <DataTable
+          columns={Coluuns}
+          data={Users}
+          subHeader
+          subHeaderComponent={
+            <div className='header-table'>
+              <h2>Cuotas</h2>
+              <a className='btn btn-register' onClick={() => setIsModalFee(true)}>
+                Añadir Tarifa
+              </a>
+            </div>
+            }
+          pagination
+          customStyles={customStyles}
+        />
+        <Modal isOpen={isModalFee} closeModal={() => setIsModalFee(false)} title='Actualizar Pago'>
+          <FeeForm />
+        </Modal>
+        <Modal isOpen={isModalFee} closeModal={() => setIsModalFee(false)} title='Registrar Pago'>
+          <FeeForm />
+        </Modal>
+      </div>
+    </SideBar>
   )
 }
 

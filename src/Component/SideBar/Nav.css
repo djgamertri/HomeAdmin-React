@@ -62,7 +62,6 @@
 .navegation ul li:hover a,
 .navegation ul li.hovered a{
   color: var(--blue);
-  cursor: pointer;
 }
 
 .navegation ul li a .icon{

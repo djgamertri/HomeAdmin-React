@@ -5,7 +5,7 @@ import { GetUserById, UpdateUser } from '../../api/user.js'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { toast } from 'sonner'
 
-function UserForm ({ updateTable, closeModal, pass }) {
+function UserForm ({ closeModal, updateTable }) {
   const [sendDataForm, setSendDataForm] = useState(false)
   const { register, handleSubmit, formState: { errors }, setValue } = useForm()
   const params = useParams()
@@ -118,7 +118,7 @@ function UserForm ({ updateTable, closeModal, pass }) {
     loadUser()
   }, [])
 
-  // Cierra el modal después de enviar el formulario
+  // Cierra el modal después de enviar el formulario y elimina el parametro de la url
   useEffect(() => {
     if (sendDataForm) {
       closeModal()

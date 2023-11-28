@@ -1,5 +1,6 @@
 import Card from '../Component/Card/Card'
 import Table from '../Component/Table/Table.jsx'
+import SideBar from '../Component/SideBar/sideBar'
 import { GetUser } from '../api/user.js'
 import { useEffect, useState } from 'react'
 
@@ -58,19 +59,21 @@ function Dashboard () {
   // https://react-data-table-component.netlify.app/?path=/docs/api-custom-styles--page
 
   return (
-    <div>
-      <div className='content-cards'>
-        <Card Title='Residentes' Info='Residente Registrado' Icon='fa-solid fa-user' />
-        <Card Title='Cuotas' Info='Cuotas Finas' Icon='fa-solid fa-dollar-sign  ' />
-        <Card Title='Votaciones' Info='Votaciones Hechas' Icon='fa-solid fa-comment' />
-        <Card Title='Casas' Info='Casas Totales' Icon='fa-solid fa-house' />
+    <SideBar>
+      <div>
+        <div className='content-cards'>
+          <Card Title='Residentes' Info='Residente Registrado' Icon='fa-solid fa-user' />
+          <Card Title='Cuotas' Info='Cuotas Finas' Icon='fa-solid fa-dollar-sign  ' />
+          <Card Title='Votaciones' Info='Votaciones Hechas' Icon='fa-solid fa-comment' />
+          <Card Title='Casas' Info='Casas Totales' Icon='fa-solid fa-house' />
+        </div>
+        <Table
+          title='Usuario'
+          Coluums={userColums}
+          Data={Users}
+        />
       </div>
-      <Table
-        title='Usuario'
-        Coluums={userColums}
-        Data={Users}
-      />
-    </div>
+    </SideBar>
   )
 }
 

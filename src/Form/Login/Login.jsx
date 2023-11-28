@@ -8,6 +8,7 @@ function Login () {
     try {
       const res = await login(user)
       localStorage.setItem('token', res.data.token)
+      console.log(res)
     } catch (err) {
       console.error(err)
     }

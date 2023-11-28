@@ -7,7 +7,7 @@ const Modal = ({ isOpen, closeModal, children, title, headerModal }) => {
   const location = useLocation()
   const url = location.pathname.split('/')[1]
 
-  function modalUpdate () {
+  function cleanInputs () {
     if (url === 'Resident') {
       navigate('/Resident')
     } else if (url === 'Tax') {
@@ -18,7 +18,7 @@ const Modal = ({ isOpen, closeModal, children, title, headerModal }) => {
   useEffect(() => {
     const keyup = (e) => {
       if (e.key === 'Escape') {
-        modalUpdate()
+        cleanInputs()
         closeModal()
       }
     }
@@ -33,9 +33,9 @@ const Modal = ({ isOpen, closeModal, children, title, headerModal }) => {
     }
   }, [isOpen, closeModal])
 
+  // Limpia los inputs del formulario al actualizar y cerrar modal
   function buttonCloseModal () {
-    // Limpia los parámetros y cerrar modal
-    modalUpdate()
+    cleanInputs()
     closeModal()
   }
 

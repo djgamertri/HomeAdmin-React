@@ -60,10 +60,9 @@ function Delete ({ element, updateTable, closeModal }) {
   // Cierra el modal después de enviar el formulario
   useEffect(() => {
     if (sendDataForm) {
-      console.log('Cerrando modal', closeModal)
       closeModal()
     }
-  }, [sendDataForm, closeModal])
+  }, [])
 
   return (
     <form className='content-delete' onSubmit={handleSubmit(sendData)}>

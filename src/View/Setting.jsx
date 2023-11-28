@@ -1,11 +1,14 @@
 import React from 'react'
 import UserForm from '../Form/User/UserForm'
+import SideBar from '../Component/SideBar/sideBar'
 
 function Setting () {
   return (
-    <div>
-      <UserForm />
-    </div>
+    <SideBar>
+      <div>
+        <UserForm />
+      </div>
+    </SideBar>
   )
 }
 

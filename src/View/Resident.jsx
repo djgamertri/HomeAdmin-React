@@ -1,14 +1,15 @@
 import { GetUser } from '../api/user.js'
+import { jsPDF } from 'jspdf'
+import { format } from 'date-fns'
 import { useEffect, useState } from 'react'
+import { NavLink, useParams } from 'react-router-dom'
 import Modal from '../Component/Modal/modal'
 import Delete from '../Component/Delete/delete'
-import { NavLink, useParams } from 'react-router-dom'
 import UserForm from '../Form/User/UserForm'
 import Table from '../Component/Table/Table.jsx'
 import Pdf from '../Component/PdfExcel/PdfExcel.jsx'
-import { jsPDF } from 'jspdf'
+import SideBar from '../Component/SideBar/sideBar'
 import 'jspdf-autotable'
-import { format } from 'date-fns'
 
 function Resident () {
   const [Users, setUsers] = useState([])
@@ -24,7 +25,6 @@ function Resident () {
     try {
       const res = await GetUser()
       setUsers(res.data)
-      console.log(res)
     } catch (err) {
       console.log('Error al mostrar usuarios:', err)
     }
@@ -34,11 +34,6 @@ function Resident () {
   useEffect(() => {
     tableUsers()
   }, [])
-
-  // Función para actualizar la tabla al enviar el formulario
-  function updateTable () {
-    tableUsers()
-  }
 
   // Columnas de la tabla
   const userColums = [
@@ -101,10 +96,9 @@ function Resident () {
       )
     }
   ]
-  console.log(Users)
+
   // Funcion para Generar reportes
   const generatePdf = () => {
-    console.log(userColums)
     const doc = new jsPDF()
 
     // Titulo Pdf
@@ -138,7 +132,7 @@ function Resident () {
   }
 
   return (
-    <>
+    <SideBar>
       <Pdf generatePdf={generatePdf} />
       <Table
         title='Usuario'
@@ -147,12 +141,12 @@ function Resident () {
         buttonRegister={() => setIsModalResident(true)}
       />
       <Modal isOpen={isModalResident} closeModal={() => setIsModalResident(false)} title={titleModal} headerModal>
-        <UserForm updateTable={updateTable} closeModal={() => setIsModalResident(false)} />
+        <UserForm closeModal={() => setIsModalResident(false)} updateTable={tableUsers} />
       </Modal>
       <Modal isOpen={isModalDelete} closeModal={() => setIsModalDelete(false)} title='Eliminar Usuario'>
-        <Delete updateTable={updateTable} closeModal={() => setIsModalDelete(false)} element='Usuario' />
+        <Delete closeModal={() => setIsModalDelete(false)} element='Usuario' updateTable={tableUsers} />
       </Modal>
-    </>
+    </SideBar>
   )
 }
 
