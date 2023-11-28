@@ -13,7 +13,7 @@ function DeleteCommonArea (data) {
   return (
     <form className='form-disposition'>
       <p>¿Estas seguro de eliminar esta Zona Comun?</p>
-      <button className='btn-submit' type='submit' onSubmit={sendDelete(6)}> Si,Eliminar </button>
+      <button className='btn-submit' type='submit' onSubmit={sendDelete(6)}> Eliminar </button>
     </form>
   )
 }
