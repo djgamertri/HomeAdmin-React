@@ -8,4 +8,5 @@ const config = {
 
 export const getCommonAreas = () => axios.get('/CommonAreas', config)
 export const getCommonArea = (id) => axios.get(`/CommonArea/${id}`, config)
+export const postCommonArea = commonarea => axios.post('/CommonArea', commonarea, config)
 export const patchCommonArea = commonarea => axios.patch('/CommonArea', commonarea, config)

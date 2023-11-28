@@ -6,9 +6,9 @@ function UpdateCommonArea () {
   const updateCommonArea = async (data) => {
     try {
       const res = await patchCommonArea(data)
-      console.log(res)
+      console.log(res.data)
     } catch (error) {
-      console.error(error)
+      console.error(error.response.data)
     }
   }
   const sendData = handleSubmit((data) => {
