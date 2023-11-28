@@ -25,8 +25,8 @@ function DeleteCommonArea ({ id, eliminar }) {
 
   return (
     <form className='form-disposition' onSubmit={handleSubmit}>
-      <h1>Estas seguro de eliminar esta Zona Común</h1>
-      <p>Nombre Zona Común: {data.NameCommonArea} </p>
+      <h1>¿Estas seguro de eliminar esta Zona Común?</h1>
+      <h3> {data.NameCommonArea} </h3>
       <button className='btn-submit' type='submit'>Confirmar</button>
     </form>
   )
