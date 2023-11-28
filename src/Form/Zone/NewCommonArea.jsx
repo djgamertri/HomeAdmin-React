@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form'
 import { postCommonArea } from '../../api/zone.js'
 // import { sonner } from 'sonner'
 
-function NewCommonArea () {
+function NewCommonArea ({ registrar }) {
   const { register, handleSubmit } = useForm()
 
   const newZone = async (data) => {
