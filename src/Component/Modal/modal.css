@@ -192,16 +192,3 @@ a{
     border-radius: 20px;
     margin: 20px;
 }
-
-.toast{
-    color: var(--white);
-    border: none;
-}
-
-.toast-error{
-    background: var(--red-hover);
-}
-
-.toast-success{
-    background: var(--green);
-}

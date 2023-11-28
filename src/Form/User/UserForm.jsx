@@ -1,12 +1,11 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { createUser } from '../../api/auth.js'
 import { GetUserById, UpdateUser } from '../../api/user.js'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
-import { toast } from 'sonner'
+import Toast from '../../Component/Toast/Toast.jsx'
 
 function UserForm ({ closeModal, updateTable }) {
-  const [sendDataForm, setSendDataForm] = useState(false)
   const { register, handleSubmit, formState: { errors }, setValue } = useForm()
   const params = useParams()
   const location = useLocation()
@@ -20,27 +19,12 @@ function UserForm ({ closeModal, updateTable }) {
     try {
       const res = await createUser(data)
       const msg = res.data.message
-      toast.success(msg, {
-        style: {
-          background: 'var(--green)',
-          color: 'var(--white)',
-          border: 'none'
-        },
-        duration: 3000
-      })
-      setSendDataForm(true)
+      Toast(msg)
+      closeModal()
     } catch (err) {
-      const descriptionMsg = err.code
+      const description = err.code
       const msg = err.response.data.message
-      toast.error(`Error ${msg}`, {
-        style: {
-          background: 'var(--red-hover)',
-          color: 'var(--white)',
-          border: 'none'
-        },
-        description: descriptionMsg,
-        duration: 3000
-      })
+      Toast(msg, 'error', description)
     }
   }
 
@@ -49,28 +33,14 @@ function UserForm ({ closeModal, updateTable }) {
     try {
       const res = await UpdateUser(data)
       const msg = res.data.message
-      toast.success(msg, {
-        style: {
-          background: 'var(--green)',
-          color: 'var(--white)',
-          border: 'none'
-        },
-        duration: 3000
-      })
-      setSendDataForm(true)
+      Toast(msg)
+      closeModal()
+      navigate('/Resident')
     } catch (err) {
-      const descriptionMsg = err.code
+      const description = err.code
       const msg = err.response.data.message
       console.log(err)
-      toast.error(`Error ${msg}`, {
-        style: {
-          background: 'var(--red-hover)',
-          color: 'var(--white)',
-          border: 'none'
-        },
-        description: descriptionMsg,
-        duration: 3000
-      })
+      Toast(msg, 'error', description)
     }
   }
 
@@ -85,14 +55,7 @@ function UserForm ({ closeModal, updateTable }) {
       }
       updateTable()
     } catch (err) {
-      toast.error('Servidor caido intente nuevamenta mas tarde', {
-        style: {
-          background: 'var(--red-hover)',
-          color: 'var(--white)',
-          border: 'none'
-        },
-        duration: 3000
-      })
+      Toast('Servidor caido intente nuevamenta mas tarde', 'error', err)
     }
   }
 
@@ -117,14 +80,6 @@ function UserForm ({ closeModal, updateTable }) {
     }
     loadUser()
   }, [])
-
-  // Cierra el modal después de enviar el formulario y elimina el parametro de la url
-  useEffect(() => {
-    if (sendDataForm) {
-      closeModal()
-      navigate('/Resident')
-    }
-  }, [sendDataForm, closeModal])
 
   return (
     <form className='form-disposition' onSubmit={handleSubmit(sendData)}>
