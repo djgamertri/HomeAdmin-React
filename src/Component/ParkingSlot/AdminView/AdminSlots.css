@@ -45,19 +45,58 @@
     text-align: center;
 }
 .NameUser{
-    color: var(--white);
+    color: var(--blue);
     font-size: 1.1rem;
     margin-top: 5px;
     text-align: center;
 }
 
 .cardPlaca{
-    color: var(--white);
+    color: var(--blue);
     font-size: 1.1rem;
     margin-top: 5px;
     text-align: center;
 }
 
+.asignedSlot{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    cursor: pointer;
+    position: relative;
+    padding: 60px;
+    border-radius: 20px;
+    box-shadow: 0 7px 25px var(--shadow); 
+    background-color: #8bc34a;
+    color: var(--white);
+}
+.asignedSlot .cardPlaca{
+    color: var(--white);
+}
+.asignedSlot .NameUser{
+    color: var(--white);
+}
+
+.provisionalSlot{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    cursor: pointer;
+    position: relative;
+    padding: 60px;
+    border-radius: 20px;
+    box-shadow: 0 7px 25px var(--shadow); 
+    background-color: #ebce12;
+    color: black;
+}
+.provisionalSlot .cardPlaca{
+    color: black;
+}
+.provisionalSlot .NameUser{
+    color: black;
+}
 .content-btn{
     display: flex;
     justify-content: end;
@@ -67,7 +106,6 @@
 }
 
 .btn-parking{
-    position: relative;
     padding: 10px 10px;
     background: var(--blue);
     text-decoration: none;
