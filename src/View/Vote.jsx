@@ -1,6 +1,10 @@
+import SideBar from '../Component/SideBar/sideBar'
+
 function Vote () {
   return (
-    <div>Vote</div>
+    <SideBar>
+      <div>Vote</div>
+    </SideBar>
   )
 }
 

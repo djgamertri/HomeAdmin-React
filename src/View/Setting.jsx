@@ -1,11 +1,14 @@
 import React from 'react'
 import RegisterUser from '../Form/User/Register'
+import SideBar from '../Component/SideBar/sideBar'
 
 function Setting () {
   return (
-    <div>
-      <RegisterUser />
-    </div>
+    <SideBar>
+      <div>
+        <RegisterUser />
+      </div>
+    </SideBar>
   )
 }
 

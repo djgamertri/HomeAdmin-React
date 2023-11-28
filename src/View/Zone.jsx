@@ -1,6 +1,10 @@
+import SideBar from '../Component/SideBar/sideBar'
+
 function Zone () {
   return (
-    <div>Zone</div>
+    <SideBar>
+      <div>Zone</div>
+    </SideBar>
   )
 }
 
