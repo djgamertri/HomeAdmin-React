@@ -1,13 +1,16 @@
 import { useForm } from 'react-hook-form'
 import { login } from '../../api/auth.js'
+import { toast } from 'sonner'
 
-function Login () {
+function Login ({ closeModal }) {
   const { register, handleSubmit, formState: { errors } } = useForm()
 
   const signin = async (user) => {
     try {
       const res = await login(user)
       localStorage.setItem('token', res.data.token)
+      toast.success('Ingreso Correctamente')
+      closeModal(false)
       console.log(res)
     } catch (err) {
       console.error(err)

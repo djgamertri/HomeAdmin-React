@@ -1,13 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Index.css'
 import imagen1 from '../assets/logo.png'
 import imagen2 from '../assets/conjuntoresidencial.jpeg'
 import imagen3 from '../assets/sede-2.jpg'
 import imagen4 from '../assets/sede-3.jpg'
+import Modal from '../Component/Modal/modal'
+import Login from '../Form/Login/Login'
 
 function Index () {
+  const [LoginModal, setLoginModal] = useState(false)
+
   return (
     <>
+      
       <section className='headerIndex' id='home'>
         <nav className='navIndex'>
           <a href='index.html'>
@@ -26,8 +31,8 @@ function Index () {
             <li>
               <a href='/#ubi'>Ubicación</a>
             </li>
-            <li>
-              <a href=''>Registrarse</a>
+            <li onClick={()=>setLoginModal(true)}>
+              <a>Ingresar</a>
             </li>
           </ul>
           <i className='fa-solid fa-xmark'>
@@ -162,6 +167,9 @@ function Index () {
           <p>&copy; {new Date().getFullYear()} Todos los derechos reservados</p>
         </div>
       </footer>
+      <Modal isOpen={LoginModal} closeModal={() => setLoginModal(false)} title='Ingresar'>
+        <Login closeModal={() => setLoginModal(false)}/>
+      </Modal>
     </>
   )
 };
