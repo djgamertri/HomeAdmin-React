@@ -56,6 +56,13 @@ html{
 .navIndex ul li a:hover{
     text-decoration: underline;
 }
+.navh1{
+    font-size:xx-large;
+    color: var(--white);
+    background-color: var(--blue);
+    padding: 8px 20px;
+    border-radius: 8px;
+}
 
 .text-box{
     width: 90%;

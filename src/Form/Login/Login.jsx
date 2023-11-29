@@ -1,16 +1,18 @@
 import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
 import { login } from '../../api/auth.js'
 import { toast } from 'sonner'
 
 function Login ({ closeModal }) {
   const { register, handleSubmit, formState: { errors } } = useForm()
-
+  const navigate = useNavigate()
   const signin = async (user) => {
     try {
       const res = await login(user)
       localStorage.setItem('token', res.data.token)
       toast.success('Ingreso Correctamente')
       closeModal(false)
+      navigate('/Dashboard')
       console.log(res)
     } catch (err) {
       console.error(err)

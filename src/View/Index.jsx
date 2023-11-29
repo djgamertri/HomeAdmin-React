@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import './Index.css'
-import imagen1 from '../assets/logoCafam.png'
 import imagen2 from '../assets/conjuntoresidencial.jpeg'
 import imagen3 from '../assets/sede-2.jpg'
 import imagen4 from '../assets/sede-3.jpg'
@@ -14,9 +13,7 @@ function Index () {
     <>
       <section className='headerIndex' id='home'>
         <nav className='navIndex'>
-          <a href='index.html'>
-            <img src={imagen1} alt='Logo' />
-          </a>
+          <h1 className='navh1' alt='Logo'> CAFAM </h1>
           <ul>
             <li>
               <a href='/#about'>Inicio</a>
@@ -58,41 +55,28 @@ function Index () {
       <section className='cards' id='about'>
         <h1>Sobre nosotros</h1>
         <p>
-          Nuestra institucion cuenta con varias sedes, entre las que tenemos
+          Nuestro conjunto cuenta con varios espacios y caracteristicas que lo hacen agradable
         </p>
         <div className='row'>
           <div className='activitys-col'>
             <img src={imagen2} alt='sede1' width={350} height={350} />
-            <h3>Sede Antonio Nariño</h3>
+            <h3>Ubicación</h3>
             <p>
-              La sede Antonio Nariño es un lugar donde los sueños de los
-              estudiantes toman forma. Es un espacio donde se exploran nuevas
-              ideas, se cultivan talentos y se forjan amistades duraderas. Cada
-              día, esta sede refleja nuestro compromiso con la educación de
-              calidad y el crecimiento personal de quienes la conforman
+              Esta estrategicamente ubicado, proporcionando fácil acceso a servicios, áreas comerciales y rutas principales.Se encuetra e una zona segura y tranquila.
             </p>
           </div>
           <div className='activitys-col'>
             <img src={imagen3} alt='sede2' width={350} height={350} />
-            <h3>Sede Principal</h3>
+            <h3>Viviendas</h3>
             <p>
-              La sede principal de nuestro colegio es el epicentro de la
-              educación que transforma vidas. Es un lugar donde se promueve la
-              curiosidad, la colaboración y el compromiso con el aprendizaje.
-              Cada rincón respira el espíritu de la excelencia académica y la
-              formación integral, creando un ambiente que impulsa el crecimiento
-              intelectual y personal de nuestros estudiantes
+              Contamos con una variedad de vviendas comodas para tu familia para satisfacer las necesidades y preferencias de los residentes; las viviedas tienen un diseño moderno y funcional
             </p>
           </div>
           <div className='activitys-col'>
             <img src={imagen4} alt='sede3' width={350} height={350} />
-            <h3>Sede Centro Piloto</h3>
+            <h3>Comunidad</h3>
             <p>
-              La sede Centro Piloto es un lugar donde la tradición se combina
-              con la innovación, y donde se fomenta el respeto, la tolerancia y
-              la responsabilidad. Es un símbolo de nuestro compromiso con la
-              educación de calidad y la formación integral de nuestros
-              estudiantes en el corazón de la ciudad
+              Contamos con distintos eventos y actividades comunitarias que fometan la interacción entre los otros residentes y fortalecen el sentido de la comunidad.
             </p>
           </div>
         </div>
@@ -104,31 +88,22 @@ function Index () {
         </p>
         <div className='row'>
           <div className='col'>
-            <h3>Fútbol Escolar</h3>
+            <h3>Servicios</h3>
             <p>
-              Nuestra institución ofrece emocionantes actividades deportivas,
-              como el fútbol, donde los estudiantes pueden aprender habilidades
-              deportivas, fomentar la camaradería y disfrutar de una sana
-              competencia en un entorno seguro y supervisado
+              Tenemos una administración eficiente con procesos transparentes y una comunicación abierta con los residentes, contamos con asignación de parqueaderos, alquiler de salón comunal y zona BBQ
             </p>
           </div>
           <div className='col'>
-            <h3>Club de Ciencias</h3>
+            <h3>Comites participativos</h3>
             <p>
               {' '}
-              Explora el mundo de la ciencia en nuestro Club de Ciencias, donde
-              los estudiantes participan en experimentos, proyectos de
-              investigación y actividades innovadoras que despiertan la
-              curiosidad y el pensamiento crítico
+              Los residentes tienen la oportunidad de participar en comités y contribuir a la toma de desiciones para mejorar constantemente la calidad de vida en el conjunto
             </p>
           </div>
           <div className='col'>
-            <h3>Club de Arte Creativo</h3>
+            <h3>Recogida de residuos</h3>
             <p>
-              Para los amantes del arte, ofrecemos un Club de Arte Creativo
-              donde los estudiantes pueden desarrollar su creatividad, explorar
-              diversas formas de expresión artística y exhibir su talento en
-              exposiciones escolares
+              Se proporciona un servicio regular de recogida de residuos para mantener las áreas comunes limpias y ordenadas
             </p>
           </div>
         </div>
@@ -153,13 +128,13 @@ function Index () {
         <div className='footer-content'>
           <h4>HomeAdmin</h4>
           <div className='social-icons'>
-            <a href='#' target='_blank' rel='noopener noreferrer'>
+            <a href='https://web.facebook.com/cafamoficial/?locale=es_LA&_rdc=1&_rdr' target='_blank' rel='noopener noreferrer'>
               <i className='fa-brands fa-facebook' />
             </a>
-            <a href='#' target='_blank' rel='noopener noreferrer'>
+            <a href='https://www.instagram.com/cafamoficial/' target='_blank' rel='noopener noreferrer'>
               <i className='fa-brands fa-instagram' />
             </a>
-            <a href='#' target='_blank' rel='noopener noreferrer'>
+            <a href='https://github.com/djgamertri/HomeAdmin-React' target='_blank' rel='noopener noreferrer'>
               <i className='fa-brands fa-github' />
             </a>
           </div>
