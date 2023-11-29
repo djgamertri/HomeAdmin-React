@@ -1,0 +1,38 @@
+
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    grid-gap: 16px;
+    flex-wrap: wrap;
+    margin: 25px;
+}
+
+.header .btn-Pdf-Excel{
+    text-decoration: none;
+    font-size: 20px;
+    height: 36px;
+    padding: 0 16px;
+    border-radius: 36px;
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    grid-gap: 10px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.header .report{
+    background: var(--red);
+    &:hover{
+        background: var(--red-hover);
+    }
+}
+
+.header .import{
+    background: var(--green);
+    &:hover{
+        background: var(--green-hover);
+    }
+}
