@@ -1,5 +1,4 @@
 import { Route, Routes } from 'react-router-dom'
-import SideBar from './Component/SideBar/sideBar'
 import Dashboard from './View/Dashboard'
 import Resident from './View/Resident'
 import Fee from './View/Fee'
