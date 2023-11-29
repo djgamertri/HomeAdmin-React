@@ -35,6 +35,19 @@ function Login () {
         })}
       />
       {errors.Email && <span className='errors'>{errors.Email.message}</span>}
+      <input
+        className='form-input' placeholder='Contraseña' type='password' {...register('Pass', {
+          required: {
+            value: true,
+            message: 'Contraseña requerida'
+          },
+          minLength: {
+            value: 8,
+            message: 'La contraseña requiere de minimo 8 caracteres'
+          }
+        })}
+      />
+      {errors.Pass && <span className='errors'>{errors.Pass.message}</span>}
       <button className='btn-submit' type='submit'>Login</button>
     </form>
   )
