@@ -1,12 +1,11 @@
+import React from 'react'
 import './Index.css'
 import imagen1 from '../assets/logo.png'
 import imagen2 from '../assets/conjuntoresidencial.jpeg'
 import imagen3 from '../assets/sede-2.jpg'
 import imagen4 from '../assets/sede-3.jpg'
-import React, { useState } from 'react'
 
 function Index () {
-  const [isModalLogin, setIsModalLogin] = useState(false)
   return (
     <>
       <section className='headerIndex' id='home'>
@@ -16,16 +15,16 @@ function Index () {
           </a>
           <ul>
             <li>
-              <a href=''>Inicio</a>
+              <a href='/#about'>Inicio</a>
             </li>
             <li>
-              <a href=''>Sobre nosotros</a>
+              <a href='/#about'>Sobre nosotros</a>
             </li>
             <li>
-              <a href=''>Beneficios</a>
+              <a href='/#beneficios'>Beneficios</a>
             </li>
             <li>
-              <a href=''>Ubicación</a>
+              <a href='/#ubi'>Ubicación</a>
             </li>
             <li>
               <a href=''>Registrarse</a>
@@ -45,7 +44,7 @@ function Index () {
                 <br />
                 Las fachadas de las viviendas están adornadas con jardines bien cuidados, añadiendo color y vida a la comunidad.
               </p>
-              <button href='' className='hero-btn' id='openLogin'>
+              <button href='/#about' className='hero-btn' id='openLogin'>
                 Empieza tu experiencia
               </button>
             </div>
@@ -94,11 +93,10 @@ function Index () {
           </div>
         </div>
       </section>
-      <section className='activitys'>
-        <h1>Ofrecemos diferentes actividades</h1>
+      <section className='activitys' id='beneficios'>
+        <h1>Beneficios</h1>
         <p>
-          Nuestra institucion cuenta con varias actividades extracurriculares
-          entre las que encontramos{' '}
+          Tenemos bastantes beneficios al vivir en nuestro conjunto, conocelos{' '}
         </p>
         <div className='row'>
           <div className='col'>
@@ -131,7 +129,7 @@ function Index () {
           </div>
         </div>
       </section>
-      <section className='activitys' id='contact'>
+      <section className='activitys' id='ubi'>
         <h1>Ubicación</h1>
         <p>
           Nos puedes encontrar en esta dirección, te esperamos
@@ -164,7 +162,7 @@ function Index () {
           <p>&copy; {new Date().getFullYear()} Todos los derechos reservados</p>
         </div>
       </footer>
-      <>
+    </>
   )
 };
-export default Index
+export default Index
