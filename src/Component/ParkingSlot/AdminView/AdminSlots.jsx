@@ -7,8 +7,7 @@ import { faFileExport, faDice, faBroom } from '@fortawesome/free-solid-svg-icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Swal from 'sweetalert2'
 
-export default function AdminSlots() {
-  // eslint-disable-next-line no-unused-vars
+export default function AdminSlots () {
   const [residentsWithParking, setResidentsWithParking] = useState([])
   const [residentsWithoutParking, setResidentsWithoutParking] = useState([])
   const [slots, setSlots] = useState(new Array(32).fill(null)) // Agregamos el estado para los slots
@@ -40,8 +39,8 @@ export default function AdminSlots() {
 
   const handleSort = () => {
     // Limpiar solo los slots temporales
-    let newSlots = slots.map(slot => slot && slot.class !== 'provisionalSlot' ? slot : null)
-    let availableSlots = newSlots.filter(slot => slot === null)
+    const newSlots = slots.map(slot => slot && slot.class !== 'provisionalSlot' ? slot : null)
+    const availableSlots = newSlots.filter(slot => slot === null)
 
     // Verificar si la respuesta de GetResidentWithOutParking está vacía
     if (residentsWithoutParking.length === 0) {
