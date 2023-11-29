@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './Index.css'
-import imagen1 from '../assets/logo.png'
+import imagen1 from '../assets/logoCafam.png'
 import imagen2 from '../assets/conjuntoresidencial.jpeg'
 import imagen3 from '../assets/sede-2.jpg'
 import imagen4 from '../assets/sede-3.jpg'
