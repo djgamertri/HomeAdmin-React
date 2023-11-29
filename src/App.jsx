@@ -1,4 +1,5 @@
 import { Route, Routes } from 'react-router-dom'
+import { Toaster } from 'sonner'
 import Dashboard from './View/Dashboard'
 import Resident from './View/Resident'
 import Fee from './View/Fee'
@@ -6,10 +7,9 @@ import Vote from './View/Vote'
 import Park from './View/Park'
 import Zone from './View/Zone'
 import Help from './View/Help'
-import './Main.css'
 import Setting from './View/Setting'
 import Index from './View/Index'
-import { Toaster } from 'sonner'
+import './Main.css'
 
 function App () {
   return (

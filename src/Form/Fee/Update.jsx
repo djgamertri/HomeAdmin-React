@@ -1,6 +1,6 @@
 import { useForm, Controller } from 'react-hook-form'
 import { updateFee } from '../../api/fee.js'
-function UpdateFee () {
+function UpdateFee ({ actualizar }) {
   const { register, handleSubmit, control } = useForm()
   const fee = async (data) => {
     try {
