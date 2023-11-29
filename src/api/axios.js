@@ -1,5 +1,5 @@
 import axios from 'axios'
 const instance = axios.create({
-  baseURL: 'https://api-homeadmin-9egs-dev.fl0.io/api'
+  baseURL: 'http://localhost:3001/api'
 })
 export default instance

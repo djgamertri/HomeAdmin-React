@@ -1,11 +1,12 @@
-import React from 'react'
 import './Index.css'
 import imagen1 from '../assets/logo.png'
 import imagen2 from '../assets/conjuntoresidencial.jpeg'
 import imagen3 from '../assets/sede-2.jpg'
 import imagen4 from '../assets/sede-3.jpg'
+import React, { useState } from 'react'
 
 function Index () {
+  const [isModalLogin, setIsModalLogin] = useState(false)
   return (
     <>
       <section className='headerIndex' id='home'>
@@ -163,7 +164,6 @@ function Index () {
           <p>&copy; {new Date().getFullYear()} Todos los derechos reservados</p>
         </div>
       </footer>
-    </>
   )
 };
 export default Index
