@@ -5,7 +5,6 @@ import SideBar from '../Component/SideBar/sideBar'
 import Table from '../Component/Table/Table.jsx'
 import Modal from '../Component/Modal/modal.jsx'
 import UpdateFee from '../Form/Fee/Update.jsx'
-import DeleteFee from '../Form/Fee/Delete.jsx'
 import RegisterFee from '../Form/Fee/Register.jsx'
 import Pdf from '../Component/PdfExcel/PdfExcel.jsx'
 import 'jspdf-autotable'
@@ -15,7 +14,6 @@ function Fee () {
   const [IdFee, setIdFee] = useState(null)
   const [Actualizar, setActualizar] = useState(false)
   const [UpdateModal, setUpdateModal] = useState(false)
-  const [DeleteModal, setDeleteModal] = useState(false)
   const [RegisterModal, setRegisterModa] = useState(false)
 
   useEffect(() => {
@@ -69,26 +67,12 @@ function Fee () {
           Editar
         </a>
       )
-    },
-    {
-      name: 'Eliminar',
-      button: 'true',
-      cell: (row) => (
-        <a className='btn btn-delete' onClick={(e) => handleDelete(e, row.IdFee)}>
-          Eliminar
-        </a>
-      )
     }
   ]
 
   const handleEdit = (e, id) => {
     setIdFee(id)
     setUpdateModal(true)
-  }
-
-  const handleDelete = (e, id) => {
-    setIdFee(id)
-    setDeleteModal(true)
   }
 
   const generatePdf = () => {
@@ -129,9 +113,6 @@ function Fee () {
       />
       <Modal isOpen={UpdateModal} closeModal={() => setUpdateModal(false)} title='Actualizar Pago'>
         <UpdateFee id={IdFee} actualizar={setActualizar} />
-      </Modal>
-      <Modal isOpen={DeleteModal} closeModal={() => setDeleteModal(false)} title='Eliminar Pago'>
-        <DeleteFee id={IdFee} actualizar={setActualizar} />
       </Modal>
       <Modal isOpen={RegisterModal} closeModal={() => setRegisterModa(false)} title='Registrar Pago'>
         <RegisterFee id={IdFee} actualizar={setActualizar} />

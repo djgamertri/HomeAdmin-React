@@ -13,7 +13,6 @@ function RegisterUser ({ actualizar }) {
       actualizar(true)
     } catch (err) {
       console.error(err.response.data)
-      console.log()
       toast.error(err.response.data.message)
     }
   }
