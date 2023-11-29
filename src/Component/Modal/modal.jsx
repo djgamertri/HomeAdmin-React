@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import './modal.css'
+import { motion } from 'framer-motion'
 
 const Modal = ({ isOpen, closeModal, children, title }) => {
   useEffect(() => {
@@ -21,8 +22,8 @@ const Modal = ({ isOpen, closeModal, children, title }) => {
   if (!isOpen) return null
 
   return (
-    <div className='modal' data-animation='slideInOutRight'>
-      <div className='modal-dialog'>
+    <div className='modal'>
+      <motion.div className='modal-dialog' initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: 'spring', stiffness: 260, damping: 20 }}>
         <header className='modal-header'>
           <br />
           <div>{title}</div>
@@ -33,7 +34,7 @@ const Modal = ({ isOpen, closeModal, children, title }) => {
         <section className='modal-content'>
           {children}
         </section>
-      </div>
+      </motion.div>
     </div>
   )
 }
