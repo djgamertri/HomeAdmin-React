@@ -1,13 +1,21 @@
 import { NavLink } from 'react-router-dom'
 import './Nav.css'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Header from '../Header/Header'
 
 function sideBar ({ children }) {
-  const [isClaseAgregar, setClaseAgregar] = useState(false)
+  const storedSidebarStatus = localStorage.getItem('sidebarStatus')
+  const initialState = storedSidebarStatus ? JSON.parse(storedSidebarStatus) : false
+  const [isClaseAgregar, setClaseAgregar] = useState(initialState)
+
   const navbar = () => {
     setClaseAgregar(!isClaseAgregar)
   }
+
+  useEffect(() => {
+    localStorage.setItem('sidebarStatus', JSON.stringify(isClaseAgregar))
+  }, [isClaseAgregar])
+
   return (
     <>
       <div className='navegation'>
