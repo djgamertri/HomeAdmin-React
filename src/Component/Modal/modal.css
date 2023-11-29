@@ -59,6 +59,15 @@
     margin: 10px 1.5rem 8px 1.5rem;
 }
 
+.input-pass{
+    width: 50%;
+    text-align: center;
+}
+
+.hidden-input{
+    display: none;
+}
+
 .btn-submit{
     margin-top: 20px;
     margin-bottom: 20px;
