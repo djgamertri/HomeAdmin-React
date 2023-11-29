@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form'
 import { postCommonArea } from '../../api/zone.js'
-// import { sonner } from 'sonner'
+import { toast } from 'sonner'
 
 function NewCommonArea ({ registrar }) {
   const { register, handleSubmit } = useForm()
@@ -8,7 +8,7 @@ function NewCommonArea ({ registrar }) {
   const newZone = async (data) => {
     try {
       const res = await postCommonArea(data)
-      console.log(res.data)
+      toast.success(res.data.CommonArea + 'registrado correctamente')
     } catch (error) {
       console.log(error.response.data)
     }

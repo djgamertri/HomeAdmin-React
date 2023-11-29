@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { getCommonArea, deleteCommonArea } from '../../api/zone'
-// import { toast } from 'sonner'
+import { toast } from 'sonner'
 
 function DeleteCommonArea ({ id, eliminar }) {
   const [data, setData] = useState({})
@@ -16,7 +16,7 @@ function DeleteCommonArea ({ id, eliminar }) {
   const handleSubmit = (event) => {
     event.preventDefault()
     deleteCommonArea(id).then((response) => {
-      console.log(response.data)
+      toast.success(response.data.NameCommonArea + ' eliminado correctamente')
       eliminar(true)
     }).catch((error) => {
       console.error(error.response.data)

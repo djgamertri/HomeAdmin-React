@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { getCommonArea, patchCommonArea } from '../../api/zone.js'
-// import { toast } from 'sonner'
+import { toast } from 'sonner'
 
 function UpdateCommonArea ({ id, actualizar }) {
   const [ZoneData, setZoneData] = useState({
@@ -28,7 +28,7 @@ function UpdateCommonArea ({ id, actualizar }) {
   const handleSubmint = (event) => {
     event.preventDefault()
     patchCommonArea(ZoneData).then((response) => {
-      console.log(response.data)
+      toast.success(response.data.CommonArea + 'Actualizado correctamente')
       actualizar(true)
     }).catch((error) => {
       console.error(error.response.data)
@@ -37,7 +37,7 @@ function UpdateCommonArea ({ id, actualizar }) {
 
   return (
     <form className='form-disposition' onSubmit={handleSubmint}>
-      <input className='form-input' type='hidden' onChange={handleInputChange} value={ZoneData.IdCommonArea} />
+      <input className='form-input' type='number' onChange={handleInputChange} value={ZoneData.IdCommonArea} />
       <input className='form-input' type='text' onChange={handleInputChange} value={ZoneData.NameCommonArea} />
       <select className='form-input' onChange={handleInputChange} value={ZoneData.status}>
         <option className='form-option'>Estado</option>
