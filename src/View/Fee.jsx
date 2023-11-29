@@ -60,10 +60,15 @@ function Fee () {
       sortable: true
     },
     {
+      name: 'Telefono',
+      selector: (row) => row.Phone,
+      sortable: true
+    },
+    {
       name: 'Modificar',
       button: 'true',
       cell: (row) => (
-        <a className='btn btn-update' onClick={(e) => handleEdit(e, row.IdFee)}>
+        <a className='btn btn-update' onClick={(e) => handleEdit(e, row.IdPayAdmin)}>
           Editar
         </a>
       )
@@ -81,12 +86,13 @@ function Fee () {
     // Titulo Pdf
     doc.text('Pagos', 95, 20)
 
-    const columnsPdf = ['Id', 'Nombre', 'Casa', 'Estado Pago']
+    const columnsPdf = ['Id', 'Nombre', 'Casa', 'Estado Pago', 'Telefono']
     const dataPdf = Fees.map(fee => [
       fee.IdPayAdmin,
       fee.NameUser,
       fee.NumHouse,
-      fee.StatusPayAdmin
+      fee.StatusPayAdmin,
+      fee.Phone
     ])
 
     const filterDataPdf = dataPdf.map(row =>
@@ -115,7 +121,7 @@ function Fee () {
         <UpdateFee id={IdFee} actualizar={setActualizar} />
       </Modal>
       <Modal isOpen={RegisterModal} closeModal={() => setRegisterModa(false)} title='Registrar Pago'>
-        <RegisterFee id={IdFee} actualizar={setActualizar} />
+        <RegisterFee actualizar={setActualizar} />
       </Modal>
     </SideBar>
   )
