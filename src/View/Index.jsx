@@ -12,7 +12,6 @@ function Index () {
 
   return (
     <>
-      
       <section className='headerIndex' id='home'>
         <nav className='navIndex'>
           <a href='index.html'>
@@ -31,7 +30,7 @@ function Index () {
             <li>
               <a href='/#ubi'>Ubicación</a>
             </li>
-            <li onClick={()=>setLoginModal(true)}>
+            <li onClick={() => setLoginModal(true)}>
               <a>Ingresar</a>
             </li>
           </ul>
@@ -168,7 +167,7 @@ function Index () {
         </div>
       </footer>
       <Modal isOpen={LoginModal} closeModal={() => setLoginModal(false)} title='Ingresar'>
-        <Login closeModal={() => setLoginModal(false)}/>
+        <Login closeModal={() => setLoginModal(false)} />
       </Modal>
     </>
   )
