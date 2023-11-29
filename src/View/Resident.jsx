@@ -1,6 +1,7 @@
 import DataTable from 'react-data-table-component'
 import { GetUser } from '../api/users'
 import { useEffect, useState } from 'react'
+import { jsPDF } from 'jspdf'
 import Modal from '../Component/Modal/modal'
 import UpdateUser from '../Form/User/Update'
 import SideBar from '../Component/SideBar/sideBar'
