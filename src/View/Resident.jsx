@@ -1,4 +1,3 @@
-import DataTable from 'react-data-table-component'
 import { GetUser } from '../api/users'
 import { useEffect, useState } from 'react'
 import { jsPDF } from 'jspdf'
@@ -10,6 +9,7 @@ import RegisterUser from '../Form/User/Register'
 import Pdf from '../Component/PdfExcel/PdfExcel.jsx'
 import { format } from 'date-fns'
 import 'jspdf-autotable'
+import Table from '../Component/Table/Table.jsx'
 
 function Resident () {
   const [Users, setUsers] = useState([])
@@ -41,7 +41,7 @@ function Resident () {
     datatable()
   }
 
-  const Columns = [
+  const userColumns = [
     {
       name: 'ID',
       selector: (row) => row.IdUser,
@@ -86,48 +86,21 @@ function Resident () {
       name: 'Modificar',
       button: 'true',
       cell: (row) => (
-        <a className='btn' onClick={(e) => handleEdit(e, row.IdUser)}>
+        <a className='btn btn-update' onClick={(e) => handleEdit(e, row.IdUser)}>
           Editar
-        </a> // Simple prueba de que el modal funciona
+        </a>
       )
     },
     {
       name: 'Eliminar',
       button: 'true',
       cell: (row) => (
-        <a className='btn' onClick={(e) => handleDelete(e, row.IdUser)}>
+        <a className='btn btn-delete' onClick={(e) => handleDelete(e, row.IdUser)}>
           Eliminar
         </a>
       )
     }
   ]
-
-  const customStyles = {
-    table: {
-      style: {
-        margin: '5px'
-      }
-    },
-    head: {
-      style: {
-        fontWeight: 'Bold',
-        fontSize: '15px',
-        padding: '10px'
-      }
-    },
-    pagination: {
-      style: {
-        width: '98%',
-        margin: '20px'
-      }
-    },
-    rows: {
-      style: {
-        padding: '12px',
-        fontSize: '14px'
-      }
-    }
-  }
 
   const handleEdit = (e, id) => {
     setIdUser(id)
@@ -176,33 +149,21 @@ function Resident () {
   return (
     <SideBar>
       <Pdf generatePdf={generatePdf} />
-      <div className='TableContent'>
-        <DataTable
-          columns={Columns} data={Users} title='Residents' pagination customStyles={customStyles}
-          subHeader
-          subHeaderComponent={
-            <div className='header-table'>
-              <h2>Usuarios</h2>
-              {location.pathname !== '/Dashboard'
-                ? (
-                  <a className='btn btn-register' onClick={() => setRegisterModal(true)}>
-                    Añadir Usuarios
-                  </a>
-                  )
-                : null}
-            </div>
-          }
-        />
-        <Modal isOpen={UpdateModal} closeModal={() => setUpdateModal(false)} title='Actualizar Usuario'>
-          <UpdateUser id={IdUser} actualizar={setActualizar} />
-        </Modal>
-        <Modal isOpen={DeleteModal} closeModal={() => setDeleteModal(false)} title='Eliminar Usuario'>
-          <Delete id={IdUser} actualizar={setActualizar} />
-        </Modal>
-        <Modal isOpen={RegisterModal} closeModal={() => setRegisterModal(false)} title='Registrar Usuario'>
-          <RegisterUser actualizar={setActualizar} />
-        </Modal>
-      </div>
+      <Table
+        title='Usuario'
+        Coluums={userColumns}
+        Data={Users}
+        buttonRegister={() => setRegisterModal(true)}
+      />
+      <Modal isOpen={UpdateModal} closeModal={() => setUpdateModal(false)} title='Actualizar Usuario'>
+        <UpdateUser id={IdUser} actualizar={setActualizar} />
+      </Modal>
+      <Modal isOpen={DeleteModal} closeModal={() => setDeleteModal(false)} title='Eliminar Usuario'>
+        <Delete id={IdUser} actualizar={setActualizar} />
+      </Modal>
+      <Modal isOpen={RegisterModal} closeModal={() => setRegisterModal(false)} title='Registrar Usuario'>
+        <RegisterUser actualizar={setActualizar} />
+      </Modal>
     </SideBar>
   )
 }
