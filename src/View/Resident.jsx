@@ -6,6 +6,9 @@ import UpdateUser from '../Form/User/Update'
 import SideBar from '../Component/SideBar/sideBar'
 import Delete from '../Form/User/Delete'
 import RegisterUser from '../Form/User/Register'
+import Pdf from '../Component/PdfExcel/PdfExcel.jsx'
+import { format } from 'date-fns'
+import 'jspdf-autotable'
 
 function Resident () {
   const [Users, setUsers] = useState([])
@@ -37,10 +40,25 @@ function Resident () {
     datatable()
   }
 
-  const Coluuns = [
+  const Columns = [
     {
       name: 'ID',
       selector: (row) => row.IdUser,
+      sortable: true
+    },
+    {
+      name: 'Tipo Documento',
+      selector: (row) => row.TypeDoc,
+      sortable: true
+    },
+    {
+      name: 'Numero Documento',
+      selector: (row) => row.NumDoc,
+      sortable: true
+    },
+    {
+      name: 'Telefono',
+      selector: (row) => row.Phone,
       sortable: true
     },
     {
@@ -56,6 +74,11 @@ function Resident () {
     {
       name: 'Casa',
       selector: (row) => row.NumHouse,
+      sortable: true
+    },
+    {
+      name: 'Fecha de Nacimiento',
+      selector: (row) => format(new Date(row.BirthDate), 'dd/MM/yyyy'),
       sortable: true
     },
     {
@@ -79,10 +102,28 @@ function Resident () {
   ]
 
   const customStyles = {
+    table: {
+      style: {
+        margin: '5px'
+      }
+    },
     head: {
       style: {
         fontWeight: 'Bold',
-        fontSize: '15px'
+        fontSize: '15px',
+        padding: '10px'
+      }
+    },
+    pagination: {
+      style: {
+        width: '98%',
+        margin: '20px'
+      }
+    },
+    rows: {
+      style: {
+        padding: '12px',
+        fontSize: '14px'
       }
     }
   }
@@ -96,11 +137,47 @@ function Resident () {
     setIdUser(id)
     setDeleteModal(true)
   }
+
+  // Funcion para Generar reportes
+  const generatePdf = () => {
+    const doc = new jsPDF()
+
+    // Titulo Pdf
+    doc.text('Usuarios', 95, 20)
+
+    const columnsPdf = ['Id', 'Tipo Documento', 'Numero Documento', 'Telefono', 'Nombre', 'Correo', 'Casa', 'Fecha de Nacimiento']
+    // Se recorre Users para llenar el Pdf
+    const dataPdf = Users.map(user => [
+      user.IdUser,
+      user.TypeDoc,
+      user.NumDoc,
+      user.Phone,
+      user.NameUser,
+      user.Email,
+      user.NumHouse,
+      format(new Date(user.BirthDate), 'dd/MM/yyyy')
+    ])
+
+    // Filtrar las columnas que se van a mostrar segun el columnsPdf
+    const filterDataPdf = dataPdf.map(row =>
+      row.filter((_, index) => columnsPdf.includes(columnsPdf[index]))
+    )
+
+    doc.autoTable({
+      startY: 30,
+      head: [columnsPdf],
+      body: filterDataPdf
+    })
+    // Guardar el Pdf
+    doc.save('Reporte_Usuarios.pdf')
+  }
+
   return (
     <SideBar>
+      <Pdf generatePdf={generatePdf} />
       <div className='TableContent'>
         <DataTable
-          columns={Coluuns} data={Users} title='Residents' pagination customStyles={customStyles}
+          columns={Columns} data={Users} title='Residents' pagination customStyles={customStyles}
           subHeader
           subHeaderComponent={
             <div className='header-table'>
