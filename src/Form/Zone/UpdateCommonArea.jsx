@@ -37,7 +37,7 @@ function UpdateCommonArea ({ id, actualizar }) {
 
   return (
     <form className='form-disposition' onSubmit={handleSubmint}>
-      <input className='form-input' type='number' onChange={handleInputChange} value={ZoneData.IdCommonArea} />
+      <input className='form-input' type='hidden' onChange={handleInputChange} value={ZoneData.IdCommonArea} />
       <input className='form-input' type='text' onChange={handleInputChange} value={ZoneData.NameCommonArea} />
       <select className='form-input' onChange={handleInputChange} value={ZoneData.status}>
         <option className='form-option'>Estado</option>
