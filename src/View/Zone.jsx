@@ -83,6 +83,11 @@ function Zone () {
   ]
   const Pending = [
     {
+      name: 'Id Solicitud',
+      selector: (row) => row.IdRent,
+      sortable: true
+    },
+    {
       name: 'Nombre Residente',
       selector: (row) => row.NameUser,
       sortable: true
@@ -98,6 +103,11 @@ function Zone () {
     }
   ]
   const Accepted = [
+    {
+      name: 'Id Solicitud',
+      selector: (row) => row.IdRent,
+      sortable: true
+    },
     {
       name: 'Nombre Residente',
       selector: (row) => row.NameUser,
