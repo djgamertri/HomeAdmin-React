@@ -8,6 +8,7 @@ import Card from '../Component/Card/Card'
 import NewCommonArea from '../Form/Zone/NewCommonArea.jsx'
 import DeleteCommonArea from '../Form/Zone/DeleteCommonArea.jsx'
 import UpdateCommonArea from '../Form/Zone/UpdateCommonArea.jsx'
+import { format } from 'date-fns'
 
 function Zone () {
   const [Zone, setZone] = useState([])
@@ -90,6 +91,10 @@ function Zone () {
       name: 'Zona a Alquilar',
       selector: (row) => row.NameCommonArea,
       sortable: true
+    },
+    {
+      name: 'Fecha de uso',
+      selector: (row) => format(new Date(row.RentDate), 'dd/MM/yyyy')
     }
   ]
   const Accepted = [
@@ -102,6 +107,10 @@ function Zone () {
       name: 'Zona a Alquilar',
       selector: (row) => row.NameCommonArea,
       sortable: true
+    },
+    {
+      name: 'Fecha de uso',
+      selector: (row) => format(new Date(row.RentDate), 'dd/MM/yyyy')
     }
   ]
   const customStyles = {
