@@ -2,6 +2,7 @@ import SideBar from '../Component/SideBar/sideBar'
 import DataTable from 'react-data-table-component'
 import { useEffect, useState } from 'react'
 import { getCommonAreas } from '../api/zone.js'
+import { GetRentPending, GetRentAccepted } from '../api/rent.js'
 import Modal from '../Component/Modal/modal'
 import Card from '../Component/Card/Card'
 import NewCommonArea from '../Form/Zone/NewCommonArea.jsx'
@@ -10,6 +11,8 @@ import UpdateCommonArea from '../Form/Zone/UpdateCommonArea.jsx'
 
 function Zone () {
   const [Zone, setZone] = useState([])
+  const [RentPending, setRentPending] = useState([])
+  const [RentAccepted, setRentAccepted] = useState([])
   const [IdZone, setIdZone] = useState(null)
   const [Actualizar, setActualizar] = useState(false)
   const [UpdateModal, setUpdateModal] = useState(false)
@@ -29,6 +32,18 @@ function Zone () {
     }).finally(
       setActualizar(false)
     )
+    GetRentPending().then((response) => {
+      console.log(response.data)
+      setRentPending(response.data)
+    }).catch((error) => {
+      console.log('Error al obtener Alquileres pendientes', error.response.data)
+    })
+    GetRentAccepted().then((response) => {
+      console.log(response.data)
+      setRentAccepted(response.data)
+    }).catch((error) => {
+      console.error('Error al obtener Alquileres aceptados', error.response.data)
+    })
   }
 
   if (Actualizar) {
@@ -65,7 +80,30 @@ function Zone () {
       )
     }
   ]
-
+  const Pending = [
+    {
+      name: 'Nombre Residente',
+      selector: (row) => row.NameUser,
+      sortable: true
+    },
+    {
+      name: 'Zona a Alquilar',
+      selector: (row) => row.NameCommonArea,
+      sortable: true
+    }
+  ]
+  const Accepted = [
+    {
+      name: 'Nombre Residente',
+      selector: (row) => row.NameUser,
+      sortable: true
+    },
+    {
+      name: 'Zona a Alquilar',
+      selector: (row) => row.NameCommonArea,
+      sortable: true
+    }
+  ]
   const customStyles = {
     head: {
       style: {
@@ -111,6 +149,15 @@ function Zone () {
             </div>
           }
         />
+        <br />
+        <DataTable
+          columns={Pending} data={RentPending} title='Solicitud de Alquileres' pagination customStyles={customStyles}
+        />
+        <br />
+        <DataTable
+          columns={Accepted} data={RentAccepted} title='Zonas Comunes Alquiladas' pagination customStyles={customStyles}
+        />
+        <br />
         <Modal isOpen={UpdateModal} closeModal={() => setUpdateModal(false)} title='Actualizar Zona Común'>
           <UpdateCommonArea id={IdZone} actualizar={setActualizar} />
         </Modal>
