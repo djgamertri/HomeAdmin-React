@@ -8,6 +8,8 @@ import Card from '../Component/Card/Card'
 import NewCommonArea from '../Form/Zone/NewCommonArea.jsx'
 import DeleteCommonArea from '../Form/Zone/DeleteCommonArea.jsx'
 import UpdateCommonArea from '../Form/Zone/UpdateCommonArea.jsx'
+import RegisterRent from '../Form/Rent/RegisterRent.jsx'
+import DropRent from '../Form/Rent/DropRent.jsx'
 import { format } from 'date-fns'
 
 function Zone () {
@@ -19,6 +21,9 @@ function Zone () {
   const [UpdateModal, setUpdateModal] = useState(false)
   const [DeleteModal, setDeleteModal] = useState(false)
   const [RegisterModal, setRegisterModal] = useState(false)
+  const [RegistRent, setRegistRent] = useState(false)
+  const [DeletepRent, setDeletepRent] = useState(false)
+  const [IdRent, setIdRent] = useState(null)
 
   useEffect(() => {
     datatable()
@@ -100,6 +105,15 @@ function Zone () {
     {
       name: 'Fecha de uso',
       selector: (row) => format(new Date(row.RentDate), 'dd/MM/yyyy')
+    },
+    {
+      name: 'Eliminar',
+      button: 'true',
+      cell: (row) => (
+        <a className='btn' onClick={(e) => handleDeleteRent(e, row.IdRent)}>
+          Eliminar
+        </a>
+      )
     }
   ]
   const Accepted = [
@@ -121,6 +135,15 @@ function Zone () {
     {
       name: 'Fecha de uso',
       selector: (row) => format(new Date(row.RentDate), 'dd/MM/yyyy')
+    },
+    {
+      name: 'Eliminar',
+      button: 'true',
+      cell: (row) => (
+        <a className='btn' onClick={(e) => handleDeleteRent(e, row.IdRent)}>
+          Eliminar
+        </a>
+      )
     }
   ]
   const customStyles = {
@@ -140,6 +163,11 @@ function Zone () {
   const handleDelete = (e, id) => {
     setIdZone(id)
     setDeleteModal(true)
+  }
+
+  const handleDeleteRent = (e, id) => {
+    setIdRent(id)
+    setDeletepRent(true)
   }
   return (
     <SideBar>
@@ -171,6 +199,21 @@ function Zone () {
         <br />
         <DataTable
           columns={Pending} data={RentPending} title='Solicitud de Alquileres' pagination customStyles={customStyles}
+          subHeader
+          subHeaderComponent={
+            <div className='header-table'>
+              <h2>Alquiler</h2>
+              {
+                location.pathname !== '/Dashboard'
+                  ? (
+                    <a className='btn btn-register' onClick={() => setRegistRent(true)}>
+                      Añadir Solicitud
+                    </a>
+                    )
+                  : null
+              }
+            </div>
+          }
         />
         <br />
         <DataTable
@@ -187,6 +230,14 @@ function Zone () {
 
         <Modal isOpen={RegisterModal} closeModal={() => setRegisterModal(false)} title='Registrar Zona Común'>
           <NewCommonArea registrar={setActualizar} />
+        </Modal>
+
+        <Modal isOpen={RegistRent} closeModal={() => setRegistRent(false)} title='Registrar Alquiler'>
+          <RegisterRent registrar={setActualizar} />
+        </Modal>
+
+        <Modal isOpen={DeletepRent} closeModal={() => setDeletepRent(false)} title='Eliminar Solicitud'>
+          <DropRent id={IdRent} eliminar={setActualizar} />
         </Modal>
       </div>
     </SideBar>
