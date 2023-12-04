@@ -1,21 +1,21 @@
 import { useEffect, useState } from 'react'
-import { useForm, Controller } from 'react-hook-form'
-import { GetOneFee, updateFee as UpdateFetch } from '../../api/Fee.js'
+import { GetOneFee, UpdateFee as UpdateFetch } from '../../api/Fee.js'
 import { toast } from 'sonner'
 
 function UpdateFee ({ id, actualizar }) {
-  const { register, control, formState: { errors } } = useForm()
   const [feeData, setFeeData] = useState({
-    User: '',
-    Date: '',
-    State: '',
-    File: ''
+    IdUser: '',
+    IdPayAdmin: '',
+    RegistDate: '',
+    StatusPayAdmin: '',
+    FIlePayAdmin: ''
   })
 
   useEffect(() => {
     GetOneFee(id)
       .then(response => {
         console.log(response.data[0])
+        response.data[0].RegistDate = new Date(response.data[0].RegistDate).toISOString().split('T')[0]
         setFeeData(response.data[0])
       })
       .catch(error => {
@@ -23,7 +23,7 @@ function UpdateFee ({ id, actualizar }) {
       })
   }, [id])
 
-  const handleInputChange = (e) => {
+  const handleInputChange = e => {
     const { name, value } = e.target
     setFeeData({
       ...feeData,
@@ -31,11 +31,11 @@ function UpdateFee ({ id, actualizar }) {
     })
   }
 
-  const handleSubmits = (event) => {
+  const handleSubmits = event => {
     event.preventDefault()
     UpdateFetch(feeData)
       .then(response => {
-        console.log(response.data)
+        console.log(response)
         toast.success('Pago actualizado correctamente')
         actualizar(true)
       })
@@ -46,53 +46,18 @@ function UpdateFee ({ id, actualizar }) {
 
   return (
     <form className='form-disposition' onSubmit={handleSubmits}>
-      <input
-        onChange={handleInputChange} className='form-input' type='number' placeholder='Numero de documento Usuario' {...register('User', {
-          required: {
-            value: true,
-            message: 'Numero de documento requerido'
-          },
-          valueAsNumber: true
-        })}
-      />
-      {errors.User && <span className='errors'>{errors.User.message}</span>}
-      <input
-        onChange={handleInputChange} className='form-input' type='date' placeholder='Fecha' {...register('Date', {
-          required: {
-            value: true,
-            message: 'La fecha del pago es requerida'
-          }
-        })}
-      />
-      {errors.Date && <span className='errors'>{errors.Date.message}</span>}
-      <Controller
-        name='State'
-        control={control}
-        rules={{
-          required: {
-            value: true,
-            message: 'El estado del pago es requerido'
-          }
-        }}
-        defaultValue={1}
-        render={({ field }) => (
-          <select {...field} className='form-input' onChange={handleInputChange}>
-            <option value={1}> Pago </option>
-            <option value={0}> No pago </option>
-          </select>
-        )}
-      />
-      {errors.State && <span className='errors'>{errors.State.message}</span>}
-      <input
-        onChange={handleInputChange} className='form-input' type='text' placeholder='descrpcion del pago' {...register('File', {
-          required: {
-            value: true,
-            message: 'La descripción es requerida'
-          }
-        })}
-      />
-      {errors.File && <span className='errors'>{errors.File.message}</span>}
-      <button className='btn-submit' type='submit'>Actualizar cuota</button>
+      <input onChange={handleInputChange} value={feeData.IdUser} className='form-input' type='number' placeholder='ID de Usuario' name='IdUser' required />
+      <input onChange={handleInputChange} value={feeData.IdPayAdmin} className='form-input' type='number' placeholder='ID de Pago' name='IdPayAdmin' required />
+      <input onChange={handleInputChange} value={feeData.RegistDate} className='form-input' type='date' placeholder='Fecha' name='RegistDate' required />
+      <select className='form-input' onChange={handleInputChange} value={feeData.StatusPayAdmin} name='StatusPayAdmin' required>
+        <option value=''> Estado de Pago </option>
+        <option value={1}> Al día </option>
+        <option value={0}> Pendiente </option>
+      </select>
+      <input onChange={handleInputChange} value={feeData.FIlePayAdmin} className='form-input' type='text' placeholder='Fecha' name='FIlePayAdmin' required />
+      <button className='btn-submit' type='submit'>
+        Actualizar cuota
+      </button>
     </form>
   )
 }

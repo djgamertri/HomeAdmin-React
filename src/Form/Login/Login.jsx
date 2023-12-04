@@ -3,15 +3,15 @@ import { useNavigate } from 'react-router-dom'
 import { login } from '../../api/auth.js'
 import { toast } from 'sonner'
 
-function Login ({ closeModal }) {
+function Login () {
   const { register, handleSubmit, formState: { errors } } = useForm()
   const navigate = useNavigate()
   const signin = async (user) => {
     try {
       const res = await login(user)
       localStorage.setItem('token', res.data.token)
+      localStorage.setItem('IdUser', res.data.id)
       toast.success('Ingreso Correctamente')
-      closeModal(false)
       navigate('/Dashboard')
       console.log(res)
     } catch (err) {

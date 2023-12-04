@@ -56,7 +56,7 @@ function Fee () {
     },
     {
       name: 'Estado Pago',
-      selector: (row) => row.StatusPayAdmin === 1 ? 'Activo' : 'Pendiente',
+      selector: (row) => row.StatusPayAdmin ? 'Al día' : 'Pendiente',
       sortable: true
     },
     {

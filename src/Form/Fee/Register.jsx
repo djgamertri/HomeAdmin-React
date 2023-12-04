@@ -1,16 +1,16 @@
-import { useForm, Controller } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { registFee } from '../../api/Fee.js'
 import { toast } from 'sonner'
 
 function RegisterFee ({ actualizar }) {
-  const { register, handleSubmit, control, formState: { errors } } = useForm()
+  const { register, handleSubmit, formState: { errors } } = useForm()
 
   const registerFee = async (fee) => {
     try {
       const res = await registFee(fee)
       console.log(res.data)
       toast.success('Pago registrado correctamente')
-      actualizar()
+      actualizar(true)
     } catch (err) {
       console.error(err.response.data)
       toast.error(err.response.data.message)
@@ -43,29 +43,24 @@ function RegisterFee ({ actualizar }) {
         })}
       />
       {errors.Date && <span className='errors'>{errors.Date.message}</span>}
-      <Controller
-        name='State'
-        control={control}
-        rules={{
+      <select
+        className='form-input' {...register('State', {
           required: {
             value: true,
-            message: 'El estado del pago es requerido'
+            message: 'El estado del pago es requerdio'
           }
-        }}
-        render={({ field }) => (
-          <select {...field} className='form-input'>
-            <option value=''> Estado de pago </option>
-            <option value={1}> Pago </option>
-            <option value={0}> No pago </option>
-          </select>
-        )}
-      />
+        })}
+      >
+        <option value=''> Estado de pago </option>
+        <option value={1}> Al día </option>
+        <option value={0}> Pendiente </option>
+      </select>
       {errors.State && <span className='errors'>{errors.State.message}</span>}
       <input
-        className='form-input' type='text' placeholder='descrpcion del pago' {...register('File', {
+        className='hidden-input file-input' type='text' defaultValue='Archivo fee' placeholder='Archivo del pago' {...register('File', {
           required: {
             value: true,
-            message: 'La descripción es requerida'
+            message: 'El archivo es requerida'
           }
         })}
       />
