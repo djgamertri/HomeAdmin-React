@@ -9,6 +9,7 @@ import NewCommonArea from '../Form/Zone/NewCommonArea.jsx'
 import DeleteCommonArea from '../Form/Zone/DeleteCommonArea.jsx'
 import UpdateCommonArea from '../Form/Zone/UpdateCommonArea.jsx'
 import RegisterRent from '../Form/Rent/RegisterRent.jsx'
+import Update from '../Form/Rent/Update.jsx'
 import DropRent from '../Form/Rent/DropRent.jsx'
 import { format } from 'date-fns'
 
@@ -23,6 +24,7 @@ function Zone () {
   const [RegisterModal, setRegisterModal] = useState(false)
   const [RegistRent, setRegistRent] = useState(false)
   const [DeletepRent, setDeletepRent] = useState(false)
+  const [UpdateRent, setUpdateRent] = useState(false)
   const [IdRent, setIdRent] = useState(null)
 
   useEffect(() => {
@@ -107,6 +109,15 @@ function Zone () {
       selector: (row) => format(new Date(row.RentDate), 'dd/MM/yyyy')
     },
     {
+      name: 'Actualizar',
+      button: 'true',
+      cell: (row) => (
+        <a className='btn' onClick={(e) => handleUpdateRent(e, row.IdRent)}>
+          Actualizar
+        </a>
+      )
+    },
+    {
       name: 'Eliminar',
       button: 'true',
       cell: (row) => (
@@ -168,6 +179,10 @@ function Zone () {
   const handleDeleteRent = (e, id) => {
     setIdRent(id)
     setDeletepRent(true)
+  }
+  const handleUpdateRent = (e, id) => {
+    setIdRent(id)
+    setUpdateRent(true)
   }
   return (
     <SideBar>
@@ -234,6 +249,10 @@ function Zone () {
 
         <Modal isOpen={RegistRent} closeModal={() => setRegistRent(false)} title='Registrar Alquiler'>
           <RegisterRent registrar={setActualizar} />
+        </Modal>
+
+        <Modal isOpen={UpdateRent} closeModal={() => setUpdateRent(false)} title='Actualizar Solicitud'>
+          <Update id={IdRent} actualizar={setActualizar} />
         </Modal>
 
         <Modal isOpen={DeletepRent} closeModal={() => setDeletepRent(false)} title='Eliminar Solicitud'>
