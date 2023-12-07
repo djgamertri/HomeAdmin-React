@@ -16,6 +16,8 @@ function Login ({ closeModal }) {
       console.log(res)
     } catch (err) {
       console.error(err)
+      const errorMessage = err.response?.data?.message || err.message
+      toast.error('Error: ' + errorMessage)
     }
   }
 
