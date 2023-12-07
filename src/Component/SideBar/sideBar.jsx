@@ -53,14 +53,6 @@ function sideBar ({ children }) {
             </NavLink>
           </li>
           <li>
-            <NavLink to='/Votacion'>
-              <span className='icon'>
-                <i className='fa-solid fa-comment' />
-              </span>
-              <span className='title'>Votaciones</span>
-            </NavLink>
-          </li>
-          <li>
             <NavLink to='/Parking'>
               <span className='icon'>
                 <i className='fa-solid fa-car' />
@@ -94,12 +86,12 @@ function sideBar ({ children }) {
           </li>
 
           <li>
-            <a>
+            <NavLink to='/logout'>
               <span className='icon'>
                 <i className='fa-solid fa-right-from-bracket' />
               </span>
               <span className='title'>Salir</span>
-            </a>
+            </NavLink>
           </li>
         </ul>
       </div>
