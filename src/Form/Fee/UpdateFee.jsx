@@ -17,6 +17,7 @@ function UpdateFee ({ id, actualizar }) {
     getOneFee(id)
       .then((response) => {
         console.log(response.data[0])
+        response.data[0].RegistDate = new Date(response.data[0].RegistDate).toISOString().split('T')[0]
         setFee(response.data[0])
       }).catch((error) => {
         console.error('Error al obtener usuario:', error)
@@ -41,6 +42,7 @@ function UpdateFee ({ id, actualizar }) {
     event.preventDefault()
     updateFee(Fee)
       .then((response) => {
+        console.log(response)
         toast.success('Id ' + response.data.IdPayAdmin + ' de Cuota Actualizado correctamente')
         actualizar(true)
       }).catch((error) => {
@@ -51,9 +53,8 @@ function UpdateFee ({ id, actualizar }) {
   console.log(Fee)
 
   return (
-    <form className='form-disposition' id='register' onSubmit={handleSubmit}>
-      <input className='form-input' type='number' hidden name='Id' value={Fee?.IdPayAdmin} />
-
+    <form className='form-disposition' onSubmit={handleSubmit}>
+      <input className='form-input' type='number' hidden name='Id' onChange={handleInputChange} value={Fee?.IdPayAdmin} />
       <select className='form-input' onChange={handleInputChange} value={Fee?.IdUser} name='IdUser'>
         <option hidden value=''>Residente</option>
         {Users.map((user) => (
@@ -62,14 +63,14 @@ function UpdateFee ({ id, actualizar }) {
           </option>
         ))}
       </select>
-      <input className='form-input' type='date' placeholder='Fecha' onChange={handleInputChange} name='RegistDate' />
-      <select className='form-input' onChange={handleInputChange} name='StatusPayAdmin'>
-        <option hidden value=''> Estado de pago </option>
-        <option value='1'> Pago </option>
-        <option value='0'> No pago </option>
+      <input className='form-input' type='date' placeholder='Fecha' onChange={handleInputChange} value={Fee?.RegistDate} name='RegistDate' />
+      <select className='form-input' onChange={handleInputChange} value={Fee.StatusPayAdmin} name='StatusPayAdmin'>
+        <option value=''> Estado de Pago </option>
+        <option value={1}> Al día </option>
+        <option value={0}> Pendiente </option>
       </select>
-      <input className='form-input' type='text' placeholder='descrpcion del pago' id='File' onChange={handleInputChange} defaultValue={Fee?.FIlePayAdmin} name='FIlePayAdmin' />
-      <button className='btn-submit' type='submit'>Regitrar cuota</button>
+      <input className='form-input' type='text' hidden placeholder='descripcion del pago' onChange={handleInputChange} defaultValue={Fee?.FIlePayAdmin} name='FIlePayAdmin' />
+      <button className='btn-submit' type='submit'>Actualizar cuota</button>
     </form>
   )
 }
