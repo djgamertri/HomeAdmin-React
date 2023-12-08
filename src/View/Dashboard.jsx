@@ -3,6 +3,7 @@ import Card from '../Component/Card/Card'
 import { GetUser } from '../api/users.js'
 import { useEffect, useState } from 'react'
 import Table from '../Component/Table/Table.jsx'
+import { format } from 'date-fns'
 
 function Dashboard () {
   const [Users, setUsers] = useState([])
@@ -18,10 +19,15 @@ function Dashboard () {
       })
   }, [])
 
-  const userColums = [
+  const userColumns = [
     {
       name: 'ID',
       selector: (row) => row.IdUser,
+      sortable: true
+    },
+    {
+      name: 'Nombre',
+      selector: (row) => row.NameUser,
       sortable: true
     },
     {
@@ -40,13 +46,13 @@ function Dashboard () {
       sortable: true
     },
     {
-      name: 'Nombre',
-      selector: (row) => row.NameUser,
+      name: 'Correo',
+      selector: (row) => row.Email,
       sortable: true
     },
     {
-      name: 'Correo',
-      selector: (row) => row.Email,
+      name: 'Fecha de Nacimiento',
+      selector: (row) => format(new Date(row.BirthDate), 'dd/MM/yyyy'),
       sortable: true
     },
     {
@@ -69,7 +75,7 @@ function Dashboard () {
         </div>
         <Table
           title='Usuario'
-          Coluums={userColums}
+          Coluums={userColumns}
           Data={Users}
         />
       </div>
