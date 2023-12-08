@@ -10,7 +10,7 @@ import Setting from './View/Setting'
 import Index from './View/Index'
 import { Toaster } from 'sonner'
 import Logout from './View/logout'
-// import Vehicle from './View/vehicle'
+import Vehicle from './View/vehicle'
 
 function App () {
   return (
@@ -22,7 +22,7 @@ function App () {
           <Route path='/Resident' element={<Resident />} />
           <Route path='/Tax' element={<Fee />} />
           <Route path='/Parking' element={<Park />} />
-          {/* <Route path='/Vehicle' element={<Vehicle />} /> */}
+          <Route path='/Vehicle' element={<Vehicle />} />
           <Route path='/Zone' element={<Zone />} />
           <Route path='/Help' element={<Help />} />
           <Route path='/Settings' element={<Setting />} />
