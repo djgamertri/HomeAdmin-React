@@ -1,12 +1,24 @@
 import { GetFees } from '../api/Fee'
 import { useEffect, useState } from 'react'
 import SideBar from '../Component/SideBar/sideBar'
-import DataTable from 'react-data-table-component'
+import Table from '../Component/Table/Table'
+
+import Modal from '../Component/Modal/modal'
+import UpdateFee from '../Form/Fee/UpdateFee'
+import RegisterFee from '../Form/Fee/RegisterFee'
 
 function Fee () {
   const [Users, setUsers] = useState([])
+  const [IdFee, setIdFee] = useState(null)
+  const [Actualizar, setActualizar] = useState(false)
+  const [UpdateModal, setUpdateModal] = useState(false)
+  const [RegisterModal, setRegisterModal] = useState(false)
 
   useEffect(() => {
+    datatable()
+  }, [])
+
+  const datatable = () => {
     GetFees()
       .then(response => {
         setUsers(response.data)
@@ -15,7 +27,14 @@ function Fee () {
       .catch(error => {
         console.error('Error al obtener usuarios:', error)
       })
-  }, [])
+      .finally(
+        setActualizar(false)
+      )
+  }
+
+  if (Actualizar) {
+    datatable()
+  }
 
   const Coluuns = [
     {
@@ -42,45 +61,34 @@ function Fee () {
       name: 'Modificar',
       button: 'true',
       cell: (row) => (
-        <a className='btn' onClick={(e) => handleEdit(e, row.IdUser)}>
+        <a className='btn btn-update' onClick={(e) => handleEdit(e, row.IdPayAdmin)}>
           Editar
-        </a>
-      )
-    },
-    {
-      name: 'Eliminar',
-      button: 'true',
-      cell: (row) => (
-        <a className='btn' onClick={(e) => handleDelete(e, row.IdUser)}>
-          Eliminar
         </a>
       )
     }
   ]
 
-  const customStyles = {
-    head: {
-      style: {
-        fontWeight: 'Bold',
-        fontSize: '15px'
-      }
-    }
-  }
-
   const handleEdit = (e, id) => {
-    e.preventDefault()
-    console.log('Row Id', id)
+    setUpdateModal(true)
+    setIdFee(id)
   }
 
-  const handleDelete = (e, id) => {
-    e.preventDefault()
-    console.log('Row Id', id)
-  }
   return (
     <SideBar>
       <div className='TableContent'>
-        <DataTable columns={Coluuns} data={Users} title='Cuotas' pagination customStyles={customStyles} />
+        <Table
+          title='Cuotas'
+          Coluums={Coluuns}
+          Data={Users}
+          buttonRegister={() => setRegisterModal(true)}
+        />
       </div>
+      <Modal isOpen={UpdateModal} closeModal={() => setUpdateModal(false)} title='Actualizar Couta'>
+        <UpdateFee id={IdFee} actualizar={setActualizar} />
+      </Modal>
+      <Modal isOpen={RegisterModal} closeModal={() => setRegisterModal(false)} title='Registrar Couta'>
+        <RegisterFee actualizar={setActualizar} />
+      </Modal>
     </SideBar>
   )
 }
