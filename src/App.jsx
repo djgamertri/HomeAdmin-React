@@ -10,7 +10,7 @@ import Setting from './View/Setting'
 import Index from './View/Index'
 import { Toaster } from 'sonner'
 import Logout from './View/logout'
-import Vehicle from './View/vehicle'
+import Vehicle from './View/Vehicle'
 
 function App () {
   return (
