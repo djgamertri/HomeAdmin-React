@@ -86,7 +86,7 @@ function Dashboard () {
         <div className='content-cards'>
           <Card Title='Residentes' Info='Residente Registrado' Icon='fa-solid fa-user' />
           <Card Title='Cuotas' Info='Cuotas Finas' Icon='fa-solid fa-dollar-sign  ' />
-          <Card Title='Votaciones' Info='Votaciones Hechas' Icon='fa-solid fa-comment' />
+          <Card Title='Vehiculos' Info='Vehiculos en existencia' Icon='fa-solid fa-comment' />
           <Card Title='Casas' Info='Casas Totales' Icon='fa-solid fa-house' />
         </div>
         <div className='TableContent'>

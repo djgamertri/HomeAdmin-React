@@ -55,9 +55,17 @@ function sideBar ({ children }) {
           <li>
             <NavLink to='/Parking'>
               <span className='icon'>
-                <i className='fa-solid fa-car' />
+                <i className='fa-solid fa-square-parking' />
               </span>
               <span className='title'>Parqueadero</span>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to='/Vehicle'>
+              <span className='icon'>
+                <i className='fa-solid fa-car' />
+              </span>
+              <span className='title'>Vehiculo</span>
             </NavLink>
           </li>
           <li>

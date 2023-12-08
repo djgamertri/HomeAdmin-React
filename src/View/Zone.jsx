@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react'
 import { getCommonAreas } from '../api/zone.js'
 import { GetRentPending, GetRentAccepted } from '../api/rent.js'
 import Modal from '../Component/Modal/modal'
-import Card from '../Component/Card/Card'
 import NewCommonArea from '../Form/Zone/NewCommonArea.jsx'
 import DeleteCommonArea from '../Form/Zone/DeleteCommonArea.jsx'
 import UpdateCommonArea from '../Form/Zone/UpdateCommonArea.jsx'
@@ -187,12 +186,6 @@ function Zone () {
   return (
     <SideBar>
       <div className='TableContent'>
-        <div className='content-cards'>
-          <Card Title='Residentes' Info='Residente Registrado' Icon='fa-solid fa-user' />
-          <Card Title='Cuotas' Info='Cuotas Finas' Icon='fa-solid fa-dollar-sign  ' />
-          <Card Title='Votaciones' Info='Votaciones Hechas' Icon='fa-solid fa-comment' />
-          <Card Title='Casas' Info='Casas Totales' Icon='fa-solid fa-house' />
-        </div>
         <DataTable
           columns={Columns} data={Zone} title='Zonas Comúnes' pagination customStyles={customStyles}
           subHeader
