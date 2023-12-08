@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
-import Modal from '../Component/Modal/modal'
-import SideBar from '../Component/SideBar/sideBar'
+import Modal from '../Component/Modal/modal.jsx'
+import SideBar from '../Component/SideBar/sideBar.jsx'
 import NewVehicle from '../Form/Vehicle/NewVehicle.jsx'
 import DeleteVehicle from '../Form/Vehicle/DeleteVehicle.jsx'
 import UpdateVehicle from '../Form/Vehicle/UpdateVehicle.jsx'
