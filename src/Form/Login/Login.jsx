@@ -10,6 +10,7 @@ function Login ({ closeModal }) {
     try {
       const res = await login(user)
       localStorage.setItem('token', res.data.token)
+      localStorage.setItem('IdUser', res.data.id)
       toast.success('Ingreso Correctamente')
       closeModal(false)
       navigate('/Dashboard')

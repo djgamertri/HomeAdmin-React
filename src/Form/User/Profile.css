@@ -1,0 +1,32 @@
+.profile-view {
+  margin: 20px;
+  padding: 20px;
+  background: var(--white);
+  box-shadow: 0 7px 25px var(--shadow);
+  border-radius: 20px;
+}
+
+.profile-view h1 {
+  color: var(--blue);
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form-input-profile {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid var(--lightgray);
+  border-radius: 5px;
+  outline: none;
+}
+
+.form-option-profile {
+  color: var(-black);
+}
+
+.form-disposition-profile {
+  display: grid;
+  gap: 15px;
+}
+

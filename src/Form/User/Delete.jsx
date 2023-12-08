@@ -29,13 +29,10 @@ function Delete ({ id, actualizar }) {
   }
 
   return (
-    <form action='#' method='post' className='form-disposition' id='update' onSubmit={handleSubmit}>
-      <h1>Desea eliminar al Usuario</h1>
-      <p>{UserData.TypeDoc}: {UserData.NumDoc}</p>
-      <p>Nombre: {UserData.NameUser}</p>
-      <p>Casa: {UserData.NumHouse}</p>
-      <p>Numero Telefonico: {UserData.Phone}</p>
-      <button className='btn-submit' type='submit'>Confirmar</button>
+    <form className='content-delete' onSubmit={handleSubmit}>
+      <i className='fa-solid fa-triangle-exclamation' />
+      <p>¿Seguro que quiere Eiminar el {UserData.NameUser}?</p>
+      <button className='confirm btns'>Eliminar</button>
     </form>
   )
 }

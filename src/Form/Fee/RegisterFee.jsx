@@ -5,7 +5,7 @@ import { GetUser } from '../../api/users'
 import { toast } from 'sonner'
 
 function RegisterFee ({ actualizar }) {
-  const { register, handleSubmit } = useForm()
+  const { register, handleSubmit, formState: { errors } } = useForm()
   const [Users, setUsers] = useState([])
 
   useEffect(() => {
@@ -37,8 +37,15 @@ function RegisterFee ({ actualizar }) {
   })
 
   return (
-    <form className='form-disposition' id='register' onSubmit={handleSubmit(sendData)}>
-      <select className='form-input' {...register('IdUser', { required: true })}>
+    <form className='form-disposition' onSubmit={handleSubmit(sendData)}>
+      <select
+        className='form-input' {...register('User', {
+          required: {
+            value: true,
+            message: 'Seleccione un Residente'
+          }
+        })}
+      >
         <option hidden value=''>Residente</option>
         {Users.map((user) => (
           <option key={user.IdUser} value={user.IdUser}>
@@ -46,13 +53,30 @@ function RegisterFee ({ actualizar }) {
           </option>
         ))}
       </select>
-      <input className='form-input' type='date' placeholder='Fecha' {...register('RegistDate', { required: true })} />
-      <select className='form-input' defaultValue='1' {...register('StatusPayAdmin', { required: true })}>
-        <option hidden value=''> Estado de pago </option>
-        <option value='1'> Pago </option>
-        <option value='0'> No pago </option>
+      {errors.User && <span className='errors'>{errors.User.message}</span>}
+      <input
+        className='form-input' type='date' placeholder='Fecha' {...register('Date', {
+          required: {
+            value: true,
+            message: 'La fecha del pago es requerida'
+          }
+        })}
+      />
+      {errors.Date && <span className='errors'>{errors.Date.message}</span>}
+      <select
+        className='form-input' defaultValue='1' {...register('State', {
+          required: {
+            value: true,
+            message: 'El estado del pago es requerdio'
+          }
+        })}
+      >
+        <option value=''> Estado de pago </option>
+        <option value={1}> Al día </option>
+        <option value={0}> Pendiente </option>
       </select>
-      <input className='form-input' type='text' placeholder='descrpcion del pago' {...register('FIlePayAdmin', { required: true })} id='File' name='File' defaultValue='Se pago la administracion' />
+      {errors.State && <span className='errors'>{errors.State.message}</span>}
+      <input className='form-input' type='text' placeholder='descripcion del pago' {...register('File', { required: true })} name='File' defaultValue='Se pago la administracion' />
       <button className='btn-submit' type='submit'>Regitrar cuota</button>
     </form>
   )

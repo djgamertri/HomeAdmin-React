@@ -1,8 +1,9 @@
-import DataTable from 'react-data-table-component'
 import SideBar from '../Component/SideBar/sideBar'
 import Card from '../Component/Card/Card'
 import { GetUser } from '../api/users.js'
 import { useEffect, useState } from 'react'
+import Table from '../Component/Table/Table.jsx'
+import { format } from 'date-fns'
 
 function Dashboard () {
   const [Users, setUsers] = useState([])
@@ -18,7 +19,7 @@ function Dashboard () {
       })
   }, [])
 
-  const Coluuns = [
+  const userColumns = [
     {
       name: 'ID',
       selector: (row) => row.IdUser,
@@ -30,55 +31,38 @@ function Dashboard () {
       sortable: true
     },
     {
+      name: 'Tipo Documento',
+      selector: (row) => row.TypeDoc,
+      sortable: true
+    },
+    {
+      name: 'Numero Documento',
+      selector: (row) => row.NumDoc,
+      sortable: true
+    },
+    {
+      name: 'Telefono',
+      selector: (row) => row.Phone,
+      sortable: true
+    },
+    {
       name: 'Correo',
       selector: (row) => row.Email,
+      sortable: true
+    },
+    {
+      name: 'Fecha de Nacimiento',
+      selector: (row) => format(new Date(row.BirthDate), 'dd/MM/yyyy'),
       sortable: true
     },
     {
       name: 'Casa',
       selector: (row) => row.NumHouse,
       sortable: true
-    },
-    {
-      name: 'Modificar',
-      button: 'true',
-      cell: (row) => (
-        <a className='btn' onClick={(e) => handleEdit(e, row.IdUser)}>
-          Editar
-        </a>
-      )
-    },
-    {
-      name: 'Eliminar',
-      button: 'true',
-      cell: (row) => (
-        <a className='btn' onClick={(e) => handleDelete(e, row.IdUser)}>
-          Eliminar
-        </a>
-      )
     }
   ]
 
-  const handleEdit = (e, id) => {
-    e.preventDefault()
-    console.log('Row Id', id)
-  }
-
-  const handleDelete = (e, id) => {
-    e.preventDefault()
-    console.log('Row Id', id)
-  }
-
   // https://react-data-table-component.netlify.app/?path=/docs/api-custom-styles--page
-
-  const customStyles = {
-    head: {
-      style: {
-        fontWeight: 'Bold',
-        fontSize: '15px'
-      }
-    }
-  }
 
   return (
     <SideBar>
@@ -89,9 +73,11 @@ function Dashboard () {
           <Card Title='Vehiculos' Info='Vehiculos en existencia' Icon='fa-solid fa-comment' />
           <Card Title='Casas' Info='Casas Totales' Icon='fa-solid fa-house' />
         </div>
-        <div className='TableContent'>
-          <DataTable columns={Coluuns} data={Users} fixedHeader customStyles={customStyles} />
-        </div>
+        <Table
+          title='Usuario'
+          Coluums={userColumns}
+          Data={Users}
+        />
       </div>
     </SideBar>
   )
