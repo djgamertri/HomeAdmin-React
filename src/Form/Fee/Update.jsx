@@ -68,7 +68,7 @@ function UpdateFee ({ id }) {
         <option value={1}> Al día </option>
         <option value={0}> Pendiente </option>
       </select>
-      <input onChange={handleInputChange} value={feeData.FIlePayAdmin} className='form-input' type='text' placeholder='Descripción' name='FIlePayAdmin' required />
+      <input onChange={handleInputChange} value={feeData.FIlePayAdmin} className='form-input hidden-input' type='text' placeholder='Descripción' name='FIlePayAdmin' required />
       <button className='btn-submit' type='submit'>
         Actualizar cuota
       </button>

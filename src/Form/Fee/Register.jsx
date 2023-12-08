@@ -78,10 +78,10 @@ function RegisterFee ({ actualizar }) {
       </select>
       {errors.State && <span className='errors'>{errors.State.message}</span>}
       <input
-        className='form-input' type='text' placeholder='Archivo del pago' {...register('File', {
+        className='form-input hidden-input' type='text' placeholder='Archivo del pago' {...register('File', {
           required: {
-            value: true,
-            message: 'Dexcripción del archivo requerido'
+            value: false,
+            message: 'Descripción del archivo requerido'
           }
         })}
       />
