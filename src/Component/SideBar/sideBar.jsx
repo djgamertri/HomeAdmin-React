@@ -21,7 +21,7 @@ function sideBar ({ children }) {
       <div className='navegation'>
         <ul>
           <li>
-            <a href=''>
+            <a>
               <span className='icon'>
                 <i className='fa-brands fa-reddit' />
               </span>
@@ -49,7 +49,7 @@ function sideBar ({ children }) {
               <span className='icon'>
                 <i className='fa-solid fa-dollar-sign' />
               </span>
-              <span className='title'> Cuotas</span>
+              <span className='title'>Cuotas</span>
             </NavLink>
           </li>
           <li>

@@ -1,22 +1,35 @@
 import { useEffect, useState } from 'react'
-import { GetOneFee, UpdateFee as UpdateFetch } from '../../api/Fee.js'
+import { GetOneFee, UpdateFee as UpdateFetchFee } from '../../api/Fee.js'
+import { GetOneUser } from '../../api/users.js'
 import { toast } from 'sonner'
 
-function UpdateFee ({ id, actualizar }) {
+function UpdateFee ({ id }) {
   const [feeData, setFeeData] = useState({
     IdUser: '',
-    IdPayAdmin: '',
     RegistDate: '',
     StatusPayAdmin: '',
-    FIlePayAdmin: ''
+    FIlePayAdmin: '',
+    IdPayAdmin: ''
   })
+  const [user, setUser] = useState('')
 
   useEffect(() => {
+    console.log(id)
     GetOneFee(id)
       .then(response => {
         console.log(response.data[0])
         response.data[0].RegistDate = new Date(response.data[0].RegistDate).toISOString().split('T')[0]
         setFeeData(response.data[0])
+        console.log(response.data[0])
+        // Obtener el usuario
+        GetOneUser(response.data[0].IdUser)
+          .then(response => {
+            console.log(response.data[0].NumDoc)
+            setUser(response.data[0].NumDoc)
+          })
+          .catch(error => {
+            console.error('Erro al buscar el Usuario', error)
+          })
       })
       .catch(error => {
         console.error('Error al obtener Pago', error)
@@ -25,19 +38,20 @@ function UpdateFee ({ id, actualizar }) {
 
   const handleInputChange = e => {
     const { name, value } = e.target
+    setUser((name === 'IdUser') ? value : user)
     setFeeData({
       ...feeData,
       [name]: value
     })
   }
 
-  const handleSubmits = event => {
+  const handleSubmit = (event) => {
     event.preventDefault()
-    UpdateFetch(feeData)
+    UpdateFetchFee(feeData)
       .then(response => {
-        console.log(response)
+        console.log(response.data)
         toast.success('Pago actualizado correctamente')
-        actualizar(true)
+        // actualizar(true)
       })
       .catch(error => {
         console.error(error.response.data)
@@ -45,16 +59,16 @@ function UpdateFee ({ id, actualizar }) {
   }
 
   return (
-    <form className='form-disposition' onSubmit={handleSubmits}>
-      <input onChange={handleInputChange} value={feeData.IdUser} className='form-input' type='number' placeholder='ID de Usuario' name='IdUser' required />
-      <input onChange={handleInputChange} value={feeData.IdPayAdmin} className='form-input' type='number' placeholder='ID de Pago' name='IdPayAdmin' required />
+    <form className='form-disposition' onSubmit={handleSubmit}>
+      <input onChange={handleInputChange} value={feeData.IdPayAdmin} className='form-input' type='hidden' placeholder='ID de Pago' name='Id' required />
+      <input onChange={handleInputChange} value={user} className='form-input' type='number' placeholder='Numero de documento del usuario' name='IdUser' required />
       <input onChange={handleInputChange} value={feeData.RegistDate} className='form-input' type='date' placeholder='Fecha' name='RegistDate' required />
       <select className='form-input' onChange={handleInputChange} value={feeData.StatusPayAdmin} name='StatusPayAdmin' required>
         <option value=''> Estado de Pago </option>
         <option value={1}> Al día </option>
         <option value={0}> Pendiente </option>
       </select>
-      <input onChange={handleInputChange} value={feeData.FIlePayAdmin} className='form-input' type='text' placeholder='Fecha' name='FIlePayAdmin' required />
+      <input onChange={handleInputChange} value={feeData.FIlePayAdmin} className='form-input' type='text' placeholder='Descripción' name='FIlePayAdmin' required />
       <button className='btn-submit' type='submit'>
         Actualizar cuota
       </button>

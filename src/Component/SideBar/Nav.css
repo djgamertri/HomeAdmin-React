@@ -69,6 +69,7 @@
   display: block;
   padding:  0 20px;
   text-align: center;
+  width: 25%;
 }
 
 .navegation ul li a .icon i{

@@ -50,19 +50,34 @@ function Fee () {
       sortable: true
     },
     {
-      name: 'Casa',
-      selector: (row) => row.NumHouse,
+      name: 'Numero de documento',
+      selector: (row) => row.NumDoc,
       sortable: true
     },
     {
-      name: 'Estado Pago',
-      selector: (row) => row.StatusPayAdmin ? 'Al día' : 'Pendiente',
+      name: 'Casa',
+      selector: (row) => row.NumHouse,
       sortable: true
     },
     {
       name: 'Telefono',
       selector: (row) => row.Phone,
       sortable: true
+    },
+    {
+      name: 'Correo ',
+      selector: (row) => row.Email,
+      sortable: true
+    },
+    {
+      name: 'Estado Pago',
+      selector: (row) => row.StatusPayAdmin,
+      sortable: true,
+      cell: (row) => (
+        <div className={`cell-status ${row.StatusPayAdmin ? 'up-date' : 'pending'}`}>
+          {row.StatusPayAdmin ? 'Al día' : 'Pendiente'}
+        </div>
+      )
     },
     {
       name: 'Modificar',
@@ -86,13 +101,15 @@ function Fee () {
     // Titulo Pdf
     doc.text('Pagos', 95, 20)
 
-    const columnsPdf = ['Id', 'Nombre', 'Casa', 'Estado Pago', 'Telefono']
+    const columnsPdf = ['Id', 'Nombre', 'Numero de documento', 'Casa', 'Telefono', 'Correo', 'Estado Pago']
     const dataPdf = Fees.map(fee => [
       fee.IdPayAdmin,
       fee.NameUser,
+      fee.NumDoc,
       fee.NumHouse,
-      fee.StatusPayAdmin,
-      fee.Phone
+      fee.Phone,
+      fee.Email,
+      fee.StatusPayAdmin ? 'Al día' : 'Pendiente'
     ])
 
     const filterDataPdf = dataPdf.map(row =>

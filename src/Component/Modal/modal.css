@@ -62,7 +62,7 @@
 .file-input{
   width: 93%;
   height: 40px;
-  margin: 10px 1.5rem 8px 1.5rem;
+  margin: 10px 1.5rem 0 1.5rem;
   padding: 8px 12px; 
   cursor: pointer;
 }

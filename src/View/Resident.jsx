@@ -48,6 +48,11 @@ function Resident () {
       sortable: true
     },
     {
+      name: 'Nombre',
+      selector: (row) => row.NameUser,
+      sortable: true
+    },
+    {
       name: 'Tipo Documento',
       selector: (row) => row.TypeDoc,
       sortable: true
@@ -63,23 +68,18 @@ function Resident () {
       sortable: true
     },
     {
-      name: 'Nombre',
-      selector: (row) => row.NameUser,
-      sortable: true
-    },
-    {
       name: 'Correo',
       selector: (row) => row.Email,
       sortable: true
     },
     {
-      name: 'Casa',
-      selector: (row) => row.NumHouse,
+      name: 'Fecha de Nacimiento',
+      selector: (row) => format(new Date(row.BirthDate), 'dd/MM/yyyy'),
       sortable: true
     },
     {
-      name: 'Fecha de Nacimiento',
-      selector: (row) => format(new Date(row.BirthDate), 'dd/MM/yyyy'),
+      name: 'Casa',
+      selector: (row) => row.NumHouse,
       sortable: true
     },
     {
@@ -119,17 +119,17 @@ function Resident () {
     // Titulo Pdf
     doc.text('Usuarios', 95, 20)
 
-    const columnsPdf = ['Id', 'Tipo Documento', 'Numero Documento', 'Telefono', 'Nombre', 'Correo', 'Casa', 'Fecha de Nacimiento']
+    const columnsPdf = ['Id', 'Nombre', 'Tipo Documento', 'Numero Documento', 'Telefono', 'Correo', 'Fecha de Nacimiento', 'Casa']
     // Se recorre Users para llenar el Pdf
     const dataPdf = Users.map(user => [
       user.IdUser,
+      user.NameUser,
       user.TypeDoc,
       user.NumDoc,
       user.Phone,
-      user.NameUser,
       user.Email,
-      user.NumHouse,
-      format(new Date(user.BirthDate), 'dd/MM/yyyy')
+      format(new Date(user.BirthDate), 'dd/MM/yyyy'),
+      user.NumHouse
     ])
 
     // Filtrar las columnas que se van a mostrar segun el columnsPdf

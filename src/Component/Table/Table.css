@@ -48,3 +48,17 @@
     border-radius: 20px;
     margin: 20px;
 }
+
+.cell-status{
+    padding: 4px;
+    border-radius: 5px;
+    color: var(--white);
+}
+
+.up-date{
+    background: var(--up-date);
+}
+
+.pending{
+    background: var(--pending);
+}

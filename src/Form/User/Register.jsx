@@ -55,7 +55,7 @@ function RegisterUser ({ actualizar }) {
             <option value='' className='form-option'>Tipo de documento</option>
             <option value='Tarjeta de identidad' className='form-option'>Tarjeta de identidad</option>
             <option value='Cedula ciudadania' className='form-option'>Cedula ciudadania</option>
-            <option value='Carnet de extranjeria' className='form-option'>Carnet de extranjeria</option>
+            <option value='Carnet de Extranjeria' className='form-option'>Carnet de extranjeria</option>
             <option value='DNI' className='form-option'>DNI</option>
             <option value='Pasaporte' className='form-option'>Pasaporte</option>
             <option value='Cedula extranjeria' className='form-option'>Cedula extranjeria</option>
@@ -66,6 +66,10 @@ function RegisterUser ({ actualizar }) {
               required: {
                 value: true,
                 message: 'Numero de documento requerido'
+              },
+              minLength: {
+                value: 8,
+                message: 'Numero de documento no valido'
               },
               maxLength: {
                 value: 10,
