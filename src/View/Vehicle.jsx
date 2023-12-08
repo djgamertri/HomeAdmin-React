@@ -9,7 +9,7 @@ import 'jspdf-autotable'
 import Table from '../Component/Table/Table.jsx'
 import { getVehicles } from '../api/Vehicles.js'
 
-function Zone () {
+function Vehicle () {
   const [Users, setUsers] = useState([])
   const [IdUser, setIdUser] = useState(null)
   const [Actualizar, setActualizar] = useState(false)
@@ -116,4 +116,4 @@ function Zone () {
   )
 }
 
-export default Zone
+export default Vehicle
