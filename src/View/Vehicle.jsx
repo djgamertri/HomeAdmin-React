@@ -8,7 +8,7 @@ import UpdateVehicle from '../Form/Vehicle/UpdateVehicle.jsx'
 import 'jspdf-autotable'
 import Table from '../Component/Table/Table.jsx'
 import { getVehicles } from '../api/Vehicles.js'
-function vehicle () {
+function Vehicle () {
   const [Users, setUsers] = useState([])
   const [IdUser, setIdUser] = useState(null)
   const [Actualizar, setActualizar] = useState(false)
@@ -115,4 +115,4 @@ function vehicle () {
   )
 }
 
-export default vehicle
+export default Vehicle
