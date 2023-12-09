@@ -8,6 +8,7 @@ function Update ({ id, actualizar }) {
     NameCommonArea: '',
     NameUser: '',
     RentDate: '',
+    status: '',
     active: ''
   })
 
@@ -44,6 +45,11 @@ function Update ({ id, actualizar }) {
       <input className='form-input' type='text' onChange={handleInputChange} value={RentData.NameCommonArea} name='NameCommonArea' />
       <input className='form-input' type='text' onChange={handleInputChange} value={RentData.NameUser} name='NameUser' />
       <input className='form-input' type='date' onChange={handleInputChange} value={RentData.RentDate} name='RentDate' />
+      <select className='form-input' onChange={handleInputChange} value={RentData.status} name='status'>
+        <option className='form-option'>Estado Solicitud</option>
+        <option value='1'>Aceptar</option>
+        <option value='0'>Rechazar</option>
+      </select>
       <select className='form-input' onChange={handleInputChange} value={RentData.active} name='active'>
         <option className='form-option'>Estado</option>
         <option value='1'>Activo</option>
