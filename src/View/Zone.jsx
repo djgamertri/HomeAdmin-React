@@ -72,7 +72,7 @@ function Zone () {
       name: 'Modificar',
       button: 'true',
       cell: (row) => (
-        <a className='btn' onClick={(e) => handleEdit(e, row.IdCommonArea)}>
+        <a className='btn btn-update' onClick={(e) => handleEdit(e, row.IdCommonArea)}>
           Editar
         </a> // Simple prueba de que el modal funciona
       )
@@ -81,7 +81,7 @@ function Zone () {
       name: 'Eliminar',
       button: 'true',
       cell: (row) => (
-        <a className='btn' onClick={(e) => handleDelete(e, row.IdCommonArea)}>
+        <a className='btn btn-delete' onClick={(e) => handleDelete(e, row.IdCommonArea)}>
           Eliminar
         </a>
       )
@@ -111,7 +111,7 @@ function Zone () {
       name: 'Actualizar',
       button: 'true',
       cell: (row) => (
-        <a className='btn' onClick={(e) => handleUpdateRent(e, row.IdRent)}>
+        <a className='btn btn-update' onClick={(e) => handleUpdateRent(e, row.IdRent)}>
           Actualizar
         </a>
       )
@@ -120,7 +120,7 @@ function Zone () {
       name: 'Eliminar',
       button: 'true',
       cell: (row) => (
-        <a className='btn' onClick={(e) => handleDeleteRent(e, row.IdRent)}>
+        <a className='btn btn-delete' onClick={(e) => handleDeleteRent(e, row.IdRent)}>
           Eliminar
         </a>
       )
@@ -150,7 +150,7 @@ function Zone () {
       name: 'Eliminar',
       button: 'true',
       cell: (row) => (
-        <a className='btn' onClick={(e) => handleDeleteRent(e, row.IdRent)}>
+        <a className='btn btn-delete' onClick={(e) => handleDeleteRent(e, row.IdRent)}>
           Eliminar
         </a>
       )
