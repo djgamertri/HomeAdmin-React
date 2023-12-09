@@ -14,10 +14,16 @@
 
 {% callout %}
 - [Objetivo](#Objetivo)
-- [Andrés Fernando Malagón Espitia](#andrés-fernando-malagón-espitia)
-- [Juan Sebastián Peña Pinto](#juan-sebastián-peña-pinto)
-- [Laura Valentina Aguilar Talero](#laura-valentina-aguilar-talero)
-- [Erick Rodríguez Quiceno](#erick-rodríguez-quiceno)
+- [Participantes](#Participantes)
+- [Proposuto](#Proposito)
+- [Manual de Usuario](#Manual-de-Usuario)
+    - [Pagina de Inicio](#Página-de-inicio)
+    - [1. La pantalla de inicio da la bienvenida](#La-pantalla-de-inicio-da-la-bienvenida)
+    - [2. Ingreso al sistema](#Login)
+- [Dashboard](#Dashboard)
+    - [1. panel de control de administrador](#panel-de-control-de-administrador)
+    - [2. Inicio](#Inicio-dashboard)
+    - [3. Parqueadero](#Parqueadero)​​ 
 {% /callout %}
 
 
@@ -26,7 +32,12 @@
 
 ## Objetivo
 
-El presente documento pretende mostrar al usuario el funcionamiento del sistema de información HomeAdmin  
+El objetivo principal del manual de usuario es proporcionar a los usuarios finales una guía completa y accesible que les permita comprender, utilizar y aprovechar al máximo todas las funcionalidades y características de la plataforma.
+
+{% /block %}
+
+{% block %}
+## Participantes
 {% /block %}
 
 {% table %}
@@ -132,11 +143,13 @@ En caso de haber algún error, en la esquina inferior derecha de su pantalla ver
 
 Si el logeo fue exitoso podrá observar la siguiente vista, acompañada de una alarma verde ubicada en la esquina inferior derecha de color verde 
 
+## Dashboard
+
 {% callout %}
 ![image](https://github.com/djgamertri/HomeAdmin-React/assets/95003267/9aaf5fa1-8e1f-410b-b4f6-4f62713b724f)
 {% /callout %}
 
-#### 3. Dashboard (panel de control de administrador)
+#### 3. panel de control de administrador
 
 Una vez se haya accedido de manera exitosa a la plataforma se desplegará un panel lateral con múltiples opciones que representan los módulos o funcionalidades del sistema
 
@@ -155,7 +168,7 @@ Para mayor comodidad visual y de experiencia para el usuario al dar clic en el i
 {% /callout %}
 
 
-#### 3.1 Dashboard (panel de control de administrador)
+#### 3.1 Inicio
 
 Una vez se haya accedido de manera exitosa a la plataforma se desplegará un panel lateral con múltiples opciones que representan los módulos o funcionalidades del sistema
 
