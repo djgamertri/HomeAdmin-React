@@ -167,10 +167,10 @@ Por defecto esta es la vista que se desplegara por defecto al acceder a la plata
 
 Residentes 
 
--Cuotas
--Vehículos
--Casas
--Registros de usuarios
+- Cuotas
+- Vehículos
+- Casas
+- Registros de usuarios
 
 {% callout %}
 ![image](https://github.com/djgamertri/HomeAdmin-React/assets/95003267/f52afdfb-c43d-4d3d-95ad-1f3d9495fc36)
@@ -184,10 +184,10 @@ Residentes
 
 Al acceder a esta vista se podrá visualizar un panel compuesto por 4 botones en la parte superior derecha: 
 
--Sortear 
--Limpiar 
--Guardar 
--Exportar reporte en pdf (marcado con el icono de exportar) 
+- Sortear 
+- Limpiar 
+- Guardar 
+- Exportar reporte en pdf (marcado con el icono de exportar) 
 
 {% callout %}
 ![image](https://github.com/djgamertri/HomeAdmin-React/assets/95003267/22bf231d-0e55-4603-a92b-35d0b31d1ad6)
@@ -201,9 +201,9 @@ En la parte inferior se podrá observar también una lista o tabla de 32 celdas 
 
 Dentro de cada celda (cuando haya registros de asignaciones existentes) se visualizará dentro de cada celda 3 datos fundamentales: 
 
--Número del parqueadero
--Placa del vehículo asignado
--Nombre del responsable o residente a cargo del vehículo
+- Número del parqueadero
+- Placa del vehículo asignado
+- Nombre del responsable o residente a cargo del vehículo
 
 {% callout %}
 ![image](https://github.com/djgamertri/HomeAdmin-React/assets/95003267/acc88cd5-6531-471c-9fc4-10b9aba42c6e)
