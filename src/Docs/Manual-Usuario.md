@@ -193,24 +193,26 @@ Dado el caso no haya registros de un residente sin parqueadero asignado se mostr
 # Limpiar:
 Al dar clic en este botón se van a descartar el sorteo de los parqueaderos SIEMPRE Y CUANDO no se hayan guardado los cambios 
 
----- Imagen 20 ----
----- Imagen 21 ----
----- Imagen 22 ----
+![image](https://github.com/djgamertri/HomeAdmin-React/assets/95003267/7d7ac902-4a94-437f-8ae0-9ab7b41cbd89)
+![image](https://github.com/djgamertri/HomeAdmin-React/assets/95003267/dc6695a0-5e70-4499-89ef-0786acd4c565)
+![image](https://github.com/djgamertri/HomeAdmin-React/assets/95003267/74df509d-eb6e-4b52-8de4-2ef6e38311b7)
+
 
 # Guardar: 
 
 Al dar clic en este botón se mostrará una ventana pop-up que pedirá una confirmación para así registrar en el sistema el sorteo de los parqueaderos
 
----- Imagen 23 ----
----- Imagen 24 ----
+![image](https://github.com/djgamertri/HomeAdmin-React/assets/95003267/cbb185af-4084-49f8-b0f3-e307168ba2bf)
+![image](https://github.com/djgamertri/HomeAdmin-React/assets/95003267/1ce27bf9-3309-4941-8bb3-02e077ed2eb7)
+
 
 Al confirmar el registro de los parqueaderos en la parte superior derecha se mostrará una pequeña confirmación que indicara que la asignación se ha hecho de manera exitosa y dicha asignación se podrá ver reflejada en el panel 
 
----- Imagen 25 ----
+![image](https://github.com/djgamertri/HomeAdmin-React/assets/95003267/f6ec5d98-d2ef-4e0c-b80b-95ec04a276c9)
 
 Tenga en cuenta que previamente debio hacer el sorteo de los parqueaderos ya que de lo contrario se le mostrara este pop-up advirtiendole que no hay ningun parqueadero sorteado
 
----- Imagen 26 ----
+![image](https://github.com/djgamertri/HomeAdmin-React/assets/95003267/70e93d09-4de4-4d7c-bb1a-c53f05af5f4b)
 
 Dado el caso existiese un error al momento de guardar la informacion este se mostrara en un pop-up que indicara el error el cual debe informar al equipo de mantenimiento del sistema para su respectiva solucion
 
@@ -218,9 +220,16 @@ Dado el caso existiese un error al momento de guardar la informacion este se mos
 
 Al dar clic en este botón se generará y descargará de forma automática en formato pdf un reporte que incluye la información de las asignaciones de parqueadero registradas:
 
----- Imagen 27 ----
+![image](https://github.com/djgamertri/HomeAdmin-React/assets/95003267/6864575a-e850-4952-8b92-214d9555ce69)
+
+Da click encima del archivo que se acaba de descargar:
+
+![image](https://github.com/djgamertri/HomeAdmin-React/assets/95003267/1540a87e-5d51-4ccc-a05e-5ec966df4772)
 
 El reporte pdf tiene un formato similar a este: 
+
+![image](https://github.com/djgamertri/HomeAdmin-React/assets/95003267/cf88ede0-b7d1-4403-b19e-562db69fc7ca)
+
 
 {% /block %}
 
