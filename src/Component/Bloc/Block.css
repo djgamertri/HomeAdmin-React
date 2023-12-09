@@ -12,4 +12,5 @@
 
 .Block img{
     margin: 20px;
+    max-width: 60vw;
 }
