@@ -2,11 +2,15 @@ import React, { useState, useEffect } from 'react'
 import Markdoc from '@markdoc/markdoc'
 import axios from 'axios'
 import Callout from '../Callout/Callout'
+import Block from '../Bloc/Block'
 
 const MarkdownRenderer = ({ source }) => {
   const tags = {
     callout: {
       render: 'Callout'
+    },
+    block: {
+      render: 'Block'
     }
   }
   const [markdownContent, setMarkdownContent] = useState('')
@@ -30,7 +34,8 @@ const MarkdownRenderer = ({ source }) => {
 
   return Markdoc.renderers.react(content, React, {
     components: {
-      Callout
+      Callout,
+      Block
     }
   })
 }
