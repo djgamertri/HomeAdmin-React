@@ -1,0 +1,47 @@
+.Docs{
+    padding: 30px;
+}
+.Docs ul li{
+    margin-left: 30px;
+}
+.Docs a{
+    color: #000000;
+}
+.Docs table{
+    border-collapse: collapse; 
+    font-size: 16px;
+    width: 90%;
+    margin: 30px auto;
+    border: 1px solid rgb(184, 182, 182);
+
+}
+.Docs table th{
+    text-align: left;
+    padding: 10pt;
+    background: #fff;
+    color: black;
+    border-bottom: 1px solid rgb(184, 182, 182);
+}
+.Docs table tr:nth-child(odd){
+    background: #dfdddd;
+}
+.Docs table tr{
+    background: #fff;
+}
+.Docs table td{
+    padding: 20px;
+    color: black;
+}
+
+.callout{
+    padding: 10px;
+    border: 1px solid black;
+    background: #f6f9fc;
+    color: var(--dark);
+    background: #f6f9fc;
+    border: 1px solid #dce6e9;
+    line-height: 20px;
+    padding: 12px 20px;
+    border-radius: 4px;
+    margin: 10px;
+}
