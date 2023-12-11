@@ -10,14 +10,13 @@ import Swal from 'sweetalert2'
 export default function AdminSlots () {
   const [residentsWithParking, setResidentsWithParking] = useState([])
   const [residentsWithoutParking, setResidentsWithoutParking] = useState([])
-  const [slots, setSlots] = useState(new Array(32).fill(null)) // Agregamos el estado para los slots
+  const [slots, setSlots] = useState(new Array(32).fill(null))
 
   useEffect(() => {
     GetResidentWithParking()
       .then(response => {
         setResidentsWithParking(response.data)
 
-        // Llenar los slots correspondientes con la información de los residentes
         const initialSlots = new Array(32).fill(null)
         response.data.forEach(resident => {
           initialSlots[resident.IdSpace - 1] = { ...resident, class: 'asignedSlot' }
@@ -38,11 +37,9 @@ export default function AdminSlots () {
   }, [])
 
   const handleSort = () => {
-    // Limpiar solo los slots temporales
     const newSlots = slots.map(slot => slot && slot.class !== 'provisionalSlot' ? slot : null)
     const availableSlots = newSlots.filter(slot => slot === null)
 
-    // Verificar si la respuesta de GetResidentWithOutParking está vacía
     if (residentsWithoutParking.length === 0) {
       Swal.fire({
         icon: 'warning',
@@ -50,23 +47,18 @@ export default function AdminSlots () {
         text: 'No hay residentes sin asignacion!'
       })
     } else {
-      // Si solo hay un residente sin parqueadero
       if (residentsWithoutParking.length === 1) {
         const availableSlotIndex = newSlots.findIndex(slot => slot === null)
         if (availableSlotIndex !== -1) {
           newSlots[availableSlotIndex] = { ...residentsWithoutParking[0], class: 'provisionalSlot', IdSpace: availableSlotIndex + 1 }
         }
-      }
-      // Si solo hay un espacio libre y hay más de un residente sin parqueadero
-      else if (availableSlots.length === 1 && residentsWithoutParking.length > 1) {
+      } else if (availableSlots.length === 1 && residentsWithoutParking.length > 1) {
         // Sortear la lista de residentes sin parqueadero
         const sortedResidents = [...residentsWithoutParking].sort(() => Math.random() - 0.5)
         // Asignar el primer residente sorteado al único slot libre
         const availableSlotIndex = newSlots.findIndex(slot => slot === null)
         newSlots[availableSlotIndex] = { ...sortedResidents[0], class: 'provisionalSlot', IdSpace: availableSlotIndex + 1 }
-      }
-      // Si hay más de un espacio libre y más de un residente sin parqueadero
-      else {
+      } else {
         // Sortear la lista de residentes sin parqueadero
         const sortedResidents = [...residentsWithoutParking].sort(() => Math.random() - 0.5)
         // Asignar los residentes sorteados a los primeros slots libres
@@ -87,8 +79,8 @@ export default function AdminSlots () {
     setSlots(newSlots)
   }
 
-  const parkConfirmation = () => {
-    Swal.fire({
+  const parkConfirmation = async () => {
+    const confirmation = await Swal.fire({
       title: 'Confirmar asignación de parqueaderos',
       html: '¿Está seguro de confirmar la asignación de parqueaderos? Esta acción es irreversible.',
       icon: 'warning',
@@ -97,42 +89,68 @@ export default function AdminSlots () {
       confirmButtonColor: '#2a2185',
       cancelButtonColor: '#d33',
       confirmButtonText: 'Confirmar asignación'
-    }).then((result) => {
-      if (result.isConfirmed && residentsWithParking.length < 32 && residentsWithoutParking.length >= 1) {
-        // Guardar las asignaciones provisionales en la bd
+    })
+
+    if (confirmation.isConfirmed) {
+      if (residentsWithParking.length < 32 && residentsWithoutParking.length >= 1) {
+        // Save provisional assignments to the database
         const data = slots
-          .filter(slot => slot && slot.class === 'provisionalSlot') // Filtrar los slots que no son temporales
-          .map((slot) => ({
-            parqueadero: slot.IdSpace, // <=== Use el IdSpace del slot
+          .filter(slot => slot && slot.class === 'provisionalSlot')
+          .map(slot => ({
+            parqueadero: slot.IdSpace,
             placa: parseInt(slot.Plate)
           }))
-        console.log(data)
-        PostNewParking(data)
-          .then(response => {
-            const Toast = Swal.mixin({
-              toast: true,
-              position: 'top-end',
-              showConfirmButton: false,
-              timer: 1000,
-              timerProgressBar: true,
-              didOpen: (toast) => {
-                toast.onmouseenter = Swal.stopTimer
-                toast.onmouseleave = Swal.resumeTimer
-              }
-            })
 
-            Toast.fire({
-              icon: 'success',
-              title: 'Asignando parqueaderos'
-            })
+        try {
+          await PostNewParking(data)
+
+          const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 1000,
+            timerProgressBar: true,
+            didOpen: toast => {
+              toast.onmouseenter = Swal.stopTimer
+              toast.onmouseleave = Swal.resumeTimer
+            }
           })
-          .catch(error => {
-            Swal.fire({
-              icon: 'error',
-              title: 'Oops...',
-              text: 'Ocurrio un error' + error
-            })
+
+          Toast.fire({
+            icon: 'success',
+            title: 'Asignando parqueaderos'
           })
+
+          // Fetch latest resident information
+          const updatedResidentsWithParking = await GetResidentWithParking()
+
+          // Extract data array
+          const residentDataWithParking = updatedResidentsWithParking.data
+
+          const updatedResidentsWithoutParking = await GetResidentWithOutParking()
+
+          const residentDataWithoutParking = updatedResidentsWithoutParking.data
+
+          // Update slots and resident information
+          setSlots(slots.map(slot => {
+            if (slot && slot.class === 'provisionalSlot') {
+              const assignedResident = residentDataWithParking.find(resident => resident.IdSpace === slot.IdSpace)
+              return { ...assignedResident, class: 'asignedSlot' }
+            }
+            return slot
+          }))
+
+          setResidentsWithParking(residentDataWithParking)
+          console.log(residentDataWithParking)
+          setResidentsWithoutParking(residentDataWithoutParking)
+          console.log(residentDataWithoutParking)
+        } catch (error) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Ocurrió un error: ' + error
+          })
+        }
       } else if (residentsWithParking.length >= 32) {
         Swal.fire({
           icon: 'warning',
@@ -146,7 +164,7 @@ export default function AdminSlots () {
           text: 'No hay residentes que asignar'
         })
       }
-    })
+    }
   }
 
   const pdfConfirmation = () => {
