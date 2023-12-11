@@ -1,13 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+
 :root{
   --grey: #aeaeae;
   --blue: #2a2185;
+  --blue-hover: #1f1868;
   --white: #fff;
   --gray: #f5f5f5;
   --black: #222;
+  --pending: #dd1515;
   --red: #d32f2f;
+  --red-hover: #bd2626;
+  --up-date: #1cdd26;
   --green: #32ba38;
+  --green-hover: #25a12b;
   --green_exel: #279d2d;
   --dark-gray: #999;
   --shadow: rgba(0,0,0, 0.08);

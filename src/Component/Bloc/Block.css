@@ -1,0 +1,16 @@
+.Block{
+    margin: 30px 30px ;
+}
+.Block h2, h3{
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.Block h1, h4{
+    margin: 20px 0;
+}
+
+.Block img{
+    margin: 20px;
+    max-width: 60vw;
+}

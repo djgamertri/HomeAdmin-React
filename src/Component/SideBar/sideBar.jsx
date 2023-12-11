@@ -1,13 +1,21 @@
 import { NavLink } from 'react-router-dom'
 import './Nav.css'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Header from '../Header/Header'
 
 function sideBar ({ children }) {
-  const [isClaseAgregar, setClaseAgregar] = useState(false)
+  const storedSidebarStatus = localStorage.getItem('sidebarStatus')
+  const initialState = storedSidebarStatus ? JSON.parse(storedSidebarStatus) : false
+  const [isClaseAgregar, setClaseAgregar] = useState(initialState)
+
   const navbar = () => {
     setClaseAgregar(!isClaseAgregar)
   }
+
+  useEffect(() => {
+    localStorage.setItem('sidebarStatus', JSON.stringify(isClaseAgregar))
+  }, [isClaseAgregar])
+
   return (
     <>
       <div className='navegation'>
@@ -45,19 +53,19 @@ function sideBar ({ children }) {
             </NavLink>
           </li>
           <li>
-            <NavLink to='/Votacion'>
+            <NavLink to='/Parking'>
               <span className='icon'>
-                <i className='fa-solid fa-comment' />
+                <i className='fa-solid fa-square-parking' />
               </span>
-              <span className='title'>Votaciones</span>
+              <span className='title'>Parqueadero</span>
             </NavLink>
           </li>
           <li>
-            <NavLink to='/Parking'>
+            <NavLink to='/Vehicle'>
               <span className='icon'>
                 <i className='fa-solid fa-car' />
               </span>
-              <span className='title'>Parqueadero</span>
+              <span className='title'>Vehiculo</span>
             </NavLink>
           </li>
           <li>
@@ -86,12 +94,12 @@ function sideBar ({ children }) {
           </li>
 
           <li>
-            <a>
+            <NavLink to='/logout'>
               <span className='icon'>
                 <i className='fa-solid fa-right-from-bracket' />
               </span>
               <span className='title'>Salir</span>
-            </a>
+            </NavLink>
           </li>
         </ul>
       </div>
