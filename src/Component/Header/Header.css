@@ -19,32 +19,6 @@
   cursor: pointer;
 }
 
-.search {
-  position: relative;
-  width: 400px;
-  margin: 0 10px;
-}
-
-.search label {
-  position: relative;
-  width: 100%;
-}
-
-.search label input {
-  width: 100%;
-  border-radius: 40px;
-  padding: 5px 35px;
-  font-size: 18px;
-  outline: none;
-  border: 1px solid var(--dark-gray);
-}
-
-.search label i {
-  position: absolute;
-  top: 0;
-  left: 10px;
-}
-
 .user {
   position: relative;
   width: 40px;
