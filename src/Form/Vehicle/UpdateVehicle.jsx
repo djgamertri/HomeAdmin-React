@@ -3,9 +3,8 @@ import { toast } from 'sonner'
 import { getVehicle, updateVehicle } from '../../api/Vehicles.js'
 import { GetUser } from '../../api/users.js'
 
-function UpdateCommonArea ({ id, actualizar }) {
+function UpdateVehicle ({ id, actualizar }) {
   const [Users, setUsers] = useState([])
-
   const [Vehicle, setVehicle] = useState({
     Plate: '',
     TypeVehicle: '',
@@ -66,14 +65,14 @@ function UpdateCommonArea ({ id, actualizar }) {
           </option>
         ))}
       </select>
-      <select className='form-input' onChange={handleInputChange} value={Vehicle?.StatusVehicle} name='StatusVehicle'>
+      <select className='form-input' hidden onChange={handleInputChange} value={Vehicle?.StatusVehicle} name='StatusVehicle'>
         <option className='form-option'>Estado</option>
         <option value='1' className='form-option'>Activo</option>
         <option value='0' className='form-option'>Inactivo</option>
       </select>
-      <button className='btn-submit' type='submit'>Actualizar</button>
+      <button className='btn-submit' type='submit'>Actualizar Vehículo</button>
     </form>
   )
 }
 
-export default UpdateCommonArea
+export default UpdateVehicle

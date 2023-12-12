@@ -4,9 +4,9 @@ import { newVehicle } from '../../api/Vehicles.js'
 import { useEffect, useState } from 'react'
 import { GetUser } from '../../api/users.js'
 
-function NewCommonArea ({ registrar }) {
+function NewVehicle ({ actualizar }) {
   const [Users, setUsers] = useState([])
-  const { register, handleSubmit } = useForm()
+  const { register, handleSubmit, formState: { errors } } = useForm()
 
   useEffect(() => {
     GetUser()
@@ -21,9 +21,12 @@ function NewCommonArea ({ registrar }) {
   const newZone = async (data) => {
     try {
       const res = await newVehicle(data)
-      toast.success(res.data.TypeVehicle + 'registrado correctamente')
+      console.log(res)
+      toast.success(res.data.TypeVehicle + ' registrado correctamente')
+      actualizar(true)
     } catch (error) {
       console.log(error.response.data)
+      toast.error(error.response.data.message)
     }
   }
 
@@ -34,14 +37,38 @@ function NewCommonArea ({ registrar }) {
 
   return (
     <form className='form-disposition' onSubmit={handleSubmit(sendData)}>
-      <input className='form-input' placeholder='Numero de placa' type='text' {...register('Plate', { required: 'Requiere un numero de placa', valueAsNumber: true })} />
-      <select className='form-input' {...register('TypeVehicle', { required: true })}>
+      <input
+        className='form-input' placeholder='Numero de placa' type='text' {...register('Plate', {
+          required: {
+            value: true,
+            message: 'Requiere un numero de placa'
+          },
+          valueAsNumber: true
+        })}
+      />
+      {errors.Plate && <span className='errors'>{errors.Plate.message}</span>}
+      <select
+        className='form-input' {...register('TypeVehicle', {
+          required: {
+            value: true,
+            message: 'Tipo de vehiculo requerido'
+          }
+        })}
+      >
         <option hidden value=''>Tipo de Vehiculo</option>
         <option value='Automóvil' className='form-option'>Automóvil</option>
         <option value='Motocicleta' className='form-option'>Motocicleta</option>
         <option value='Bicicleta' className='form-option'>Bicicleta</option>
       </select>
-      <select className='form-input' {...register('IdUser', { required: true })}>
+      {errors.TypeVehicle && <span className='errors'>{errors.TypeVehicle.message}</span>}
+      <select
+        className='form-input' {...register('IdUser', {
+          required: {
+            value: true,
+            message: 'Usuario requerido'
+          }
+        })}
+      >
         <option hidden value=''>Residente</option>
         {Users.map((user) => (
           <option key={user.IdUser} value={user.IdUser}>
@@ -49,9 +76,10 @@ function NewCommonArea ({ registrar }) {
           </option>
         ))}
       </select>
+      {errors.IdUser && <span className='errors'>{errors.IdUser.message}</span>}
       <button className='btn-submit' type='submit'> Registrar </button>
     </form>
   )
 }
 
-export default NewCommonArea
+export default NewVehicle

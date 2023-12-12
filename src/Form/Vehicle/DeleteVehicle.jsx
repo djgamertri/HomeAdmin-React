@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { toast } from 'sonner'
 import { deleteVehicle, getVehicle } from '../../api/Vehicles'
 
-function DeleteCommonArea ({ id, actualizar }) {
+function DeleteVehicle ({ id, actualizar }) {
   const [data, setData] = useState({})
   useEffect(() => {
     getVehicle(id)
@@ -18,7 +18,7 @@ function DeleteCommonArea ({ id, actualizar }) {
     event.preventDefault()
     deleteVehicle(id)
       .then((response) => {
-        toast.success(response.data.Plate + ' eliminado correctamente')
+        toast.success('vehiculo con la placa ' + response.data.Plate + ' eliminado correctamente')
         actualizar(true)
       }).catch((error) => {
         console.error(error.response.data)
@@ -26,12 +26,12 @@ function DeleteCommonArea ({ id, actualizar }) {
   }
 
   return (
-    <form className='form-disposition' onSubmit={handleSubmit}>
-      <h1>¿Estas seguro de eliminar este vehiculo?</h1>
-      <p>{data.TypeVehicle}  {data.Plate} </p>
-      <button className='btn-submit' type='submit'>Confirmar</button>
+    <form className='content-delete' onSubmit={handleSubmit}>
+      <i className='fa-solid fa-triangle-exclamation' />
+      <p>¿Esta seguro de eliminar el vehículo con la placa {data.Plate}?</p>
+      <button className='confirm btns'>Eliminar</button>
     </form>
   )
 }
 
-export default DeleteCommonArea
+export default DeleteVehicle

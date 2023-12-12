@@ -27,7 +27,7 @@ function Vehicle () {
         console.log(response)
       })
       .catch(error => {
-        console.error('Error al obtener usuarios:', error)
+        console.error('Error al obtener vehículos:', error)
       })
       .finally(
         setActualizar(false)
