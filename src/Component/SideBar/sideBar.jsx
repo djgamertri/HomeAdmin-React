@@ -21,7 +21,7 @@ function sideBar ({ children }) {
       <div className='navegation'>
         <ul>
           <li>
-            <a href=''>
+            <a>
               <span className='icon'>
                 <i className='fa-brands fa-reddit' />
               </span>
@@ -29,7 +29,7 @@ function sideBar ({ children }) {
             </a>
           </li>
           <li>
-            <NavLink to='/Dashboard'>
+            <NavLink className='nav-option' to='/Dashboard'>
               <span className='icon'>
                 <i className='fa-solid fa-house-chimney' />
               </span>
@@ -37,7 +37,7 @@ function sideBar ({ children }) {
             </NavLink>
           </li>
           <li>
-            <NavLink to='/Resident'>
+            <NavLink className='nav-option' to='/Resident'>
               <span className='icon'>
                 <i className='fa-solid fa-user' />
               </span>
@@ -45,7 +45,7 @@ function sideBar ({ children }) {
             </NavLink>
           </li>
           <li>
-            <NavLink to='/Tax'>
+            <NavLink className='nav-option' to='/Tax'>
               <span className='icon'>
                 <i className='fa-solid fa-dollar-sign' />
               </span>
@@ -53,7 +53,7 @@ function sideBar ({ children }) {
             </NavLink>
           </li>
           <li>
-            <NavLink to='/Parking'>
+            <NavLink className='nav-option' to='/Parking'>
               <span className='icon'>
                 <i className='fa-solid fa-square-parking' />
               </span>
@@ -61,7 +61,7 @@ function sideBar ({ children }) {
             </NavLink>
           </li>
           <li>
-            <NavLink to='/Vehicle'>
+            <NavLink className='nav-option' to='/Vehicle'>
               <span className='icon'>
                 <i className='fa-solid fa-car' />
               </span>
@@ -69,7 +69,7 @@ function sideBar ({ children }) {
             </NavLink>
           </li>
           <li>
-            <NavLink to='/Zone'>
+            <NavLink className='nav-option' to='/Zone'>
               <span className='icon'>
                 <i className='fa-solid fa-users' />
               </span>
@@ -77,7 +77,7 @@ function sideBar ({ children }) {
             </NavLink>
           </li>
           <li>
-            <NavLink to='/Help'>
+            <NavLink className='nav-option' to='/Help'>
               <span className='icon'>
                 <i className='fa-solid fa-question' />
               </span>
@@ -85,7 +85,7 @@ function sideBar ({ children }) {
             </NavLink>
           </li>
           <li>
-            <NavLink to='/Settings'>
+            <NavLink className='nav-option' to='/Settings'>
               <span className='icon'>
                 <i className='fa-solid fa-gear' />
               </span>
@@ -94,7 +94,7 @@ function sideBar ({ children }) {
           </li>
 
           <li>
-            <NavLink to='/logout'>
+            <NavLink className='nav-option' to='/logout'>
               <span className='icon'>
                 <i className='fa-solid fa-right-from-bracket' />
               </span>

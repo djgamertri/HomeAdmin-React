@@ -45,7 +45,8 @@
   pointer-events: none;
 }
 
-.navegation ul li a{
+.navegation ul li .nav-option,
+.navegation ul li a {
   position: relative;
   color: var(--white);
   display: flex;
@@ -53,6 +54,7 @@
   display: flex;
   align-items: center;
 }
+
 .navegation ul li a span{
     display: flex;
     align-items: center;
@@ -68,6 +70,7 @@
   display: block;
   padding:  0 20px;
   text-align: center;
+  width: 25%;
 }
 
 .navegation ul li a .icon i{
