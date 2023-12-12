@@ -10,12 +10,13 @@ function UpdateCommonArea ({ id, actualizar }) {
   })
 
   useEffect(() => {
-    getCommonArea(id).then((response) => {
-      console.log(response.data[0])
-      setZoneData(response.data[0])
-    }).catch((error) => {
-      console.error('Error al obtener usuario:', error)
-    })
+    getCommonArea(id)
+      .then((response) => {
+        console.log(response.data[0])
+        setZoneData(response.data[0])
+      }).catch((error) => {
+        console.error('Error al obtener zona común:', error)
+      })
   }, [id])
 
   const handleInputChange = (e) => {
@@ -39,7 +40,7 @@ function UpdateCommonArea ({ id, actualizar }) {
     <form className='form-disposition' onSubmit={handleSubmint}>
       <input className='form-input' type='hidden' onChange={handleInputChange} value={ZoneData.IdCommonArea} name='IdCommonArea' />
       <input className='form-input' type='text' onChange={handleInputChange} value={ZoneData.NameCommonArea} name='NameCommonArea' />
-      <select className='form-input' onChange={handleInputChange} value={ZoneData.status} name='status'>
+      <select className='form-input' hidden onChange={handleInputChange} value={ZoneData.status} name='status'>
         <option className='form-option'>Estado</option>
         <option value='1' className='form-option'>Activo</option>
         <option value='0' className='form-option'>Inactivo</option>
