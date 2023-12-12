@@ -31,7 +31,7 @@ function RegisterRent ({ actualizar }) {
     try {
       const res = await NewRent(data)
       console.log(res)
-      toast.success('registrado correctamente')
+      toast.success('Solicitud registrada correctamente')
       actualizar(true)
     } catch (error) {
       console.log(error.response.data)
