@@ -38,6 +38,7 @@ function UpdateFee ({ id, actualizar }) {
       [name]: value
     })
   }
+
   const handleSubmit = (event) => {
     event.preventDefault()
     updateFee(Fee)
