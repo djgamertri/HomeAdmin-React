@@ -64,7 +64,7 @@ function RegisterFee ({ actualizar }) {
       />
       {errors.RegistDate && <span className='errors'>{errors.RegistDate.message}</span>}
       <select
-        className='form-input' defaultValue='1' {...register('StatusPayAdmin', {
+        className='form-input' {...register('StatusPayAdmin', {
           required: {
             value: true,
             message: 'El estado del pago es requerdio'
