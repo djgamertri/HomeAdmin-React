@@ -11,6 +11,7 @@ import Index from './View/Index'
 import { Toaster } from 'sonner'
 import Logout from './View/logout'
 import Vehicle from './View/Vehicle'
+import Rent from './View/Rent'
 
 function App () {
   return (
@@ -24,6 +25,7 @@ function App () {
           <Route path='/Parking' element={<Park />} />
           <Route path='/Vehicle' element={<Vehicle />} />
           <Route path='/Zone' element={<Zone />} />
+          <Route path='/Rent' element={<Rent />} />
           <Route path='/Help' element={<Help />} />
           <Route path='/Settings' element={<Setting />} />
           <Route path='/logout' element={<Logout />} />

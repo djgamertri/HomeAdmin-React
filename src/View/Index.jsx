@@ -27,9 +27,6 @@ function Index () {
             <li>
               <a href='/#ubi'>Ubicación</a>
             </li>
-            <li onClick={() => setLoginModal(true)}>
-              <a>Ingresar</a>
-            </li>
           </ul>
           <i className='fa-solid fa-xmark'>
             <i className='fa-solid fa-bars' />
@@ -41,12 +38,12 @@ function Index () {
               <h1>Conjunto residencial CAFAM II</h1>
               <p>
                 Nuestro conjunto residencial, es una experiencia serena, con áreas verdes y parques
-                que ofrecen rincones tranquilos <br />para la contemplación y juegos animados para los niños.
-                <br />
-                Las fachadas de las viviendas están adornadas con jardines bien cuidados, añadiendo color y vida a la comunidad.
+                que ofrecen rincones tranquilos para la contemplación y juegos animados <br /> para los niños
+                Las fachadas de las viviendas están adornadas con jardines bien cuidados, añadiendo color
+                y vida a la comunidad.
               </p>
-              <button href='/#about' className='hero-btn' id='openLogin'>
-                Empieza tu experiencia
+              <button className='hero-btn' onClick={() => setLoginModal(true)}>
+                Ingresar
               </button>
             </div>
           </i>
@@ -146,6 +143,6 @@ function Index () {
       </Modal>
     </>
   )
-};
+}
 
 export default Index

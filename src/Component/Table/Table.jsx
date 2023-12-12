@@ -1,5 +1,5 @@
 import DataTable from 'react-data-table-component'
-import { useLocation } from 'react-router-dom'
+import { useLocation, NavLink } from 'react-router-dom'
 import { Toaster } from 'sonner'
 import './Table.css'
 
@@ -42,9 +42,16 @@ function Table ({ Coluums, Data, title, buttonRegister }) {
             <h2>{title}</h2>
             {location.pathname !== '/Dashboard'
               ? (
-                <a className='btn btn-register' onClick={buttonRegister}>
-                  Añadir {title}
-                </a>
+                <div>
+                  <a className='btn btn-register' onClick={buttonRegister}>
+                    Añadir {title}
+                  </a>
+                  {location.pathname === '/Zone' && (
+                    <NavLink to='/Rent' className='btn btn-register'>
+                      Alquilar
+                    </NavLink>
+                  )}
+                </div>
                 )
               : null}
           </div>

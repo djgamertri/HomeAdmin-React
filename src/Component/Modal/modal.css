@@ -91,10 +91,8 @@
 
 .btn-submit:hover{
     cursor: pointer;
-    color: var(--black);
-    background: var(--green);
-    transition: ease-in;
-    font-weight: bold;
+    background: var(--blue-hover);
+    transition: ease-in all ease;
 }
 
 .form-colums{
@@ -145,6 +143,7 @@
 
 .content-delete p {
     font-size: 20px;
+    text-align: center;
 }
 
 .fa-triangle-exclamation{

@@ -3,7 +3,8 @@
     border-radius: 10px;
     color: var(--white);
     font-weight: bold;
-    cursor: pointer
+    cursor: pointer;
+    text-decoration: none;
 }
 
 .btn-register{

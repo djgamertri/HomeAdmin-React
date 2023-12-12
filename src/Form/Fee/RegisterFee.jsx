@@ -39,7 +39,7 @@ function RegisterFee ({ actualizar }) {
   return (
     <form className='form-disposition' onSubmit={handleSubmit(sendData)}>
       <select
-        className='form-input' {...register('User', {
+        className='form-input' {...register('IdUser', {
           required: {
             value: true,
             message: 'Seleccione un Residente'
@@ -53,18 +53,18 @@ function RegisterFee ({ actualizar }) {
           </option>
         ))}
       </select>
-      {errors.User && <span className='errors'>{errors.User.message}</span>}
+      {errors.IdUser && <span className='errors'>{errors.IdUser.message}</span>}
       <input
-        className='form-input' type='date' placeholder='Fecha' {...register('Date', {
+        className='form-input' type='date' placeholder='Fecha' {...register('RegistDate', {
           required: {
             value: true,
             message: 'La fecha del pago es requerida'
           }
         })}
       />
-      {errors.Date && <span className='errors'>{errors.Date.message}</span>}
+      {errors.RegistDate && <span className='errors'>{errors.RegistDate.message}</span>}
       <select
-        className='form-input' defaultValue='1' {...register('State', {
+        className='form-input' {...register('StatusPayAdmin', {
           required: {
             value: true,
             message: 'El estado del pago es requerdio'
@@ -75,8 +75,8 @@ function RegisterFee ({ actualizar }) {
         <option value={1}> Al día </option>
         <option value={0}> Pendiente </option>
       </select>
-      {errors.State && <span className='errors'>{errors.State.message}</span>}
-      <input className='form-input' type='text' placeholder='descripcion del pago' {...register('File', { required: true })} name='File' defaultValue='Se pago la administracion' />
+      {errors.StatusPayAdmin && <span className='errors'>{errors.StatusPayAdmin.message}</span>}
+      <input className='form-input' type='text' placeholder='descripcion del pago' {...register('FIlePayAdmin', { required: true })} name='File' defaultValue='Se pago la administracion' />
       <button className='btn-submit' type='submit'>Regitrar cuota</button>
     </form>
   )

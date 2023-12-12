@@ -1,14 +1,14 @@
 import { useForm } from 'react-hook-form'
 import { NewRent } from '../../api/rent.js'
+import { toast } from 'sonner'
 import { GetUser } from '../../api/users.js'
 import { getCommonAreas } from '../../api/zone.js'
-import { useState, useEffect } from 'react'
-import { toast } from 'sonner'
+import { useEffect, useState } from 'react'
 
-function RegisterRent ({ registrar }) {
-  const { register, handleSubmit } = useForm()
+function RegisterRent ({ actualizar }) {
+  const { register, handleSubmit, formState: { errors } } = useForm()
   const [Users, setUsers] = useState([])
-  const [Areas, setAreas] = useState([])
+  const [Zones, setZones] = useState([])
 
   useEffect(() => {
     GetUser()
@@ -21,16 +21,18 @@ function RegisterRent ({ registrar }) {
     getCommonAreas()
       .then((response) => {
         console.log(response.data)
-        setAreas(response.data)
+        setZones(response.data)
       }).catch((error) => {
-        console.log(error.response.data)
+        console.error(error.response.data)
       })
   }, [])
+
   const newRent = async (data) => {
     try {
       const res = await NewRent(data)
       console.log(res)
-      toast.success('registrado correctamente')
+      toast.success('Solicitud registrada correctamente')
+      actualizar(true)
     } catch (error) {
       console.log(error.response.data)
     }
@@ -42,39 +44,46 @@ function RegisterRent ({ registrar }) {
   return (
     <form className='form-disposition' onSubmit={handleSubmit(sendData)}>
       <select
-        className='form-input' {...register('IdUser', {
+        type='number' placeholder='Id Usuario' className='form-input' {...register('IdUser', {
           required: {
             value: true,
-            message: 'Seleccione un Residente'
+            message: 'El residente es requerido'
           }
         })}
       >
-        <option hidden value=''>Residente</option>
+        <option value=''>Residente</option>
         {Users.map((user) => (
           <option key={user.IdUser} value={user.IdUser}>
             {user.NameUser}
           </option>
         ))}
       </select>
-      <br />
+      {errors.IdUser && <span className='errors'>{errors.IdUser.message}</span>}
       <select
-        className='form-input' {...register('IdCommonArea', {
+        type='number' placeholder='Id Zona Común' className='form-input' {...register('IdCommonArea', {
           required: {
             value: true,
-            message: 'Seleccione una Area Común'
+            message: 'La zona común es requerida'
           }
         })}
       >
-        <option hidden value=''>Zona Común</option>
-        {Areas.map((area) => (
-          <option key={area.IdCommonArea} value={area.IdCommonArea}>
-            {area.NameCommonArea}
+        <option value=''>Zona Común</option>
+        {Zones.map((zone) => (
+          <option key={zone.IdCommonArea} value={zone.IdCommonArea}>
+            {zone.NameCommonArea}
           </option>
         ))}
       </select>
-      <br />
-      <input type='date' placeholder='Fecha del uso' className='form-input' {...register('RentDate')} />
-      <br />
+      {errors.IdCommonArea && <span className='errors'>{errors.IdCommonArea.message}</span>}
+      <input
+        type='date' placeholder='Fecha del uso' className='form-input' {...register('RentDate', {
+          required: {
+            value: true,
+            message: 'La fecha de alquiler es requerida'
+          }
+        })}
+      />
+      {errors.RentDate && <span className='errors'>{errors.RentDate.message}</span>}
       <button className='btn-submit' type='submit'> Registrar </button>
     </form>
   )

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { getCommonArea, deleteCommonArea } from '../../api/zone'
 import { toast } from 'sonner'
 
-function DeleteCommonArea ({ id, eliminar }) {
+function DeleteCommonArea ({ id, actualizar }) {
   const [data, setData] = useState({})
   useEffect(() => {
     getCommonArea(id).then((response) => {
@@ -17,17 +17,17 @@ function DeleteCommonArea ({ id, eliminar }) {
     event.preventDefault()
     deleteCommonArea(id).then((response) => {
       toast.success(response.data.NameCommonArea + ' eliminado correctamente')
-      eliminar(true)
+      actualizar(true)
     }).catch((error) => {
       console.error(error.response.data)
     })
   }
 
   return (
-    <form className='form-disposition' onSubmit={handleSubmit}>
-      <h1>¿Estas seguro de eliminar esta Zona Común?</h1>
-      <p> {data.NameCommonArea} </p>
-      <button className='btn-submit' type='submit'>Confirmar</button>
+    <form className='content-delete' onSubmit={handleSubmit}>
+      <i className='fa-solid fa-triangle-exclamation' />
+      <p>¿Estas seguro de eliminar la Zona Común {data.NameCommonArea}?</p>
+      <button className='confirm btns' type='submit'>Confirmar</button>
     </form>
   )
 }

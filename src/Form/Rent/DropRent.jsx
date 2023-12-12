@@ -2,32 +2,36 @@ import { useEffect, useState } from 'react'
 import { GetRent, DeleteRent } from '../../api/rent.js'
 import { toast } from 'sonner'
 
-function DropRent ({ id, eliminar }) {
+function DropRent ({ id, actualizar }) {
   const [data, setData] = useState({})
+
   useEffect(() => {
-    GetRent(id).then((response) => {
-      console.log(response.data[0])
-      setData(response.data[0])
-    }).catch((error) => {
-      console.error(error.response.data)
-    })
+    GetRent(id)
+      .then((response) => {
+        console.log(response.data[0])
+        setData(response.data[0])
+      }).catch((error) => {
+        console.error(error.response.data)
+      })
   }, [id])
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    DeleteRent(id).then((response) => {
-      toast.success('eliminado correctamente')
-      eliminar(true)
-    }).catch((error) => {
-      console.log(error.response.data)
-    })
+    DeleteRent(id)
+      .then((response) => {
+        console.log(response)
+        toast.success(`Solicitud ${data.IdRent} eliminada correctamente`)
+        actualizar(true)
+      }).catch((error) => {
+        console.log(error.response.data)
+      })
   }
-
+  console.log(data)
   return (
-    <form className='form-disposition' onSubmit={handleSubmit}>
-      <h1>¿Estas seguro de eliminar esta solicitud?</h1>
-      <p>{data.NameUser} usara {data.NameCommonArea}</p>
-      <button className='btn-submit' type='submit'>Confirmar</button>
+    <form className='content-delete' onSubmit={handleSubmit}>
+      <i className='fa-solid fa-triangle-exclamation' />
+      <p>¿Seguro que quiere Eiminar la solicitud de {data.NameUser}?</p>
+      <button className='confirm btns' type='submit'>Eliminar</button>
     </form>
   )
 }

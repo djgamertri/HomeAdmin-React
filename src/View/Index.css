@@ -1,22 +1,5 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;;
-}
 html{
     scroll-behavior: smooth;
-}
-
-:root{
-    --white: #fff;
-    --blue: #001696;
-    --gray: #777;
-    --dark-white: #fff3f3;
-}
-
-::-webkit-scrollbar {
-    display: none;
 }
 
 .headerIndex{
@@ -49,12 +32,13 @@ html{
 
 .navIndex ul li a{
     text-decoration: none;
-    color: white;
+    color: var(--white);
     font-weight: bold;
 }
 
 .navIndex ul li a:hover{
-    text-decoration: underline;
+    color: var(--grey);
+    transition: ease 2.5s all;
 }
 .navh1{
     font-size:xx-large;
@@ -117,7 +101,7 @@ nav .fa-solid{
 }
 
 .cards p{
-    color: var(--gray);
+    color: var(--gray-index);
     font-size: 14px;
     font-weight: 300;
     line-height: 22px;
@@ -227,7 +211,7 @@ nav .fa-solid{
     margin-top: 40px;
 }
 .activitys p{
-    color: var(--gray);
+    color: var(--gray-index);
     font-size: 14px;
     font-weight: 300;
     line-height: 22px;
@@ -291,9 +275,7 @@ footer h4{
     font-size: 20px;
     text-decoration: none;
 }
-/*.social-icons a:hover{
-    color:  #55acee;
-}*/
+
 .fa-facebook:hover{
     color: rgb(0, 68, 255);
 }
