@@ -31,7 +31,7 @@ function Delete ({ id, actualizar }) {
   return (
     <form className='content-delete' onSubmit={handleSubmit}>
       <i className='fa-solid fa-triangle-exclamation' />
-      <p>¿Seguro que quiere Eiminar el {UserData.NameUser}?</p>
+      <p>¿Seguro que quiere Eiminar el usuario {UserData.NameUser}?</p>
       <button className='confirm btns'>Eliminar</button>
     </form>
   )
