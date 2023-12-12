@@ -16,7 +16,7 @@ function DeleteCommonArea ({ id, actualizar }) {
   const handleSubmit = (event) => {
     event.preventDefault()
     deleteCommonArea(id).then((response) => {
-      toast.success(response.data.NameCommonArea + ' actualizado correctamente')
+      toast.success(response.data.NameCommonArea + ' eliminado correctamente')
       actualizar(true)
     }).catch((error) => {
       console.error(error.response.data)
