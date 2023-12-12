@@ -1,12 +1,16 @@
 import SideBar from '../Component/SideBar/sideBar'
 import Card from '../Component/Card/Card'
 import { GetUser } from '../api/users.js'
+import { GetFees } from '../api/Fee.js'
+import { getVehicles } from '../api/Vehicles.js'
 import { useEffect, useState } from 'react'
 import Table from '../Component/Table/Table.jsx'
 import { format } from 'date-fns'
 
 function Dashboard () {
   const [Users, setUsers] = useState([])
+  const [Fees, setFees] = useState([])
+  const [Vehicles, setVehicles] = useState([])
 
   useEffect(() => {
     GetUser()
@@ -16,6 +20,20 @@ function Dashboard () {
       })
       .catch(error => {
         console.error('Error al obtener usuarios:', error)
+      })
+    GetFees()
+      .then(response => {
+        setFees(response.data)
+      })
+      .catch(error => {
+        console.error('Error al obtener cuotas:', error)
+      })
+    getVehicles()
+      .then(response => {
+        setVehicles(response.data)
+      })
+      .catch(error => {
+        console.error('Error al obtener vehiculos:', error)
       })
   }, [])
 
@@ -68,10 +86,10 @@ function Dashboard () {
     <SideBar>
       <div>
         <div className='content-cards'>
-          <Card Title='Residentes' Info='Residente Registrado' Icon='fa-solid fa-user' />
-          <Card Title='Cuotas' Info='Cuotas Finas' Icon='fa-solid fa-dollar-sign  ' />
-          <Card Title='Vehiculos' Info='Vehiculos en existencia' Icon='fa-solid fa-comment' />
-          <Card Title='Casas' Info='Casas Totales' Icon='fa-solid fa-house' />
+          <Card Title='Residentes' Info={`Residente Registrado ${Users.length}`} Icon='fa-solid fa-user' />
+          <Card Title='Cuotas' Info={`Cuotas Fijas ${Fees.length}`} Icon='fa-solid fa-dollar-sign  ' />
+          <Card Title='Vehiculos' Info={`Vehiculos en existencia ${Vehicles.length}`} Icon='fa-solid fa-car' />
+          <Card Title='Casas' Info={`Casas Totales ${Users.length}`} Icon='fa-solid fa-house' />
         </div>
         <Table
           title='Usuario'
